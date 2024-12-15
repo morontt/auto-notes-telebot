@@ -1,0 +1,29 @@
+{
+    "name": "xelbot/telebot-auto-notes",
+    "license": "Zlib",
+    "type": "project",
+    "description": "Telegram bot for autonotes",
+    "require": {
+        "symfony/config": "^6.4",
+        "symfony/http-kernel": "^6.4",
+        "symfony/http-foundation": "^6.4",
+        "symfony/routing": "^6.4",
+        "symfony/dependency-injection": "^6.4",
+        "symfony/framework-bundle": "^6.4"
+    },
+    "require-dev": {
+        "friendsofphp/php-cs-fixer": "^3.39"
+    },
+    "config": {
+        "bin-dir": "bin",
+        "sort-packages": true
+    },
+    "minimum-stability": "dev",
+    "prefer-stable": true,
+    "extra": {
+        "symfony": {
+            "allow-contrib": false,
+            "require": "6.4.*"
+        }
+    }
+}
