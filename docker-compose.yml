@@ -1,0 +1,21 @@
+services:
+    telebot:
+        build:
+            context: ./docker/web
+            args:
+                HOST_UID: ${HOST_UID}
+        hostname: "telebot"
+        container_name: "telebot"
+        volumes:
+            - .:/var/www/html
+            - ./docker/web/apache.conf:/etc/apache2/sites-available/000-default.conf:ro
+        tmpfs:
+            - /tmp
+        ports:
+            - "80:80"
+        extra_hosts:
+            - "database.lan:${DATABASE_IP}"
+
+networks:
+    default:
+        name: autonotes_net
