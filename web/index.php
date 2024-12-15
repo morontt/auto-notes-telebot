@@ -1,9 +1,9 @@
 <?php
 
-use TeleBot\Kernel;
 use Symfony\Component\HttpFoundation\Request;
+use TeleBot\Kernel;
 
-require __DIR__.'/../vendor/autoload.php';
+require __DIR__ . '/../vendor/autoload.php';
 
 $kernel = new Kernel('dev', true);
 $request = Request::createFromGlobals();

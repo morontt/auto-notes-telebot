@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User: morontt
  * Date: 15.12.2024
@@ -30,12 +31,22 @@ class Kernel extends BaseKernel
         return $bundles;
     }
 
+    public function getCacheDir(): string
+    {
+        return __DIR__ . '/../var/cache/' . $this->getEnvironment();
+    }
+
+    public function getLogDir(): string
+    {
+        return __DIR__ . '/../var/log';
+    }
+
     protected function configureContainer(ContainerConfigurator $container): void
     {
-        $container->import(__DIR__.'/../config/framework.yaml');
+        $container->import(__DIR__ . '/../config/framework.yaml');
 
         $container->services()
-            ->load('TeleBot\\', __DIR__.'/*')
+            ->load('TeleBot\\', __DIR__ . '/*')
             ->autowire()
             ->autoconfigure()
         ;
@@ -55,16 +66,6 @@ class Kernel extends BaseKernel
             $routes->import('@WebProfilerBundle/Resources/config/routing/profiler.xml')->prefix('/_profiler');
         }
 
-        $routes->import(__DIR__.'/Controller/', 'attribute');
-    }
-
-    public function getCacheDir(): string
-    {
-        return __DIR__.'/../var/cache/'.$this->getEnvironment();
-    }
-
-    public function getLogDir(): string
-    {
-        return __DIR__.'/../var/log';
+        $routes->import(__DIR__ . '/Controller/', 'attribute');
     }
 }
