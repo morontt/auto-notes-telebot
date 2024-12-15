@@ -4,15 +4,24 @@
     "type": "project",
     "description": "Telegram bot for autonotes",
     "require": {
+        "php": ">=8.2",
         "symfony/config": "^6.4",
-        "symfony/http-kernel": "^6.4",
-        "symfony/http-foundation": "^6.4",
-        "symfony/routing": "^6.4",
         "symfony/dependency-injection": "^6.4",
-        "symfony/framework-bundle": "^6.4"
+        "symfony/framework-bundle": "^6.4",
+        "symfony/http-foundation": "^6.4",
+        "symfony/http-kernel": "^6.4",
+        "symfony/routing": "^6.4",
+        "symfony/twig-bundle": "^6.4",
+        "symfony/web-profiler-bundle": "^6.4",
+        "symfony/yaml": "^6.4"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.39"
+    },
+    "autoload": {
+        "psr-4": {
+            "TeleBot\\": "src"
+        }
     },
     "config": {
         "bin-dir": "bin",
