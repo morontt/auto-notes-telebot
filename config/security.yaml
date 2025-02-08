@@ -1,0 +1,24 @@
+security:
+    providers:
+        auto_notes_provider:
+            id: TeleBot\Security\UserProvider
+
+    firewalls:
+        dev:
+            pattern: ^/(_(profiler|wdt)|css|images|js)/
+            security: false
+
+        default:
+            pattern: ^/
+            form_login:
+                provider: auto_notes_provider
+                login_path: /login
+                check_path: /login_check
+            logout:
+                path: /logout
+                target: /login
+
+    access_control:
+        - { path: ^/login, roles: PUBLIC_ACCESS }
+        - { path: ^/webhook, roles: PUBLIC_ACCESS }
+        - { path: ^/dashboard, roles: ROLE_USER }

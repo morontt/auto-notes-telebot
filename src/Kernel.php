@@ -21,6 +21,7 @@ class Kernel extends BaseKernel
     {
         $bundles = [
             new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
+            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
             new \Symfony\Bundle\TwigBundle\TwigBundle(),
         ];
 
@@ -44,6 +45,7 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(__DIR__ . '/../config/framework.yaml');
+        $container->import(__DIR__ . '/../config/security.yaml');
 
         $container->services()
             ->load('TeleBot\\', __DIR__ . '/*')
