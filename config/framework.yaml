@@ -1,3 +1,7 @@
 framework:
     secret: '%env(APP_SECRET)%'
     profiler: { only_exceptions: false }
+    csrf_protection: true
+
+    session:
+        name: SESSID

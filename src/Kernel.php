@@ -69,5 +69,6 @@ class Kernel extends BaseKernel
         }
 
         $routes->import(__DIR__ . '/Controller/', 'attribute');
+        $routes->import(__DIR__ . '/../config/routes.yaml');
     }
 }

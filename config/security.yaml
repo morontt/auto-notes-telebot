@@ -12,11 +12,11 @@ security:
             pattern: ^/
             form_login:
                 provider: auto_notes_provider
-                login_path: /login
-                check_path: /login_check
+                login_path: login
+                check_path: login_check
             logout:
-                path: /logout
-                target: /login
+                path: logout
+                target: login
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }
