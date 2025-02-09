@@ -10,6 +10,7 @@ namespace TeleBot\Security\Authenticator;
 
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
 use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
@@ -32,23 +33,24 @@ class GrpcAuthenticator extends AbstractLoginFormAuthenticator
     public function authenticate(Request $request): Passport
     {
         $password = $request->request->get('_password');
-        $username = trim($request->request->get('_username'));
-        $csrfToken = $request->request->get('_csrf_token');
+        if (!is_string($password)) {
+            throw new BadRequestHttpException('The password must be a string');
+        }
 
+        $username = $request->request->get('_username');
+        if (!is_string($username)) {
+            throw new BadRequestHttpException('The username must be a string');
+        }
+
+        $username = trim($username);
         if ($request->hasSession()) {
             $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $username);
         }
 
-        /**
-         * https://symfony.com/doc/6.4/security.html#the-firewall
-         * https://symfony.com/doc/6.4/security/custom_authenticator.html
-         * https://symfony.com/doc/6.4/security/entry_point.html
-         * https://github.com/lexik/LexikJWTAuthenticationBundle/blob/3.x/Security/Authenticator/JWTAuthenticator.php
-         */
         return new Passport(
             new UserBadge($username),
             new CustomCredentials([$this, 'checkPassword'], $password),
-            [new CsrfTokenBadge('authenticate', $csrfToken)]
+            [new CsrfTokenBadge('authenticate', $request->request->get('_csrf_token'))]
         );
     }
 
