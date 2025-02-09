@@ -10,13 +10,11 @@ security:
 
         default:
             pattern: ^/
-            form_login:
-                provider: auto_notes_provider
-                login_path: login
-                check_path: login_check
             logout:
                 path: logout
-                target: login
+                target: /
+            custom_authenticators:
+                - TeleBot\Security\Authenticator\GrpcAuthenticator
 
     access_control:
         - { path: ^/login, roles: PUBLIC_ACCESS }

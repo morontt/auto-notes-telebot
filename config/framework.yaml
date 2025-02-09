@@ -5,3 +5,8 @@ framework:
 
     session:
         name: SESSID
+
+    default_locale: '%locale%'
+    translator:
+        fallbacks:
+            - '%locale%'

@@ -1,0 +1,83 @@
+<?php
+
+/**
+ * User: morontt
+ * Date: 09.02.2025
+ * Time: 13:43
+ */
+
+namespace TeleBot\Security\Authenticator;
+
+use Symfony\Component\HttpFoundation\Request;
+use Symfony\Component\HttpFoundation\Response;
+use Symfony\Component\Security\Core\Authentication\Token\TokenInterface;
+use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Security\Http\Authenticator\AbstractLoginFormAuthenticator;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\CsrfTokenBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Badge\UserBadge;
+use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCredentials;
+use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
+use Symfony\Component\Security\Http\HttpUtils;
+use Symfony\Component\Security\Http\SecurityRequestAttributes;
+
+class GrpcAuthenticator extends AbstractLoginFormAuthenticator
+{
+    private HttpUtils $httpUtils;
+
+    public function __construct(HttpUtils $httpUtils)
+    {
+        $this->httpUtils = $httpUtils;
+    }
+
+    public function authenticate(Request $request): Passport
+    {
+        $password = $request->request->get('_password');
+        $username = trim($request->request->get('_username'));
+        $csrfToken = $request->request->get('_csrf_token');
+
+        if ($request->hasSession()) {
+            $request->getSession()->set(SecurityRequestAttributes::LAST_USERNAME, $username);
+        }
+
+        /**
+         * https://symfony.com/doc/6.4/security.html#the-firewall
+         * https://symfony.com/doc/6.4/security/custom_authenticator.html
+         * https://symfony.com/doc/6.4/security/entry_point.html
+         * https://github.com/lexik/LexikJWTAuthenticationBundle/blob/3.x/Security/Authenticator/JWTAuthenticator.php
+         */
+        return new Passport(
+            new UserBadge($username),
+            new CustomCredentials([$this, 'checkPassword'], $password),
+            [new CsrfTokenBadge('authenticate', $csrfToken)]
+        );
+    }
+
+    public function onAuthenticationSuccess(Request $request, TokenInterface $token, string $firewallName): ?Response
+    {
+        return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
+    }
+
+    public function checkPassword($credentials, UserInterface $user): bool
+    {
+        return true;
+    }
+
+    protected function getLoginUrl(Request $request): string
+    {
+        return '/login';
+    }
+
+    private function determineTargetUrl(Request $request): string
+    {
+        if ($request->hasSession()) {
+            $targetUrl = $request->getSession()->get('_security.default.target_path');
+            if (\is_string($targetUrl) && (str_starts_with($targetUrl, '/') || str_starts_with($targetUrl, 'http'))) {
+                $request->getSession()->remove('_security.default.target_path');
+
+                return $targetUrl;
+            }
+        }
+
+        return '/';
+    }
+}

@@ -46,6 +46,7 @@ class Kernel extends BaseKernel
     {
         $container->import(__DIR__ . '/../config/framework.yaml');
         $container->import(__DIR__ . '/../config/security.yaml');
+        $container->import(__DIR__ . '/../config/services.yaml');
 
         $container->services()
             ->load('TeleBot\\', __DIR__ . '/*')
