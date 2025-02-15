@@ -5,3 +5,4 @@
 !var/cache/.gitkeep
 !var/log/.gitkeep
 .php-cs-fixer.cache
+bin/protoc-gen-twirp_php
