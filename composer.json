@@ -6,9 +6,12 @@
     "require": {
         "php": ">=8.2",
         "doctrine/dbal": "^3",
-        "doctrine/orm": "*",
         "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-migrations-bundle": "*",
+        "doctrine/orm": "*",
+        "google/protobuf": "^4.29",
+        "guzzlehttp/guzzle": "^7.9",
+        "guzzlehttp/psr7": "^2.7",
         "symfony/config": "^6.4",
         "symfony/dependency-injection": "^6.4",
         "symfony/dotenv": "^6.4",
@@ -21,7 +24,8 @@
         "symfony/translation": "^6.4",
         "symfony/twig-bundle": "^6.4",
         "symfony/web-profiler-bundle": "^6.4",
-        "symfony/yaml": "^6.4"
+        "symfony/yaml": "^6.4",
+        "twirp/twirp": "^0.12.0"
     },
     "require-dev": {
         "friendsofphp/php-cs-fixer": "^3.39",
@@ -55,7 +59,10 @@
     },
     "config": {
         "bin-dir": "bin",
-        "sort-packages": true
+        "sort-packages": true,
+        "allow-plugins": {
+            "php-http/discovery": true
+        }
     },
     "minimum-stability": "dev",
     "prefer-stable": true,

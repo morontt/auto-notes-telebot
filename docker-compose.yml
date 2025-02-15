@@ -15,6 +15,7 @@ services:
             - "80:80"
         extra_hosts:
             - "database.lan:${DATABASE_IP}"
+            - "auto-notes-server.lan:${GRPC_SERVER_IP}"
 
 networks:
     default:
