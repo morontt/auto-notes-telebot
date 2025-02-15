@@ -48,12 +48,6 @@ class Kernel extends BaseKernel
         $container->import(__DIR__ . '/../config/security.yaml');
         $container->import(__DIR__ . '/../config/services.yaml');
 
-        $container->services()
-            ->load('TeleBot\\', __DIR__ . '/*')
-            ->autowire()
-            ->autoconfigure()
-        ;
-
         if (isset($this->bundles['WebProfilerBundle'])) {
             $container->extension('web_profiler', [
                 'toolbar' => true,

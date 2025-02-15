@@ -8,6 +8,7 @@
 
 namespace TeleBot\Security\Authenticator;
 
+use LogicException;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
@@ -20,14 +21,18 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Credentials\CustomCre
 use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
+use TeleBot\Security\User;
+use TeleBot\Service\Auth;
 
 class GrpcAuthenticator extends AbstractLoginFormAuthenticator
 {
     private HttpUtils $httpUtils;
+    private Auth $authService;
 
-    public function __construct(HttpUtils $httpUtils)
+    public function __construct(HttpUtils $httpUtils, Auth $authService)
     {
         $this->httpUtils = $httpUtils;
+        $this->authService = $authService;
     }
 
     public function authenticate(Request $request): Passport
@@ -61,7 +66,18 @@ class GrpcAuthenticator extends AbstractLoginFormAuthenticator
 
     public function checkPassword($credentials, UserInterface $user): bool
     {
-        return true;
+        if (!$user instanceof User) {
+            throw new LogicException(sprintf('Class "%s" not supported', get_debug_type($user)));
+        }
+
+        $token = $this->authService->getToken($user->getUserIdentifier(), $credentials);
+        if ($token) {
+            $user->setAccessToken($token);
+
+            return true;
+        }
+
+        return false;
     }
 
     protected function getLoginUrl(Request $request): string

@@ -1,2 +1,15 @@
 parameters:
     locale: 'ru'
+    grpc_url: '%env(GRPC_URL)%'
+
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        bind:
+            $grpcUrl: '%grpc_url%'
+
+    TeleBot\:
+        resource: '../src/'
+        exclude:
+            - '../src/Kernel.php'
