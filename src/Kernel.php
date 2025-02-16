@@ -8,6 +8,9 @@
 
 namespace TeleBot;
 
+use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
+use Symfony\Bundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
@@ -20,13 +23,15 @@ class Kernel extends BaseKernel
     public function registerBundles(): array
     {
         $bundles = [
-            new \Symfony\Bundle\FrameworkBundle\FrameworkBundle(),
-            new \Symfony\Bundle\SecurityBundle\SecurityBundle(),
-            new \Symfony\Bundle\TwigBundle\TwigBundle(),
+            new Bundle\FrameworkBundle\FrameworkBundle(),
+            new Bundle\SecurityBundle\SecurityBundle(),
+            new Bundle\TwigBundle\TwigBundle(),
+            new DoctrineBundle(),
+            new DoctrineMigrationsBundle(),
         ];
 
         if ('dev' === $this->getEnvironment()) {
-            $bundles[] = new \Symfony\Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Bundle\WebProfilerBundle\WebProfilerBundle();
         }
 
         return $bundles;
@@ -45,7 +50,7 @@ class Kernel extends BaseKernel
     protected function configureContainer(ContainerConfigurator $container): void
     {
         $container->import(__DIR__ . '/../config/framework.yaml');
-        $container->import(__DIR__ . '/../config/security.yaml');
+        $container->import(__DIR__ . '/../config/packages/*.yaml');
         $container->import(__DIR__ . '/../config/services.yaml');
 
         if (isset($this->bundles['WebProfilerBundle'])) {

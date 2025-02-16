@@ -16,6 +16,7 @@ alias ownr='chown -R www-data:www-data .'
 alias csfix='bin/php-cs-fixer fix'
 alias composer='php -d memory_limit=-1 /usr/local/bin/composer'
 alias sf="php bin/console"
+alias dosup="php bin/console doctrine:schema:update --dump-sql"
 
 if [ -f ~/.bash_aliases ]; then
     . ~/.bash_aliases

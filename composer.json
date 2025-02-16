@@ -5,6 +5,7 @@
     "description": "Telegram bot for autonotes",
     "require": {
         "php": ">=8.2",
+        "ext-pdo_mysql": "*",
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "*",
         "doctrine/doctrine-migrations-bundle": "*",
@@ -23,6 +24,7 @@
         "symfony/security-bundle": "^6.4",
         "symfony/translation": "^6.4",
         "symfony/twig-bundle": "^6.4",
+        "symfony/uid": "^6.4",
         "symfony/web-profiler-bundle": "^6.4",
         "symfony/yaml": "^6.4",
         "twirp/twirp": "^0.12.0"
