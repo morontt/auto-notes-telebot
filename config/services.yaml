@@ -14,3 +14,13 @@ services:
         exclude:
             - '../src/Kernel.php'
             - '../src/Entity'
+
+    telebot.telegram_bot:
+        class: Xelbot\Telegram\Robot
+        arguments:
+            - "%env(BOT_TOKEN)%"
+            - "%env(int:BOT_ADMIN_ID)%"
+        calls:
+            - [ setLogger, [ "@monolog.logger" ]]
+
+    Xelbot\Telegram\Robot: '@telebot.telegram_bot'

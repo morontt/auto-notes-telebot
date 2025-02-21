@@ -23,6 +23,7 @@ class Kernel extends BaseKernel
     public function registerBundles(): array
     {
         $bundles = [
+            new Bundle\MonologBundle\MonologBundle(),
             new Bundle\FrameworkBundle\FrameworkBundle(),
             new Bundle\SecurityBundle\SecurityBundle(),
             new Bundle\TwigBundle\TwigBundle(),
