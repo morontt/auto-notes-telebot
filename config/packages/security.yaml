@@ -17,6 +17,7 @@ security:
                 - TeleBot\Security\Authenticator\GrpcAuthenticator
 
     access_control:
-        - { path: ^/login, roles: PUBLIC_ACCESS }
-        - { path: ^/webhook, roles: PUBLIC_ACCESS }
-        - { path: ^/dashboard, roles: ROLE_USER }
+        - { path: ^/login, roles: PUBLIC_ACCESS, requires_channel: https }
+        - { path: ^/webhook, roles: PUBLIC_ACCESS, requires_channel: https }
+        - { path: ^/dashboard, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/, roles: PUBLIC_ACCESS, requires_channel: https }

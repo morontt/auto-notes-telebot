@@ -12,10 +12,22 @@ services:
         tmpfs:
             - /tmp
         ports:
-            - "80:80"
+            - "8085:80"
         extra_hosts:
             - "database.lan:${DATABASE_IP}"
             - "auto-notes-server.lan:${GRPC_SERVER_IP}"
+
+    nginx:
+        build: ./docker/nginx
+        volumes:
+            - .:/var/www/html
+        ports:
+            - "443:443"
+            - "80:80"
+        depends_on:
+            - telebot
+        links:
+            - telebot
 
 networks:
     default:
