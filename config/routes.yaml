@@ -1,2 +1,7 @@
 logout:
     path: /logout
+
+when@dev:
+    updates_form:
+        path: /debug/updates
+        controller: TeleBot\Controller\DebugController::updatesFormAction
