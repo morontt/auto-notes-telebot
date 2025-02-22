@@ -9,11 +9,19 @@ services:
         bind:
             $grpcUrl: '%grpc_url%'
 
+    _instanceof:
+        Xelbot\Telegram\Command\TelegramCommandInterface:
+            tags:
+                - { name: telegram-command }
+
     TeleBot\:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
+            - '../src/DependencyInjection'
             - '../src/Entity'
+            - '../src/Form'
+            - '../src/Security/User.php'
 
     telebot.telegram_bot:
         class: Xelbot\Telegram\Robot

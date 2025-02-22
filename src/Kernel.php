@@ -12,9 +12,11 @@ use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
 use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
 use Symfony\Bundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
+use Symfony\Component\DependencyInjection\ContainerBuilder;
 use Symfony\Component\DependencyInjection\Loader\Configurator\ContainerConfigurator;
 use Symfony\Component\HttpKernel\Kernel as BaseKernel;
 use Symfony\Component\Routing\Loader\Configurator\RoutingConfigurator;
+use TeleBot\DependencyInjection\TelegramCompilerPass;
 
 class Kernel extends BaseKernel
 {
@@ -71,5 +73,10 @@ class Kernel extends BaseKernel
 
         $routes->import(__DIR__ . '/Controller/', 'attribute');
         $routes->import(__DIR__ . '/../config/routes.yaml');
+    }
+
+    protected function build(ContainerBuilder $container)
+    {
+        $container->addCompilerPass(new TelegramCompilerPass());
     }
 }

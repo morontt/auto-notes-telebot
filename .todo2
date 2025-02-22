@@ -5,6 +5,11 @@
       "text": "Install intl extension",
       "priority": "medium",
       "creation": 1739088759
+    },
+    {
+      "text": "Проверить, что такого кода нет в БД",
+      "priority": "medium",
+      "creation": 1740232939
     }
   ]
 }
