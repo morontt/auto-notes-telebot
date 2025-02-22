@@ -12,8 +12,9 @@ use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Component\Uid\Ulid;
+use TeleBot\Repository\CodeRepository;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: CodeRepository::class)]
 #[ORM\Table]
 class Code
 {

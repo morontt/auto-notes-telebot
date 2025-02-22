@@ -9,7 +9,8 @@
     {
       "text": "Проверить, что такого кода нет в БД",
       "priority": "medium",
-      "creation": 1740232939
+      "creation": 1740232939,
+      "completion": 1740240679
     }
   ]
 }

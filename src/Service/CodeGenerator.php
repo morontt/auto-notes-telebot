@@ -8,16 +8,16 @@
 
 namespace TeleBot\Service;
 
-use Doctrine\ORM\EntityManagerInterface;
 use TeleBot\Entity\Code;
+use TeleBot\Repository\CodeRepository;
 
 class CodeGenerator
 {
-    private EntityManagerInterface $em;
+    private CodeRepository $repository;
 
-    public function __construct(EntityManagerInterface $em)
+    public function __construct(CodeRepository $repository)
     {
-        $this->em = $em;
+        $this->repository = $repository;
     }
 
     public function generate(int $tgUserId): string
@@ -30,14 +30,18 @@ class CodeGenerator
             ->setCode($random)
         ;
 
-        $this->em->persist($code);
-        $this->em->flush();
+        $this->repository->save($code);
 
         return $random;
     }
 
     private function randomCode(): string
     {
-        return (string)random_int(100000, 999999);
+        do {
+            $random = (string)random_int(100000, 999999);
+            $obj = $this->repository->getByNotExpiredCode($random);
+        } while ($obj !== null);
+
+        return $random;
     }
 }
