@@ -46,4 +46,17 @@ class CodeRepository extends ServiceEntityRepository
 
         return $qb->getQuery()->getOneOrNullResult();
     }
+
+    public function getLastByUser(int $id): ?Code
+    {
+        $qb = $this->createQueryBuilder('c');
+        $qb
+            ->where($qb->expr()->eq('c.userId', ':id'))
+            ->setParameter('id', $id)
+            ->addOrderBy('c.id', 'DESC')
+            ->setMaxResults(1)
+        ;
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
 }
