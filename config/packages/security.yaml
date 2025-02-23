@@ -20,4 +20,5 @@ security:
         - { path: ^/login, roles: PUBLIC_ACCESS, requires_channel: https }
         - { path: ^/webhook, roles: PUBLIC_ACCESS, requires_channel: https }
         - { path: ^/dashboard, roles: ROLE_USER, requires_channel: https }
+        - { path: ^/settings, roles: ROLE_USER, requires_channel: https }
         - { path: ^/, roles: PUBLIC_ACCESS, requires_channel: https }

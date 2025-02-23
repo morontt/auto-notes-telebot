@@ -25,4 +25,10 @@ class IndexController extends AbstractController
     {
         return $this->render('index/dashboard.html.twig');
     }
+
+    #[Route('/settings')]
+    public function settingsAction(): Response
+    {
+        return $this->render('index/settings.html.twig');
+    }
 }

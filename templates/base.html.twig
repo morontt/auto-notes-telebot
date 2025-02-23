@@ -16,17 +16,22 @@
         <div>Навигация:
             <ul>
                 <li>
-                    <a href="/">&#x1F3E0;</a>
+                    <a href="/" title="Главная">&#x1F916;</a>
                 </li>
                 <li>
-                    <a href="{{ path('telebot_index_dashboard') }}">&#x2699;&#xFE0F;</a>
+                    <a href="{{ path('telebot_index_dashboard') }}"
+                       title="Дашборд">&#x1F4DD;</a>
+                </li>
+                <li>
+                    <a href="{{ path('telebot_index_settings') }}"
+                       title="Настройки">&#x2699;&#xFE0F;</a>
                 </li>
             </ul>
         </div>
     </nav>
 </header>
 <main>
-    <h1></h1>
+    <h2>{% block headerline %}{% endblock %}</h2>
     <div>
         {% block body %}{% endblock %}
     </div>
