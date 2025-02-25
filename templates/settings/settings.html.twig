@@ -5,5 +5,7 @@
 {% block headerline %}Настройки{% endblock %}
 
 {% block body %}
-    <p>Привязанный телеграм-аккаунт: {% if withCode %}&#x2705;{% else %}&#x274C;{% endif %}</p>
+    <p>Привязанный телеграм-аккаунт: {% if withCode %}&#x2705;{% else %}&#x274C;{% endif %}
+        (<a href="{{ path('tg_connect') }}">Связать</a>)
+    </p>
 {% endblock %}

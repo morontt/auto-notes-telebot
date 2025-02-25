@@ -1,0 +1,10 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Связать ТГ-аккаунт | Автоблокнот{% endblock %}
+
+{% block headerline %}Связать ТГ-аккаунт{% endblock %}
+
+{% block body %}
+    <p>Введи полученный от бота код или запроси новый, командой <code>/code</code>:</p>
+    {{ form(form) }}
+{% endblock %}

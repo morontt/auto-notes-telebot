@@ -9,8 +9,10 @@
 namespace TeleBot\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use TeleBot\Form\Settings\CodeForm;
 use TeleBot\Repository\CodeRepository;
 
 class SettingsController extends AbstractController
@@ -26,8 +28,24 @@ class SettingsController extends AbstractController
 
         $code = $repository->getLastByUser($user->getUserId());
 
-        return $this->render('index/settings.html.twig', [
+        return $this->render('settings/settings.html.twig', [
             'withCode' => (bool)$code,
+        ]);
+    }
+
+    #[Route('/settings/connect', name: 'tg_connect')]
+    public function connectAction(Request $request, CodeRepository $repository): Response
+    {
+        $form = $this->createForm(CodeForm::class);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $code = $form->get('code')->getData();
+
+            $repository->getUnusedCode($code);
+        }
+
+        return $this->render('settings/connect.html.twig', [
+            'form' => $form,
         ]);
     }
 }

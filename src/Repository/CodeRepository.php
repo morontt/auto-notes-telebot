@@ -11,6 +11,7 @@ namespace TeleBot\Repository;
 use DateInterval;
 use DateTime;
 use Doctrine\Bundle\DoctrineBundle\Repository\ServiceEntityRepository;
+use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use TeleBot\Entity\Code;
 
@@ -33,18 +34,7 @@ class CodeRepository extends ServiceEntityRepository
 
     public function getByNotExpiredCode(string $random): ?Code
     {
-        $qb = $this->createQueryBuilder('c');
-
-        $from = (new DateTime())->sub(new DateInterval(self::LIFETIME));
-
-        $qb
-            ->where($qb->expr()->eq('c.code', ':code'))
-            ->andWhere($qb->expr()->gt('c.createdAt', ':from'))
-            ->setParameter('code', $random)
-            ->setParameter('from', $from)
-        ;
-
-        return $qb->getQuery()->getOneOrNullResult();
+        return $this->getNorExpiredQueryBuilder($random)->getQuery()->getOneOrNullResult();
     }
 
     public function getLastByUser(int $id): ?Code
@@ -58,5 +48,29 @@ class CodeRepository extends ServiceEntityRepository
         ;
 
         return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    public function getUnusedCode(mixed $code): ?Code
+    {
+        $qb = $this->getNorExpiredQueryBuilder($code);
+        $qb->andWhere($qb->expr()->isNull('c.userId'));
+
+        return $qb->getQuery()->getOneOrNullResult();
+    }
+
+    private function getNorExpiredQueryBuilder(string $code): QueryBuilder
+    {
+        $qb = $this->createQueryBuilder('c');
+
+        $from = (new DateTime())->sub(new DateInterval(self::LIFETIME));
+
+        $qb
+            ->where($qb->expr()->eq('c.code', ':code'))
+            ->andWhere($qb->expr()->gt('c.createdAt', ':from'))
+            ->setParameter('code', $code)
+            ->setParameter('from', $from)
+        ;
+
+        return $qb;
     }
 }
