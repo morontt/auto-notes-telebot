@@ -10,6 +10,7 @@ namespace TeleBot\Security;
 
 use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
+use TeleBot\Utils\Jwt;
 
 class User implements UserInterface
 {
@@ -44,22 +45,7 @@ class User implements UserInterface
             throw new LogicException('User without access token');
         }
 
-        $jwtParts = explode('.', $this->accessToken);
-        if (!isset($jwtParts[1])) {
-            throw new LogicException('Invalid access token');
-        }
-
-        $str = base64_decode($jwtParts[1]);
-        if ($str === false) {
-            throw new LogicException('Invalid access token');
-        }
-
-        $claims = json_decode($str, true, 512, JSON_THROW_ON_ERROR);
-        if (!isset($claims['uid'])) {
-            throw new LogicException('Invalid access token');
-        }
-
-        return $claims['uid'];
+        return Jwt::claims($this->accessToken)->userId;
     }
 
     public function getRoles(): array

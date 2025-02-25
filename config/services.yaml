@@ -18,9 +18,7 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
-            - '../src/DependencyInjection'
-            - '../src/Entity'
-            - '../src/Form'
+            - '../src/{DependencyInjection,Entity,Form,Utils}'
             - '../src/Security/User.php'
 
     telebot.telegram_bot:

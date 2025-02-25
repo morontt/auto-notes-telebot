@@ -180,3 +180,17 @@ main a {
 a:hover {
     text-decoration: underline
 }
+
+.flash-success {
+    color: #3c763d;
+    background-color: #dff0d8;
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+}
+
+.flash-error {
+    color: #a94442;
+    background-color: #ebccd1;
+    margin: 0.5em 0;
+    padding: 0.5em 1em;
+}
