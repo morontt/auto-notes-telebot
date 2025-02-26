@@ -24,11 +24,11 @@ class CodeRepository extends ServiceEntityRepository
         parent::__construct($registry, Code::class);
     }
 
-    public function save(Code $code): void
+    public function save(Code $obj): void
     {
         $em = $this->getEntityManager();
 
-        $em->persist($code);
+        $em->persist($obj);
         $em->flush();
     }
 

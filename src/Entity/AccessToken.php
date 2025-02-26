@@ -2,22 +2,23 @@
 
 /**
  * User: morontt
- * Date: 16.02.2025
- * Time: 21:48
+ * Date: 26.02.2025
+ * Time: 09:42
  */
 
 namespace TeleBot\Entity;
 
 use DateTime;
+use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Types\UlidType;
 use Symfony\Component\Uid\Ulid;
 use TeleBot\Entity\Trait\TimeTrait;
-use TeleBot\Repository\CodeRepository;
+use TeleBot\Repository\AccessTokenRepository;
 
-#[ORM\Entity(repositoryClass: CodeRepository::class)]
+#[ORM\Entity(repositoryClass: AccessTokenRepository::class)]
 #[ORM\Table]
-class Code
+class AccessToken
 {
     use TimeTrait;
 
@@ -27,14 +28,11 @@ class Code
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
     private $id;
 
-    #[ORM\Column(type: 'integer', nullable: true)]
+    #[ORM\Column(type: 'integer', unique: true)]
     private $userId;
 
-    #[ORM\Column(type: 'bigint')]
-    private $telegramUserId;
-
-    #[ORM\Column(type: 'string', length: 6)]
-    private $code;
+    #[ORM\Column(type: Types::TEXT, length: 65000)]
+    private $token;
 
     public function __construct()
     {
@@ -46,38 +44,26 @@ class Code
         return $this->id;
     }
 
-    public function getUserId(): ?int
+    public function getUserId(): int
     {
         return $this->userId;
     }
 
-    public function setUserId(int $userId): self
+    public function setUserId($userId): self
     {
         $this->userId = $userId;
 
         return $this;
     }
 
-    public function getTelegramUserId(): int
+    public function getToken(): string
     {
-        return $this->telegramUserId;
+        return $this->token;
     }
 
-    public function setTelegramUserId($telegramUserId): self
+    public function setToken($token): self
     {
-        $this->telegramUserId = $telegramUserId;
-
-        return $this;
-    }
-
-    public function getCode(): string
-    {
-        return $this->code;
-    }
-
-    public function setCode(string $code): self
-    {
-        $this->code = $code;
+        $this->token = $token;
 
         return $this;
     }

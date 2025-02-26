@@ -11,6 +11,11 @@
       "priority": "medium",
       "creation": 1740232939,
       "completion": 1740240679
+    },
+    {
+      "text": "Add expiredAt field to access_tokens, encrypt tokens",
+      "priority": "medium",
+      "creation": 1740554265
     }
   ]
 }
