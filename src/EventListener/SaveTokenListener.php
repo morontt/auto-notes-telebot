@@ -8,20 +8,18 @@
 
 namespace TeleBot\EventListener;
 
-use DateTime;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
-use TeleBot\Entity\AccessToken;
-use TeleBot\Repository\AccessTokenRepository;
 use TeleBot\Security\User;
+use TeleBot\Service\TokenStorage;
 
 class SaveTokenListener implements EventSubscriberInterface
 {
-    private AccessTokenRepository $repository;
+    private TokenStorage $storage;
 
-    public function __construct(AccessTokenRepository $repository)
+    public function __construct(TokenStorage $storage)
     {
-        $this->repository = $repository;
+        $this->storage = $storage;
     }
 
     public function onSuccessfulLogin(LoginSuccessEvent $event): void
@@ -30,22 +28,7 @@ class SaveTokenListener implements EventSubscriberInterface
         if ($user instanceof User) {
             $id = $user->getUserId();
 
-            /* @var AccessToken $tokenObj */
-            $tokenObj = $this->repository->findOneBy(['userId' => $id]);
-            if ($tokenObj) {
-                $tokenObj
-                    ->setToken($user->getAccessToken())
-                    ->setUpdatedAt(new DateTime())
-                ;
-            } else {
-                $tokenObj = new AccessToken();
-                $tokenObj
-                    ->setToken($user->getAccessToken())
-                    ->setUserId($id)
-                ;
-            }
-
-            $this->repository->save($tokenObj);
+            $this->storage->setToken($user->getAccessToken(), $id);
         }
     }
 

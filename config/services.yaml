@@ -21,6 +21,10 @@ services:
             - '../src/{DependencyInjection,Entity,Form,Utils}'
             - '../src/Security/User.php'
 
+    TeleBot\Service\TokenStorage:
+        arguments:
+            $secret: '%env(APP_SECRET)%'
+
     telebot.telegram_bot:
         class: Xelbot\Telegram\Robot
         arguments:

@@ -5,6 +5,7 @@
     "description": "Telegram bot for autonotes",
     "require": {
         "php": ">=8.2",
+        "ext-openssl": "*",
         "ext-pdo_mysql": "*",
         "doctrine/dbal": "^3",
         "doctrine/doctrine-bundle": "*",

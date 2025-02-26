@@ -9,6 +9,7 @@
 namespace TeleBot\Utils\Jwt;
 
 use DateTime;
+use DateTimeZone;
 use LogicException;
 
 class TokenData
@@ -27,7 +28,9 @@ class TokenData
         $this->userId = $data['uid'];
         $this->userName = $data['uname'];
 
-        $this->issuedAt = DateTime::createFromFormat('U', $data['iat']);
-        $this->expiredAt = DateTime::createFromFormat('U', $data['exp']);
+        $tz = new DateTimeZone(date_default_timezone_get());
+
+        $this->issuedAt = DateTime::createFromFormat('U', $data['iat'])->setTimezone($tz);
+        $this->expiredAt = DateTime::createFromFormat('U', $data['exp'])->setTimezone($tz);
     }
 }

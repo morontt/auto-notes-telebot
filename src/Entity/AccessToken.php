@@ -34,6 +34,9 @@ class AccessToken
     #[ORM\Column(type: Types::TEXT, length: 65000)]
     private $token;
 
+    #[ORM\Column(type: 'datetime', nullable: false)]
+    private $expiredAt;
+
     public function __construct()
     {
         $this->createdAt = new DateTime();
@@ -64,6 +67,18 @@ class AccessToken
     public function setToken($token): self
     {
         $this->token = $token;
+
+        return $this;
+    }
+
+    public function getExpiredAt(): DateTime
+    {
+        return $this->expiredAt;
+    }
+
+    public function setExpiredAt(DateTime $expiredAt): self
+    {
+        $this->expiredAt = $expiredAt;
 
         return $this;
     }
