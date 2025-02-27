@@ -21,6 +21,14 @@ services:
             - '../src/{DependencyInjection,Entity,Form,Utils}'
             - '../src/Security/User.php'
 
+    TeleBot\Controller\WebHookController:
+        arguments:
+            $secretToken: '%env(BOT_WEBHOOK_TOKEN)%'
+
+    TeleBot\EventListener\JsonBodyListener:
+        tags:
+            - { name: kernel.event_listener, event: kernel.request, priority: 10 }
+
     TeleBot\Service\TokenStorage:
         arguments:
             $secret: '%env(APP_SECRET)%'
