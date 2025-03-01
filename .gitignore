@@ -8,3 +8,4 @@
 bin/protoc-gen-twirp_php
 /docker/nginx/fullchain.pem
 /docker/nginx/privkey.pem
+.phpunit.cache
