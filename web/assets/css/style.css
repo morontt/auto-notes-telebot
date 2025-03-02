@@ -93,8 +93,8 @@ ol, ul {
     margin-bottom: 1em
 }
 
-table:not(.lntable) {
-    border: .1em solid #9597ce;
+table {
+    border: .1em solid gray;
     background-color: #fbfbf3;
     margin-bottom: 1em
 }
@@ -104,13 +104,12 @@ table {
 }
 
 table thead {
-    position: sticky;
-    top: 0;
-    opacity: 1;
-    background-image: linear-gradient(135deg, #CCFDFE 25%, transparent 25%), linear-gradient(225deg, #CCFDFE 25%, transparent 25%), linear-gradient(45deg, #CCFDFE 25%, transparent 25%), linear-gradient(315deg, #CCFDFE 25%, #FEFFFF 25%);
-    background-position: 4px 0, 4px 0, 0 0, 0 0;
-    background-size: 4px 4px;
-    background-repeat: repeat
+    background-color: oldlace;
+    border: .1em solid gray;
+}
+
+table thead th {
+    border-width: 0
 }
 
 table th {
@@ -120,7 +119,7 @@ table th {
 }
 
 table td {
-    border: solid silver;
+    border: .1em solid silver;
     padding: .25em
 }
 
@@ -151,15 +150,11 @@ sup {
 
 figure {
     padding: 0;
-    border: .1em solid #9597ce;
+    border: .1em solid gray;
     background-color: #fbfbf3
 }
 
 figure figcaption {
-    background-image: linear-gradient(135deg, #CCFDFE 25%, transparent 25%), linear-gradient(225deg, #CCFDFE 25%, transparent 25%), linear-gradient(45deg, #CCFDFE 25%, transparent 25%), linear-gradient(315deg, #CCFDFE 25%, #FEFFFF 25%);
-    background-position: 4px 0, 4px 0, 0 0, 0 0;
-    background-size: 4px 4px;
-    background-repeat: repeat;
     font-weight: 700;
     padding: .25em;
     border-top: solid gray

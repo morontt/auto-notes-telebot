@@ -8,4 +8,27 @@
     <p>Привязанный телеграм-аккаунт: {% if withCode %}&#x2705;{% else %}&#x274C;{% endif %}
         (<a href="{{ path('tg_connect') }}">Связать</a>)
     </p>
+    <p>
+        Мой гараж:
+    </p>
+    <table>
+        <thead>
+            <tr>
+                <th></th>
+                <th>Год выпуска</th>
+                <th>VIN</th>
+                <th>Добавлено</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for car in cars %}
+            <tr>
+                <td>{{ car.name }}</td>
+                <td>{{ car.year }}</td>
+                <td>{{ car.vin }}</td>
+                <td>{{ car.createdAt|date('Y-m-d') }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 {% endblock %}

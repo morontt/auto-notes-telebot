@@ -15,11 +15,12 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\Form\Settings\CodeForm;
 use TeleBot\Repository\CodeRepository;
+use TeleBot\Service\RPC\UserRepository;
 
 class SettingsController extends AbstractController
 {
     #[Route('/settings', name: 'settings')]
-    public function settingsAction(CodeRepository $repository): Response
+    public function settingsAction(CodeRepository $repository, UserRepository $rpcUserRepository): Response
     {
         /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
@@ -31,6 +32,7 @@ class SettingsController extends AbstractController
 
         return $this->render('settings/settings.html.twig', [
             'withCode' => (bool)$code,
+            'cars' => $rpcUserRepository->GetCars($user),
         ]);
     }
 

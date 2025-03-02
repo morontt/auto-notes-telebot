@@ -22,7 +22,7 @@ use Symfony\Component\Security\Http\Authenticator\Passport\Passport;
 use Symfony\Component\Security\Http\HttpUtils;
 use Symfony\Component\Security\Http\SecurityRequestAttributes;
 use TeleBot\Security\User;
-use TeleBot\Service\Auth;
+use TeleBot\Service\RPC\Auth;
 
 class GrpcAuthenticator extends AbstractLoginFormAuthenticator
 {

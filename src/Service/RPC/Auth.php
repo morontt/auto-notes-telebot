@@ -6,7 +6,7 @@
  * Time: 14:31
  */
 
-namespace TeleBot\Service;
+namespace TeleBot\Service\RPC;
 
 use Psr\Log\LoggerInterface;
 use Twirp\Error;
@@ -15,12 +15,10 @@ use Xelbot\Com\Autonotes\LoginRequest;
 
 class Auth
 {
-    private LoggerInterface $logger;
     private AuthClient $client;
 
-    public function __construct(string $grpcUrl, LoggerInterface $logger)
+    public function __construct(string $grpcUrl, private readonly LoggerInterface $logger)
     {
-        $this->logger = $logger;
         $this->client = new AuthClient($grpcUrl);
     }
 
