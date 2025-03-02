@@ -19,12 +19,12 @@ use Twirp\Error;
 use Twirp\ErrorCode;
 
 /**
- * @internal AuthAbstractClient provides abstraction for JsonClient and Client (default).
+ * @internal UserRepositoryAbstractClient provides abstraction for JsonClient and Client (default).
  * Note that you MUST NOT use it directly! It is an internal implementation detail that is not
  * covered by backward compatibility promise. The only thing that will and should remain backward
  * compatible is the two clients.
  */
-abstract class AuthAbstractClient
+abstract class UserRepositoryAbstractClient
 {
     /**
      * @var server
@@ -80,42 +80,19 @@ abstract class AuthAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function GetToken(array $ctx, \Xelbot\Com\Autonotes\LoginRequest $in): \Xelbot\Com\Autonotes\LoginResponse
+    public function GetCars(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\CarCollection
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'Auth');
-        $ctx = Context::withMethodName($ctx, 'GetToken');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
+        $ctx = Context::withMethodName($ctx, 'GetCars');
 
-        $out = new \Xelbot\Com\Autonotes\LoginResponse();
+        $out = new \Xelbot\Com\Autonotes\CarCollection();
 
         $url = $this->addr;
         if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.Auth/GetToken';
+            $url = $url.'/xelbot.com.autonotes.UserRepository/GetCars';
         } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.Auth/GetToken';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function RefreshToken(array $ctx, \Xelbot\Com\Autonotes\RefreshTokenRequest $in): \Xelbot\Com\Autonotes\LoginResponse
-    {
-        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'Auth');
-        $ctx = Context::withMethodName($ctx, 'RefreshToken');
-
-        $out = new \Xelbot\Com\Autonotes\LoginResponse();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.Auth/RefreshToken';
-        } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.Auth/RefreshToken';
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetCars';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

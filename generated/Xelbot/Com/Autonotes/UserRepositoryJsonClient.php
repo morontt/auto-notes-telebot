@@ -10,12 +10,12 @@ use Google\Protobuf\Internal\GPBDecodeException;
 use Google\Protobuf\Internal\Message;
 
 /**
- * A JSON client that implements the {@see Auth} interface.
+ * A JSON client that implements the {@see UserRepository} interface.
  * It communicates using JSON and can be configured with a custom HTTP Client.
  *
- * Generated from protobuf service <code>xelbot.com.autonotes.Auth</code>
+ * Generated from protobuf service <code>xelbot.com.autonotes.UserRepository</code>
  */
-final class AuthJsonClient extends AuthAbstractClient implements Auth
+final class UserRepositoryJsonClient extends UserRepositoryAbstractClient implements UserRepository
 {
     /**
      * @inheritDoc

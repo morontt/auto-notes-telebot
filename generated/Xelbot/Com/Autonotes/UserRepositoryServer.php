@@ -19,11 +19,11 @@ use Twirp\ErrorCode;
 use Twirp\ServerHooks;
 
 /**
- * @see Auth
+ * @see UserRepository
  *
- * Generated from protobuf service <code>xelbot.com.autonotes.Auth</code>
+ * Generated from protobuf service <code>xelbot.com.autonotes.UserRepository</code>
  */
-final class AuthServer implements RequestHandlerInterface
+final class UserRepositoryServer implements RequestHandlerInterface
 {
     /**
      * A convenience constant that may identify URL paths.
@@ -31,9 +31,9 @@ final class AuthServer implements RequestHandlerInterface
      * Should be used with caution, it only matches routes with the default "/twirp" prefix
      * and default CamelCase service and method names.
      *
-     * Use AuthServer::getPathPrefix instead.
+     * Use UserRepositoryServer::getPathPrefix instead.
      */
-    public const PATH_PREFIX = '/twirp/xelbot.com.autonotes.Auth/';
+    public const PATH_PREFIX = '/twirp/xelbot.com.autonotes.UserRepository/';
 
     /**
      * @var ResponseFactoryInterface
@@ -46,7 +46,7 @@ final class AuthServer implements RequestHandlerInterface
     private $streamFactory;
 
     /**
-     * @var Auth
+     * @var UserRepository
      */
     private $svc;
 
@@ -61,7 +61,7 @@ final class AuthServer implements RequestHandlerInterface
     private $prefix;
 
     public function __construct(
-        Auth $svc,
+        UserRepository $svc,
         ?ServerHooks $hook = null,
         ?ResponseFactoryInterface $responseFactory = null,
         ?StreamFactoryInterface $streamFactory = null,
@@ -93,7 +93,7 @@ final class AuthServer implements RequestHandlerInterface
      */
     public function getPathPrefix(): string
     {
-        return $this->prefix.'/xelbot.com.autonotes.Auth/';
+        return $this->prefix.'/xelbot.com.autonotes.UserRepository/';
     }
 
     /**
@@ -103,7 +103,7 @@ final class AuthServer implements RequestHandlerInterface
     {
         $ctx = $req->getAttributes();
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'Auth');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
 
         try {
             $ctx = $this->hook->requestReceived($ctx);
@@ -119,7 +119,7 @@ final class AuthServer implements RequestHandlerInterface
 
         list($prefix, $service, $method) = $this->parsePath($req->getUri()->getPath());
 
-        if ($service != 'xelbot.com.autonotes.Auth') {
+        if ($service != 'xelbot.com.autonotes.UserRepository') {
             return $this->writeError($ctx, $this->noRouteError($req));
         }
 
@@ -130,17 +130,15 @@ final class AuthServer implements RequestHandlerInterface
         }
 
         switch ($method) {
-            case 'GetToken':
-                return $this->handleGetToken($ctx, $req);
-            case 'RefreshToken':
-                return $this->handleRefreshToken($ctx, $req);
+            case 'GetCars':
+                return $this->handleGetCars($ctx, $req);
 
             default:
                 return $this->writeError($ctx, $this->noRouteError($req));
         }
     }
 
-    private function handleGetToken(array $ctx, ServerRequestInterface $req): ResponseInterface
+    private function handleGetCars(array $ctx, ServerRequestInterface $req): ResponseInterface
     {
         $header = $req->getHeaderLine('Content-Type');
         $i = strpos($header, ';');
@@ -154,11 +152,11 @@ final class AuthServer implements RequestHandlerInterface
 
         switch (trim(strtolower(substr($header, 0, $i)))) {
             case 'application/json':
-                $resp = $this->handleGetTokenJson($ctx, $req);
+                $resp = $this->handleGetCarsJson($ctx, $req);
                 break;
 
             case 'application/protobuf':
-                $resp = $this->handleGetTokenProtobuf($ctx, $req);
+                $resp = $this->handleGetCarsProtobuf($ctx, $req);
                 break;
 
             default:
@@ -174,20 +172,20 @@ final class AuthServer implements RequestHandlerInterface
         return $resp;
     }
 
-    private function handleGetTokenJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    private function handleGetCarsJson(array $ctx, ServerRequestInterface $req): ResponseInterface
     {
-        $ctx = Context::withMethodName($ctx, 'GetToken');
+        $ctx = Context::withMethodName($ctx, 'GetCars');
 
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \Xelbot\Com\Autonotes\LoginRequest();
+            $in = new \Google\Protobuf\GPBEmpty();
             $in->mergeFromJsonString((string)$req->getBody(), true);
 
-            $out = $this->svc->GetToken($ctx, $in);
+            $out = $this->svc->GetCars($ctx, $in);
 
             if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetToken. null responses are not supported'));
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetCars. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);
@@ -211,127 +209,20 @@ final class AuthServer implements RequestHandlerInterface
         return $resp;
     }
 
-    private function handleGetTokenProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    private function handleGetCarsProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
     {
-        $ctx = Context::withMethodName($ctx, 'GetToken');
+        $ctx = Context::withMethodName($ctx, 'GetCars');
 
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \Xelbot\Com\Autonotes\LoginRequest();
+            $in = new \Google\Protobuf\GPBEmpty();
             $in->mergeFromString((string)$req->getBody());
 
-            $out = $this->svc->GetToken($ctx, $in);
+            $out = $this->svc->GetCars($ctx, $in);
 
             if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetToken. null responses are not supported'));
-            }
-
-            $ctx = $this->hook->responsePrepared($ctx);
-        } catch (GPBDecodeException $e) {
-            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
-        } catch (\Throwable $e) {
-            return $this->writeError($ctx, $e);
-        }
-
-        $data = $out->serializeToString();
-
-        $body = $this->streamFactory->createStream($data);
-
-        $resp = $this->responseFactory
-            ->createResponse(200)
-            ->withHeader('Content-Type', 'application/protobuf')
-            ->withBody($body);
-
-        $this->callResponseSent($ctx);
-
-        return $resp;
-    }
-    private function handleRefreshToken(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $header = $req->getHeaderLine('Content-Type');
-        $i = strpos($header, ';');
-
-        if ($i === false) {
-            $i = strlen($header);
-        }
-
-        $respHeaders = [];
-        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
-
-        switch (trim(strtolower(substr($header, 0, $i)))) {
-            case 'application/json':
-                $resp = $this->handleRefreshTokenJson($ctx, $req);
-                break;
-
-            case 'application/protobuf':
-                $resp = $this->handleRefreshTokenProtobuf($ctx, $req);
-                break;
-
-            default:
-                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
-
-                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
-        }
-
-        foreach ($respHeaders as $key => $value) {
-            $resp = $resp->withHeader($key, $value);
-        }
-
-        return $resp;
-    }
-
-    private function handleRefreshTokenJson(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $ctx = Context::withMethodName($ctx, 'RefreshToken');
-
-        try {
-            $ctx = $this->hook->requestRouted($ctx);
-
-            $in = new \Xelbot\Com\Autonotes\RefreshTokenRequest();
-            $in->mergeFromJsonString((string)$req->getBody(), true);
-
-            $out = $this->svc->RefreshToken($ctx, $in);
-
-            if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling RefreshToken. null responses are not supported'));
-            }
-
-            $ctx = $this->hook->responsePrepared($ctx);
-        } catch (GPBDecodeException $e) {
-            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
-        } catch (\Throwable $e) {
-            return $this->writeError($ctx, $e);
-        }
-
-        $data = $out->serializeToJsonString();
-
-        $body = $this->streamFactory->createStream($data);
-
-        $resp = $this->responseFactory
-            ->createResponse(200)
-            ->withHeader('Content-Type', 'application/json')
-            ->withBody($body);
-
-        $this->callResponseSent($ctx);
-
-        return $resp;
-    }
-
-    private function handleRefreshTokenProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
-    {
-        $ctx = Context::withMethodName($ctx, 'RefreshToken');
-
-        try {
-            $ctx = $this->hook->requestRouted($ctx);
-
-            $in = new \Xelbot\Com\Autonotes\RefreshTokenRequest();
-            $in->mergeFromString((string)$req->getBody());
-
-            $out = $this->svc->RefreshToken($ctx, $in);
-
-            if ($out === null) {
-                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling RefreshToken. null responses are not supported'));
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetCars. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);
