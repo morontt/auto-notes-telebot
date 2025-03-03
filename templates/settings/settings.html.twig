@@ -15,6 +15,7 @@
         <thead>
             <tr>
                 <th></th>
+                <th></th>
                 <th>Год выпуска</th>
                 <th>VIN</th>
                 <th>Добавлено</th>
@@ -24,6 +25,7 @@
             {% for car in cars %}
             <tr>
                 <td>{{ car.name }}</td>
+                <td>{% if car.default %}&#x2714;&#xFE0F;{% endif %}</td>
                 <td>{{ car.year }}</td>
                 <td>{{ car.vin }}</td>
                 <td>{{ car.createdAt|date('Y-m-d') }}</td>
