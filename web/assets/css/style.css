@@ -37,6 +37,12 @@ body {
     min-height: 100vh
 }
 
+@supports (-moz-appearance:none) {
+    body {
+        font-family: "DejaVu Sans Mono", monospace, "Twemoji Mozilla";
+    }
+}
+
 header {
     flex-direction: row;
     margin: 0 auto
