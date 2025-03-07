@@ -24,7 +24,7 @@
                 <td>{{ fuel.date|date('Y-m-d') }}</td>
                 <td>{{ fuel.value|number_format(2, '.', '') }}</td>
                 <td>{{ fuel.station.name }}</td>
-                <td>{{ fuel.cost.value|number_format(2, '.', '') }} {{ fuel.cost.currencyCode }}</td>
+                <td>{{ fuel.cost.value|number_format(2, '.', '') }} {{ fuel.cost.currencyCode|currency_symbol }}</td>
                 <td>{{ fuel.car.name }}</td>
                 <td>{% if fuel.distance > 0 %}{{ fuel.distance }}{% else %}-{% endif %}</td>
             </tr>
