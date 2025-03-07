@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-Â
+Õ	
 proto/server.protoxelbot.com.autonotesgoogle/protobuf/timestamp.proto"2
 LoginRequest
 username (	
@@ -26,7 +26,12 @@ class Server
 RefreshTokenRequest
 token (	"
 LoginResponse
-token (	"{
+token (	"
+Limit
+limit ("\'
+Cost
+value (
+currency (	"{
 Car
 
 id (
@@ -37,12 +42,30 @@ class Server
 
 created_at (2.google.protobuf.Timestamp"8
 CarCollection\'
-cars (2.xelbot.com.autonotes.Car2»
+cars (2.xelbot.com.autonotes.Car"*
+FillingStation
+
+id (
+name (	"–
+Fuel
+
+id ((
+cost (2.xelbot.com.autonotes.Cost
+value (5
+station (2$.xelbot.com.autonotes.FillingStation(
+date (2.google.protobuf.Timestamp
+distance (&
+car (2.xelbot.com.autonotes.Car.
+
+created_at (2.google.protobuf.Timestamp";
+FuelCollection)
+fuels (2.xelbot.com.autonotes.Fuel2»
 AuthS
 GetToken".xelbot.com.autonotes.LoginRequest#.xelbot.com.autonotes.LoginResponse^
-RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2X
+RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2§
 UserRepositoryF
-GetCars.google.protobuf.Empty#.xelbot.com.autonotes.CarCollectionB$Z"xelbot.com/auto-notes/server/protobproto3'
+GetCars.google.protobuf.Empty#.xelbot.com.autonotes.CarCollectionM
+GetFuels.xelbot.com.autonotes.Limit$.xelbot.com.autonotes.FuelCollectionB$Z"xelbot.com/auto-notes/server/protobproto3'
         , true);
 
         static::$is_initialized = true;

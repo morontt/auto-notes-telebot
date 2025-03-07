@@ -11,6 +11,7 @@ namespace TeleBot\Controller;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use TeleBot\Service\RPC\UserRepository;
 
 class IndexController extends AbstractController
 {
@@ -21,8 +22,18 @@ class IndexController extends AbstractController
     }
 
     #[Route('/dashboard', name: 'dashboard')]
-    public function dashboardAction(): Response
+    public function dashboardAction(UserRepository $rpcUserRepository): Response
     {
-        return $this->render('index/dashboard.html.twig');
+        /* @var \TeleBot\Security\User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        $fuels = $rpcUserRepository->GetFuels($user);
+
+        return $this->render('index/dashboard.html.twig', [
+            'fuels' => $fuels,
+        ]);
     }
 }

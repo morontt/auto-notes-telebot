@@ -21,4 +21,13 @@ interface UserRepository
      * @throws \Twirp\Error
      */
     public function GetCars(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\CarCollection;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetFuels</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetFuels(array $ctx, \Xelbot\Com\Autonotes\Limit $req): \Xelbot\Com\Autonotes\FuelCollection;
 }

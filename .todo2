@@ -17,6 +17,11 @@
       "priority": "medium",
       "creation": 1740554265,
       "completion": 1740595788
+    },
+    {
+      "text": "Add metadata to collections for pagination",
+      "priority": "medium",
+      "creation": 1741242850
     }
   ]
 }

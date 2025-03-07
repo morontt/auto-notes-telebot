@@ -101,6 +101,29 @@ abstract class UserRepositoryAbstractClient
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function GetFuels(array $ctx, \Xelbot\Com\Autonotes\Limit $in): \Xelbot\Com\Autonotes\FuelCollection
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
+        $ctx = Context::withMethodName($ctx, 'GetFuels');
+
+        $out = new \Xelbot\Com\Autonotes\FuelCollection();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.UserRepository/GetFuels';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetFuels';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
      * Common code to make a request to the remote twirp service.
      */
     abstract protected function doRequest(array $ctx, string $url, Message $in, Message $out): void;
