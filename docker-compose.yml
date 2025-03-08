@@ -9,6 +9,7 @@ services:
         volumes:
             - .:/var/www/html
             - ./docker/web/apache.conf:/etc/apache2/sites-available/000-default.conf:ro
+            - ${MIGRATIONS_PROJ}:/var/www/migrations
         tmpfs:
             - /tmp
         ports:

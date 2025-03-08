@@ -16,6 +16,7 @@ RUN apt-get update \
     nano \
     zip unzip \
     libzip-dev \
+    mariadb-client \
     ; \
     apt-get clean && rm -rf /tmp/* /var/tmp/*
 
