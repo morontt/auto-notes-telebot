@@ -2,6 +2,7 @@ services:
     telebot:
         build:
             context: ./docker/web
+            # dockerfile: prod/Dockerfile
             args:
                 HOST_UID: ${HOST_UID}
         hostname: "telebot"
