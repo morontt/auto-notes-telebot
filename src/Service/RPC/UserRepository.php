@@ -52,7 +52,7 @@ class UserRepository
         return $result;
     }
 
-    public function GetFuels(User $user, int $limit = 10): array
+    public function GetFuels(User $user, int $limit = 7): array
     {
         $limitObj = new Limit();
         $limitObj->setLimit($limit);
