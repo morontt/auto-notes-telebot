@@ -33,6 +33,7 @@ class SettingsController extends AbstractController
         return $this->render('settings/settings.html.twig', [
             'withCode' => (bool)$code,
             'cars' => $rpcUserRepository->GetCars($user),
+            'currency' => $rpcUserRepository->GetDefaultCurrency($user),
         ]);
     }
 

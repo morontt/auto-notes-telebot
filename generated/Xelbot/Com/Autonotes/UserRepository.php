@@ -30,4 +30,22 @@ interface UserRepository
      * @throws \Twirp\Error
      */
     public function GetFuels(array $ctx, \Xelbot\Com\Autonotes\Limit $req): \Xelbot\Com\Autonotes\FuelCollection;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetCurrencies</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetCurrencies(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\CurrencyCollection;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetDefaultCurrency</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetDefaultCurrency(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\DefaultCurrency;
 }

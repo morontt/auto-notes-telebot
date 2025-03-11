@@ -124,6 +124,52 @@ abstract class UserRepositoryAbstractClient
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function GetCurrencies(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\CurrencyCollection
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
+        $ctx = Context::withMethodName($ctx, 'GetCurrencies');
+
+        $out = new \Xelbot\Com\Autonotes\CurrencyCollection();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.UserRepository/GetCurrencies';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetCurrencies';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function GetDefaultCurrency(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\DefaultCurrency
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
+        $ctx = Context::withMethodName($ctx, 'GetDefaultCurrency');
+
+        $out = new \Xelbot\Com\Autonotes\DefaultCurrency();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.UserRepository/GetDefaultCurrency';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetDefaultCurrency';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
      * Common code to make a request to the remote twirp service.
      */
     abstract protected function doRequest(array $ctx, string $url, Message $in, Message $out): void;

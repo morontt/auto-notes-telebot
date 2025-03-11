@@ -39,4 +39,11 @@
         {% endif %}
         </tbody>
     </table>
+    <p>Валюта по умолчанию:
+        {% if currency %}
+            {{ currency.name }} ({{ currency.code|currency_symbol }})
+        {% else %}
+            ?
+        {% endif %}
+    </p>
 {% endblock %}

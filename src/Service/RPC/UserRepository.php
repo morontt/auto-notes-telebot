@@ -11,6 +11,7 @@ namespace TeleBot\Service\RPC;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\CarDTO;
+use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Security\User;
 use Twirp\Context;
@@ -65,6 +66,30 @@ class UserRepository
 
             foreach ($fuels as $item) {
                 $result[] = new FuelDTO($item);
+            }
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        return $result;
+    }
+
+    public function GetDefaultCurrency(User $user): ?CurrencyDTO
+    {
+        $result = null;
+        try {
+            $response = $this->client->GetDefaultCurrency($this->context($user), new GPBEmpty());
+            $found = $response->getFound();
+            $this->logger->debug('gRPC response', ['found' => $found]);
+
+            if ($found) {
+                if ($response->hasCurrency()) {
+                    $result = new CurrencyDTO($response->getCurrency());
+                } else {
+                    $this->logger->error('gRPC response without currency but found=true');
+                }
             }
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
