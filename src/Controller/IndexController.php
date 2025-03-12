@@ -30,7 +30,7 @@ class IndexController extends AbstractController
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
         }
 
-        $fuels = $rpcUserRepository->GetFuels($user);
+        $fuels = $rpcUserRepository->getFuels($user);
 
         return $this->render('index/dashboard.html.twig', [
             'fuels' => $fuels,

@@ -17,7 +17,7 @@ class CurrencyDTO
     private string $name;
     private string $code;
     private bool $default;
-    private DateTime $createdAt;
+    private ?DateTime $createdAt;
 
     public function __construct(Currency $data)
     {
@@ -26,11 +26,8 @@ class CurrencyDTO
         $this->code = $data->getCode();
         $this->default = $data->getDefault();
 
-        $dt = $data->getCreatedAt();
-        if ($dt) {
+        if ($dt = $data->getCreatedAt()) {
             $this->createdAt = $dt->toDateTime();
-        } else {
-            $this->createdAt = DateTime::createFromFormat('U', 0);
         }
     }
 
@@ -54,7 +51,7 @@ class CurrencyDTO
         return $this->default;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }

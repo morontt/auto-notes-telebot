@@ -14,13 +14,14 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\Form\Settings\CodeForm;
+use TeleBot\Form\Settings\UserSettingsForm;
 use TeleBot\Repository\CodeRepository;
-use TeleBot\Service\RPC\UserRepository;
+use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 class SettingsController extends AbstractController
 {
     #[Route('/settings', name: 'settings')]
-    public function settingsAction(CodeRepository $repository, UserRepository $rpcUserRepository): Response
+    public function settingsAction(CodeRepository $repository, RpcUserRepository $rpcUserRepository): Response
     {
         /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
@@ -32,8 +33,8 @@ class SettingsController extends AbstractController
 
         return $this->render('settings/settings.html.twig', [
             'withCode' => (bool)$code,
-            'cars' => $rpcUserRepository->GetCars($user),
-            'currency' => $rpcUserRepository->GetDefaultCurrency($user),
+            'cars' => $rpcUserRepository->getCars($user),
+            'currency' => $rpcUserRepository->getDefaultCurrency($user),
         ]);
     }
 
@@ -70,6 +71,24 @@ class SettingsController extends AbstractController
         }
 
         return $this->render('settings/connect.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/settings/edit', name: 'settings_edit')]
+    public function settingsEditAction(RpcUserRepository $rpcUserRepository): Response
+    {
+        /* @var \TeleBot\Security\User $user */
+        $user = $this->getUser();
+        if (!$user) {
+            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        $userSettings = $rpcUserRepository->getUserSettings($user);
+
+        $form = $this->createForm(UserSettingsForm::class, $userSettings);
+
+        return $this->render('settings/edit.html.twig', [
             'form' => $form,
         ]);
     }

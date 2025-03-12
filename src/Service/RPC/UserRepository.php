@@ -13,6 +13,7 @@ use Psr\Log\LoggerInterface;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\FuelDTO;
+use TeleBot\DTO\UserSettingsDTO;
 use TeleBot\Security\User;
 use Twirp\Context;
 use Twirp\Error;
@@ -33,7 +34,7 @@ class UserRepository
      *
      * @return CarDTO[]
      */
-    public function GetCars(User $user): array
+    public function getCars(User $user): array
     {
         $result = [];
         try {
@@ -53,7 +54,7 @@ class UserRepository
         return $result;
     }
 
-    public function GetFuels(User $user, int $limit = 7): array
+    public function getFuels(User $user, int $limit = 7): array
     {
         $limitObj = new Limit();
         $limitObj->setLimit($limit);
@@ -76,7 +77,7 @@ class UserRepository
         return $result;
     }
 
-    public function GetDefaultCurrency(User $user): ?CurrencyDTO
+    public function getDefaultCurrency(User $user): ?CurrencyDTO
     {
         $result = null;
         try {
@@ -91,6 +92,22 @@ class UserRepository
                     $this->logger->error('gRPC response without currency but found=true');
                 }
             }
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        return $result;
+    }
+
+    public function getUserSettings(User $user): ?UserSettingsDTO
+    {
+        $result = null;
+        try {
+            $response = $this->client->GetUserSettings($this->context($user), new GPBEmpty());
+
+            $result = new UserSettingsDTO($response);
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
                 'error' => $e,

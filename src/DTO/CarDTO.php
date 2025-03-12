@@ -18,7 +18,7 @@ class CarDTO
     private ?string $vin;
     private ?int $year;
     private bool $default;
-    private DateTime $createdAt;
+    private ?DateTime $createdAt;
 
     public function __construct(Car $data)
     {
@@ -28,11 +28,8 @@ class CarDTO
         $this->year = $data->getYear() ?: null;
         $this->default = $data->getDefault();
 
-        $dt = $data->getCreatedAt();
-        if ($dt) {
+        if ($dt = $data->getCreatedAt()) {
             $this->createdAt = $dt->toDateTime();
-        } else {
-            $this->createdAt = DateTime::createFromFormat('U', 0);
         }
     }
 
@@ -61,7 +58,7 @@ class CarDTO
         return $this->default;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }

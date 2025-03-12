@@ -19,8 +19,8 @@ class FuelDTO
     private ?CarDTO $car;
     private ?CostDTO $cost;
     private ?FillingStationDTO $station;
-    private DateTime $date;
-    private DateTime $createdAt;
+    private ?DateTime $date;
+    private ?DateTime $createdAt;
 
     public function __construct(Fuel $data)
     {
@@ -38,18 +38,12 @@ class FuelDTO
             $this->station = new FillingStationDTO($data->getStation());
         }
 
-        $dt = $data->getDate();
-        if ($dt) {
+        if ($dt = $data->getDate()) {
             $this->date = $dt->toDateTime();
-        } else {
-            $this->date = DateTime::createFromFormat('U', 0);
         }
 
-        $dt = $data->getCreatedAt();
-        if ($dt) {
+        if ($dt = $data->getCreatedAt()) {
             $this->createdAt = $dt->toDateTime();
-        } else {
-            $this->createdAt = DateTime::createFromFormat('U', 0);
         }
     }
 
@@ -83,12 +77,12 @@ class FuelDTO
         return $this->station;
     }
 
-    public function getDate(): DateTime
+    public function getDate(): ?DateTime
     {
         return $this->date;
     }
 
-    public function getCreatedAt(): DateTime
+    public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;
     }

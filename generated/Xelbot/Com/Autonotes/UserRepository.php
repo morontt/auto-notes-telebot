@@ -48,4 +48,13 @@ interface UserRepository
      * @throws \Twirp\Error
      */
     public function GetDefaultCurrency(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\DefaultCurrency;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetUserSettings</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetUserSettings(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\UserSettings;
 }

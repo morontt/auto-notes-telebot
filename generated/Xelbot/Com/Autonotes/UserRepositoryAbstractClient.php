@@ -170,6 +170,29 @@ abstract class UserRepositoryAbstractClient
     }
 
     /**
+     * {@inheritdoc}
+     */
+    public function GetUserSettings(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\UserSettings
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
+        $ctx = Context::withServiceName($ctx, 'UserRepository');
+        $ctx = Context::withMethodName($ctx, 'GetUserSettings');
+
+        $out = new \Xelbot\Com\Autonotes\UserSettings();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.UserRepository/GetUserSettings';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetUserSettings';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
      * Common code to make a request to the remote twirp service.
      */
     abstract protected function doRequest(array $ctx, string $url, Message $in, Message $out): void;

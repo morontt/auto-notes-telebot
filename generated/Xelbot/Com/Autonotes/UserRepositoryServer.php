@@ -138,6 +138,8 @@ final class UserRepositoryServer implements RequestHandlerInterface
                 return $this->handleGetCurrencies($ctx, $req);
             case 'GetDefaultCurrency':
                 return $this->handleGetDefaultCurrency($ctx, $req);
+            case 'GetUserSettings':
+                return $this->handleGetUserSettings($ctx, $req);
 
             default:
                 return $this->writeError($ctx, $this->noRouteError($req));
@@ -550,6 +552,113 @@ final class UserRepositoryServer implements RequestHandlerInterface
 
             if ($out === null) {
                 return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetDefaultCurrency. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request proto'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/protobuf')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+    private function handleGetUserSettings(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $header = $req->getHeaderLine('Content-Type');
+        $i = strpos($header, ';');
+
+        if ($i === false) {
+            $i = strlen($header);
+        }
+
+        $respHeaders = [];
+        $ctx[Context::RESPONSE_HEADER] = &$respHeaders;
+
+        switch (trim(strtolower(substr($header, 0, $i)))) {
+            case 'application/json':
+                $resp = $this->handleGetUserSettingsJson($ctx, $req);
+                break;
+
+            case 'application/protobuf':
+                $resp = $this->handleGetUserSettingsProtobuf($ctx, $req);
+                break;
+
+            default:
+                $msg = sprintf('unexpected Content-Type: "%s"', $req->getHeaderLine('Content-Type'));
+
+                return $this->writeError($ctx, $this->badRouteError($msg, $req->getMethod(), $req->getUri()->getPath()));
+        }
+
+        foreach ($respHeaders as $key => $value) {
+            $resp = $resp->withHeader($key, $value);
+        }
+
+        return $resp;
+    }
+
+    private function handleGetUserSettingsJson(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'GetUserSettings');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Google\Protobuf\GPBEmpty();
+            $in->mergeFromJsonString((string)$req->getBody(), true);
+
+            $out = $this->svc->GetUserSettings($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetUserSettings. null responses are not supported'));
+            }
+
+            $ctx = $this->hook->responsePrepared($ctx);
+        } catch (GPBDecodeException $e) {
+            return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'failed to parse request json'));
+        } catch (\Throwable $e) {
+            return $this->writeError($ctx, $e);
+        }
+
+        $data = $out->serializeToJsonString();
+
+        $body = $this->streamFactory->createStream($data);
+
+        $resp = $this->responseFactory
+            ->createResponse(200)
+            ->withHeader('Content-Type', 'application/json')
+            ->withBody($body);
+
+        $this->callResponseSent($ctx);
+
+        return $resp;
+    }
+
+    private function handleGetUserSettingsProtobuf(array $ctx, ServerRequestInterface $req): ResponseInterface
+    {
+        $ctx = Context::withMethodName($ctx, 'GetUserSettings');
+
+        try {
+            $ctx = $this->hook->requestRouted($ctx);
+
+            $in = new \Google\Protobuf\GPBEmpty();
+            $in->mergeFromString((string)$req->getBody());
+
+            $out = $this->svc->GetUserSettings($ctx, $in);
+
+            if ($out === null) {
+                return $this->writeError($ctx, TwirpError::newError(ErrorCode::Internal, 'received a null response while calling GetUserSettings. null responses are not supported'));
             }
 
             $ctx = $this->hook->responsePrepared($ctx);

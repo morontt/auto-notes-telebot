@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ê
+∆
 proto/server.protoxelbot.com.autonotesgoogle/protobuf/timestamp.proto"2
 LoginRequest
 username (	
@@ -73,15 +73,25 @@ created_at (2.google.protobuf.Timestamp"R
 found ("H
 CurrencyCollection2
 
-currencies (2.xelbot.com.autonotes.Currency2ª
+currencies (2.xelbot.com.autonotes.Currency"‰
+UserSettings
+
+id (.
+default_car (2.xelbot.com.autonotes.Car8
+default_currency (2.xelbot.com.autonotes.Currency.
+
+created_at (2.google.protobuf.Timestamp.
+
+updated_at (2.google.protobuf.Timestamp2ª
 AuthS
 GetToken".xelbot.com.autonotes.LoginRequest#.xelbot.com.autonotes.LoginResponse^
-RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2œ
+RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2û
 UserRepositoryF
 GetCars.google.protobuf.Empty#.xelbot.com.autonotes.CarCollectionM
 GetFuels.xelbot.com.autonotes.Limit$.xelbot.com.autonotes.FuelCollectionQ
 GetCurrencies.google.protobuf.Empty(.xelbot.com.autonotes.CurrencyCollectionS
-GetDefaultCurrency.google.protobuf.Empty%.xelbot.com.autonotes.DefaultCurrencyB$Z"xelbot.com/auto-notes/server/protobproto3'
+GetDefaultCurrency.google.protobuf.Empty%.xelbot.com.autonotes.DefaultCurrencyM
+GetUserSettings.google.protobuf.Empty".xelbot.com.autonotes.UserSettingsB$Z"xelbot.com/auto-notes/server/protobproto3'
         , true);
 
         static::$is_initialized = true;
