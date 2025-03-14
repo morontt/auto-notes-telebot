@@ -49,6 +49,13 @@ class UserSettingsDTO
         return $this->defaultCar;
     }
 
+    public function setDefaultCar(?CarDTO $defaultCar): self
+    {
+        $this->defaultCar = $defaultCar;
+
+        return $this;
+    }
+
     public function getDefaultCurrency(): ?CurrencyDTO
     {
         return $this->defaultCurrency;

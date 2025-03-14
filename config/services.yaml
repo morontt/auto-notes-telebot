@@ -29,6 +29,8 @@ services:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 10 }
 
+    TeleBot\Form\Type\RpcEntityType: ~
+
     TeleBot\Service\TokenStorage:
         arguments:
             $secret: '%env(APP_SECRET)%'

@@ -76,7 +76,7 @@ class SettingsController extends AbstractController
     }
 
     #[Route('/settings/edit', name: 'settings_edit')]
-    public function settingsEditAction(RpcUserRepository $rpcUserRepository): Response
+    public function settingsEditAction(Request $request, RpcUserRepository $rpcUserRepository): Response
     {
         /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
@@ -87,6 +87,7 @@ class SettingsController extends AbstractController
         $userSettings = $rpcUserRepository->getUserSettings($user);
 
         $form = $this->createForm(UserSettingsForm::class, $userSettings);
+        $form->handleRequest($request);
 
         return $this->render('settings/edit.html.twig', [
             'form' => $form,
