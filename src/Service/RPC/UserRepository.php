@@ -20,7 +20,6 @@ use Twirp\Context;
 use Twirp\Error;
 use Xelbot\Com\Autonotes\Limit;
 use Xelbot\Com\Autonotes\UserRepositoryClient;
-use Xelbot\Com\Autonotes\UserSettings;
 
 class UserRepository
 {
