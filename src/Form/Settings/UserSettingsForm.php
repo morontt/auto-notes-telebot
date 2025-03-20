@@ -29,6 +29,13 @@ class UserSettingsForm extends AbstractType
                 'required' => false,
                 'empty_data' => null,
             ])
+            ->add('defaultCurrency', RpcEntityType::class, [
+                'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
+                    return $rpcUserRepository->getCurrencies($user);
+                },
+                'required' => false,
+                'empty_data' => null,
+            ])
             ->add('submit', SubmitType::class)
         ;
     }

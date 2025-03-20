@@ -22,6 +22,23 @@
       "text": "Add metadata to collections for pagination",
       "priority": "medium",
       "creation": 1741242850
+    },
+    {
+      "text": "Save user settings",
+      "priority": "medium",
+      "creation": 1742454952,
+      "tasks": [
+        {
+          "text": "handle gRPC errors",
+          "priority": "medium",
+          "creation": 1742454973
+        },
+        {
+          "text": "form validation",
+          "priority": "medium",
+          "creation": 1742454982
+        }
+      ]
     }
   ]
 }

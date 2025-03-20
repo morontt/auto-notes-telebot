@@ -38,6 +38,14 @@ class CarDTO
         return $this->name;
     }
 
+    public function reverse(): Car
+    {
+        $obj = new Car();
+        $obj->setId($this->id);
+
+        return $obj;
+    }
+
     public function getId(): int
     {
         return $this->id;

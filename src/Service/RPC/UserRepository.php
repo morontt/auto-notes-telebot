@@ -10,6 +10,7 @@ namespace TeleBot\Service\RPC;
 
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
+use RuntimeException;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\FuelDTO;
@@ -19,6 +20,7 @@ use Twirp\Context;
 use Twirp\Error;
 use Xelbot\Com\Autonotes\Limit;
 use Xelbot\Com\Autonotes\UserRepositoryClient;
+use Xelbot\Com\Autonotes\UserSettings;
 
 class UserRepository
 {
@@ -54,6 +56,9 @@ class UserRepository
         return $result;
     }
 
+    /**
+     * @return FuelDTO[]
+     */
     public function getFuels(User $user, int $limit = 7): array
     {
         $limitObj = new Limit();
@@ -101,6 +106,29 @@ class UserRepository
         return $result;
     }
 
+    /**
+     * @return CurrencyDTO[]
+     */
+    public function getCurrencies(User $user): array
+    {
+        $result = [];
+        try {
+            $response = $this->client->GetCurrencies($this->context($user), new GPBEmpty());
+            $currencies = $response->getCurrencies();
+            $this->logger->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
+
+            foreach ($currencies as $item) {
+                $result[] = new CurrencyDTO($item);
+            }
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        return $result;
+    }
+
     public function getUserSettings(User $user): ?UserSettingsDTO
     {
         $result = null;
@@ -115,6 +143,21 @@ class UserRepository
         }
 
         return $result;
+    }
+
+    public function saveUserSettings(User $user, UserSettingsDTO $userSettings): UserSettingsDTO
+    {
+        try {
+            $response = $this->client->SaveUserSettings($this->context($user), $userSettings->reverse());
+
+            return new UserSettingsDTO($response);
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        throw new RuntimeException('Failed to save user settings');
     }
 
     private function context(User $user): array

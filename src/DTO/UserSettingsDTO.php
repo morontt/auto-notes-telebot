@@ -14,10 +14,10 @@ use Xelbot\Com\Autonotes\UserSettings;
 class UserSettingsDTO
 {
     private int $id;
-    private ?CarDTO $defaultCar;
-    private ?CurrencyDTO $defaultCurrency;
-    private ?DateTime $createdAt;
-    private ?DateTime $updatedAt;
+    private ?CarDTO $defaultCar = null;
+    private ?CurrencyDTO $defaultCurrency = null;
+    private ?DateTime $createdAt = null;
+    private ?DateTime $updatedAt = null;
 
     public function __construct(UserSettings $data)
     {
@@ -37,6 +37,21 @@ class UserSettingsDTO
         if ($dt = $data->getUpdatedAt()) {
             $this->updatedAt = $dt->toDateTime();
         }
+    }
+
+    public function reverse(): UserSettings
+    {
+        $obj = new UserSettings();
+
+        $obj->setId($this->id);
+        if ($this->defaultCar) {
+            $obj->setDefaultCar($this->defaultCar->reverse());
+        }
+        if ($this->defaultCurrency) {
+            $obj->setDefaultCurrency($this->defaultCurrency->reverse());
+        }
+
+        return $obj;
     }
 
     public function getId(): int
@@ -59,6 +74,13 @@ class UserSettingsDTO
     public function getDefaultCurrency(): ?CurrencyDTO
     {
         return $this->defaultCurrency;
+    }
+
+    public function setDefaultCurrency(?CurrencyDTO $defaultCurrency): self
+    {
+        $this->defaultCurrency = $defaultCurrency;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?DateTime

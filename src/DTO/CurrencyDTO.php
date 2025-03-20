@@ -31,6 +31,19 @@ class CurrencyDTO
         }
     }
 
+    public function __toString(): string
+    {
+        return sprintf('%s (%s)', $this->name, $this->code);
+    }
+
+    public function reverse(): Currency
+    {
+        $obj = new Currency();
+        $obj->setId($this->id);
+
+        return $obj;
+    }
+
     public function getId(): int
     {
         return $this->id;

@@ -88,6 +88,12 @@ class SettingsController extends AbstractController
 
         $form = $this->createForm(UserSettingsForm::class, $userSettings);
         $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            // TODO handle errors
+            $rpcUserRepository->saveUserSettings($user, $form->getData());
+
+            return $this->redirectToRoute('settings');
+        }
 
         return $this->render('settings/edit.html.twig', [
             'form' => $form,
