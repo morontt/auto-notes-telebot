@@ -19,12 +19,12 @@ use Twirp\Error;
 use Twirp\ErrorCode;
 
 /**
- * @internal UserRepositoryAbstractClient provides abstraction for JsonClient and Client (default).
+ * @internal FuelRepositoryAbstractClient provides abstraction for JsonClient and Client (default).
  * Note that you MUST NOT use it directly! It is an internal implementation detail that is not
  * covered by backward compatibility promise. The only thing that will and should remain backward
  * compatible is the two clients.
  */
-abstract class UserRepositoryAbstractClient
+abstract class FuelRepositoryAbstractClient
 {
     /**
      * @var server
@@ -80,19 +80,19 @@ abstract class UserRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function GetCars(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\CarCollection
+    public function GetFuels(array $ctx, \Xelbot\Com\Autonotes\Limit $in): \Xelbot\Com\Autonotes\FuelCollection
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'UserRepository');
-        $ctx = Context::withMethodName($ctx, 'GetCars');
+        $ctx = Context::withServiceName($ctx, 'FuelRepository');
+        $ctx = Context::withMethodName($ctx, 'GetFuels');
 
-        $out = new \Xelbot\Com\Autonotes\CarCollection();
+        $out = new \Xelbot\Com\Autonotes\FuelCollection();
 
         $url = $this->addr;
         if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.UserRepository/GetCars';
+            $url = $url.'/xelbot.com.autonotes.FuelRepository/GetFuels';
         } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetCars';
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.FuelRepository/GetFuels';
         }
 
         $this->doRequest($ctx, $url, $in, $out);
@@ -103,88 +103,19 @@ abstract class UserRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function GetCurrencies(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\CurrencyCollection
+    public function GetFillingStations(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\FillingStationCollection
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'UserRepository');
-        $ctx = Context::withMethodName($ctx, 'GetCurrencies');
+        $ctx = Context::withServiceName($ctx, 'FuelRepository');
+        $ctx = Context::withMethodName($ctx, 'GetFillingStations');
 
-        $out = new \Xelbot\Com\Autonotes\CurrencyCollection();
+        $out = new \Xelbot\Com\Autonotes\FillingStationCollection();
 
         $url = $this->addr;
         if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.UserRepository/GetCurrencies';
+            $url = $url.'/xelbot.com.autonotes.FuelRepository/GetFillingStations';
         } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetCurrencies';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function GetDefaultCurrency(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\DefaultCurrency
-    {
-        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'UserRepository');
-        $ctx = Context::withMethodName($ctx, 'GetDefaultCurrency');
-
-        $out = new \Xelbot\Com\Autonotes\DefaultCurrency();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.UserRepository/GetDefaultCurrency';
-        } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetDefaultCurrency';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function GetUserSettings(array $ctx, \Google\Protobuf\GPBEmpty $in): \Xelbot\Com\Autonotes\UserSettings
-    {
-        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'UserRepository');
-        $ctx = Context::withMethodName($ctx, 'GetUserSettings');
-
-        $out = new \Xelbot\Com\Autonotes\UserSettings();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.UserRepository/GetUserSettings';
-        } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/GetUserSettings';
-        }
-
-        $this->doRequest($ctx, $url, $in, $out);
-
-        return $out;
-    }
-
-    /**
-     * {@inheritdoc}
-     */
-    public function SaveUserSettings(array $ctx, \Xelbot\Com\Autonotes\UserSettings $in): \Xelbot\Com\Autonotes\UserSettings
-    {
-        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes');
-        $ctx = Context::withServiceName($ctx, 'UserRepository');
-        $ctx = Context::withMethodName($ctx, 'SaveUserSettings');
-
-        $out = new \Xelbot\Com\Autonotes\UserSettings();
-
-        $url = $this->addr;
-        if (empty($this->prefix)) {
-            $url = $url.'/xelbot.com.autonotes.UserRepository/SaveUserSettings';
-        } else {
-            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.UserRepository/SaveUserSettings';
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.FuelRepository/GetFillingStations';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

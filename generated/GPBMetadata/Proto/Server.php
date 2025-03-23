@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-¢
+—
 proto/server.protoxelbot.com.autonotesgoogle/protobuf/timestamp.proto"2
 LoginRequest
 username (	
@@ -42,11 +42,15 @@ class Server
 
 created_at (2.google.protobuf.Timestamp"8
 CarCollection\'
-cars (2.xelbot.com.autonotes.Car"*
+cars (2.xelbot.com.autonotes.Car"Z
 FillingStation
 
 id (
-name (	"–
+name (	.
+
+created_at (2.google.protobuf.Timestamp"R
+FillingStationCollection6
+stations (2$.xelbot.com.autonotes.FillingStation"–
 Fuel
 
 id ((
@@ -85,14 +89,16 @@ created_at (2.google.protobuf.Timestamp.
 updated_at (2.google.protobuf.Timestamp2»
 AuthS
 GetToken".xelbot.com.autonotes.LoginRequest#.xelbot.com.autonotes.LoginResponse^
-RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2ú
+RefreshToken).xelbot.com.autonotes.RefreshTokenRequest#.xelbot.com.autonotes.LoginResponse2«
 UserRepositoryF
-GetCars.google.protobuf.Empty#.xelbot.com.autonotes.CarCollectionM
-GetFuels.xelbot.com.autonotes.Limit$.xelbot.com.autonotes.FuelCollectionQ
+GetCars.google.protobuf.Empty#.xelbot.com.autonotes.CarCollectionQ
 GetCurrencies.google.protobuf.Empty(.xelbot.com.autonotes.CurrencyCollectionS
 GetDefaultCurrency.google.protobuf.Empty%.xelbot.com.autonotes.DefaultCurrencyM
 GetUserSettings.google.protobuf.Empty".xelbot.com.autonotes.UserSettingsZ
-SaveUserSettings".xelbot.com.autonotes.UserSettings".xelbot.com.autonotes.UserSettingsB$Z"xelbot.com/auto-notes/server/protobproto3'
+SaveUserSettings".xelbot.com.autonotes.UserSettings".xelbot.com.autonotes.UserSettings2½
+FuelRepositoryM
+GetFuels.xelbot.com.autonotes.Limit$.xelbot.com.autonotes.FuelCollection\\
+GetFillingStations.google.protobuf.Empty..xelbot.com.autonotes.FillingStationCollectionB$Z"xelbot.com/auto-notes/server/protobproto3'
         , true);
 
         static::$is_initialized = true;

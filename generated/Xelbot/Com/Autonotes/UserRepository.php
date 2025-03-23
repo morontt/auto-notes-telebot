@@ -25,15 +25,6 @@ interface UserRepository
     /**
      *
      *
-     * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetFuels</code>
-     *
-     * @throws \Twirp\Error
-     */
-    public function GetFuels(array $ctx, \Xelbot\Com\Autonotes\Limit $req): \Xelbot\Com\Autonotes\FuelCollection;
-
-    /**
-     *
-     *
      * Generated from protobuf method <code>xelbot.com.autonotes.UserRepository/GetCurrencies</code>
      *
      * @throws \Twirp\Error

@@ -21,6 +21,10 @@ class FillingStation extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>string name = 2;</code>
      */
     protected $name = '';
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 3;</code>
+     */
+    protected $created_at = null;
 
     /**
      * Constructor.
@@ -30,6 +34,7 @@ class FillingStation extends \Google\Protobuf\Internal\Message
      *
      *     @type int $id
      *     @type string $name
+     *     @type \Google\Protobuf\Timestamp $created_at
      * }
      */
     public function __construct($data = NULL) {
@@ -77,6 +82,38 @@ class FillingStation extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkString($var, True);
         $this->name = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 3;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function hasCreatedAt()
+    {
+        return isset($this->created_at);
+    }
+
+    public function clearCreatedAt()
+    {
+        unset($this->created_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 3;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->created_at = $var;
 
         return $this;
     }
