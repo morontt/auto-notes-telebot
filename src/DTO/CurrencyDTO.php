@@ -19,21 +19,25 @@ class CurrencyDTO
     private bool $default;
     private ?DateTime $createdAt;
 
-    public function __construct(Currency $data)
-    {
-        $this->id = $data->getId();
-        $this->name = $data->getName();
-        $this->code = $data->getCode();
-        $this->default = $data->getDefault();
-
-        if ($dt = $data->getCreatedAt()) {
-            $this->createdAt = $dt->toDateTime();
-        }
-    }
-
     public function __toString(): string
     {
         return sprintf('%s (%s)', $this->name, $this->code);
+    }
+
+    public static function fromData(Currency $data): self
+    {
+        $obj = new self();
+
+        $obj->id = $data->getId();
+        $obj->name = $data->getName();
+        $obj->code = $data->getCode();
+        $obj->default = $data->getDefault();
+
+        if ($dt = $data->getCreatedAt()) {
+            $obj->createdAt = $dt->toDateTime();
+        }
+
+        return $obj;
     }
 
     public function reverse(): Currency

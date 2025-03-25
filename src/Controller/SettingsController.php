@@ -18,9 +18,10 @@ use TeleBot\Form\Settings\UserSettingsForm;
 use TeleBot\Repository\CodeRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
+#[Route('/settings')]
 class SettingsController extends AbstractController
 {
-    #[Route('/settings', name: 'settings')]
+    #[Route('/', name: 'settings')]
     public function settingsAction(CodeRepository $repository, RpcUserRepository $rpcUserRepository): Response
     {
         /* @var \TeleBot\Security\User $user */
@@ -38,7 +39,7 @@ class SettingsController extends AbstractController
         ]);
     }
 
-    #[Route('/settings/connect', name: 'tg_connect')]
+    #[Route('/connect', name: 'tg_connect')]
     public function connectAction(Request $request, CodeRepository $repository): Response
     {
         /* @var \TeleBot\Security\User $user */
@@ -63,9 +64,9 @@ class SettingsController extends AbstractController
                 $this->addFlash('success', 'Аккаунт привязан :)');
 
                 return $this->redirectToRoute('settings');
-            } else {
-                $this->addFlash('error', 'Код не найден или просрочен, нужен новый');
             }
+
+            $this->addFlash('error', 'Код не найден или просрочен, нужен новый');
 
             return $this->redirectToRoute('tg_connect');
         }
@@ -75,7 +76,7 @@ class SettingsController extends AbstractController
         ]);
     }
 
-    #[Route('/settings/edit', name: 'settings_edit')]
+    #[Route('/edit', name: 'settings_edit')]
     public function settingsEditAction(Request $request, RpcUserRepository $rpcUserRepository): Response
     {
         /* @var \TeleBot\Security\User $user */

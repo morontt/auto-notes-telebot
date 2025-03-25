@@ -15,10 +15,14 @@ class CostDTO
     private int $value;
     private string $currencyCode;
 
-    public function __construct(Cost $data)
+    public static function fromData(Cost $data): self
     {
-        $this->value = $data->getValue();
-        $this->currencyCode = $data->getCurrency();
+        $obj = new self();
+
+        $obj->value = $data->getValue();
+        $obj->currencyCode = $data->getCurrency();
+
+        return $obj;
     }
 
     public function getValue(): float

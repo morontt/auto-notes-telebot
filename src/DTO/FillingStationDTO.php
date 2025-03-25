@@ -15,10 +15,14 @@ class FillingStationDTO
     private int $id;
     private string $name;
 
-    public function __construct(FillingStation $data)
+    public static function fromData(FillingStation $data): self
     {
-        $this->id = $data->getId();
-        $this->name = $data->getName();
+        $obj = new self();
+
+        $obj->id = $data->getId();
+        $obj->name = $data->getName();
+
+        return $obj;
     }
 
     public function getId(): int

@@ -22,29 +22,33 @@ class FuelDTO
     private ?DateTime $date;
     private ?DateTime $createdAt;
 
-    public function __construct(Fuel $data)
+    public static function fromData(Fuel $data): self
     {
-        $this->id = $data->getId();
-        $this->value = $data->getValue();
-        $this->distance = $data->getDistance();
+        $obj = new self();
+
+        $obj->id = $data->getId();
+        $obj->value = $data->getValue();
+        $obj->distance = $data->getDistance();
 
         if ($data->hasCar()) {
-            $this->car = new CarDTO($data->getCar());
+            $obj->car = CarDTO::fromData($data->getCar());
         }
         if ($data->hasCost()) {
-            $this->cost = new CostDTO($data->getCost());
+            $obj->cost = CostDTO::fromData($data->getCost());
         }
         if ($data->hasStation()) {
-            $this->station = new FillingStationDTO($data->getStation());
+            $obj->station = FillingStationDTO::fromData($data->getStation());
         }
 
         if ($dt = $data->getDate()) {
-            $this->date = $dt->toDateTime();
+            $obj->date = $dt->toDateTime();
         }
 
         if ($dt = $data->getCreatedAt()) {
-            $this->createdAt = $dt->toDateTime();
+            $obj->createdAt = $dt->toDateTime();
         }
+
+        return $obj;
     }
 
     public function getId(): int

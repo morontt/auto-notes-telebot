@@ -41,7 +41,7 @@ class UserRepository extends AbstractRepository
             $this->logger->debug('gRPC response', ['cars_cnt' => count($cars)]);
 
             foreach ($cars as $item) {
-                $result[] = new CarDTO($item);
+                $result[] = CarDTO::fromData($item);
             }
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
@@ -62,7 +62,7 @@ class UserRepository extends AbstractRepository
 
             if ($found) {
                 if ($response->hasCurrency()) {
-                    $result = new CurrencyDTO($response->getCurrency());
+                    $result = CurrencyDTO::fromData($response->getCurrency());
                 } else {
                     $this->logger->error('gRPC response without currency but found=true');
                 }
@@ -88,7 +88,7 @@ class UserRepository extends AbstractRepository
             $this->logger->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
 
             foreach ($currencies as $item) {
-                $result[] = new CurrencyDTO($item);
+                $result[] = CurrencyDTO::fromData($item);
             }
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
@@ -105,7 +105,7 @@ class UserRepository extends AbstractRepository
         try {
             $response = $this->client->GetUserSettings($this->context($user), new GPBEmpty());
 
-            $result = new UserSettingsDTO($response);
+            $result = UserSettingsDTO::fromData($response);
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
                 'error' => $e,
@@ -120,7 +120,7 @@ class UserRepository extends AbstractRepository
         try {
             $response = $this->client->SaveUserSettings($this->context($user), $userSettings->reverse());
 
-            return new UserSettingsDTO($response);
+            return UserSettingsDTO::fromData($response);
         } catch (Error $e) {
             $this->logger->error('gRPC error', [
                 'error' => $e,

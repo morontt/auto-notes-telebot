@@ -39,7 +39,7 @@ class FuelRepository extends AbstractRepository
             $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
 
             foreach ($fuels as $item) {
-                $result[] = new FuelDTO($item);
+                $result[] = FuelDTO::fromData($item);
             }
         } catch (Error $e) {
             $this->logger->error('gRPC error', [

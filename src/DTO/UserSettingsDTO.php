@@ -19,24 +19,27 @@ class UserSettingsDTO
     private ?DateTime $createdAt = null;
     private ?DateTime $updatedAt = null;
 
-    public function __construct(UserSettings $data)
+    public static function fromData(UserSettings $data): self
     {
-        $this->id = $data->getId();
+        $obj = new self();
+
+        $obj->id = $data->getId();
 
         if ($data->hasDefaultCar()) {
-            $this->defaultCar = new CarDTO($data->getDefaultCar());
+            $obj->defaultCar = CarDTO::fromData($data->getDefaultCar());
         }
         if ($data->hasDefaultCurrency()) {
-            $this->defaultCurrency = new CurrencyDTO($data->getDefaultCurrency());
+            $obj->defaultCurrency = CurrencyDTO::fromData($data->getDefaultCurrency());
         }
 
         if ($dt = $data->getCreatedAt()) {
-            $this->createdAt = $dt->toDateTime();
+            $obj->createdAt = $dt->toDateTime();
+        }
+        if ($dt = $data->getUpdatedAt()) {
+            $obj->updatedAt = $dt->toDateTime();
         }
 
-        if ($dt = $data->getUpdatedAt()) {
-            $this->updatedAt = $dt->toDateTime();
-        }
+        return $obj;
     }
 
     public function reverse(): UserSettings

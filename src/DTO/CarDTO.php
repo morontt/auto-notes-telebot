@@ -20,22 +20,26 @@ class CarDTO
     private bool $default;
     private ?DateTime $createdAt;
 
-    public function __construct(Car $data)
-    {
-        $this->id = $data->getId();
-        $this->name = $data->getName();
-        $this->vin = $data->getVin() ?: null;
-        $this->year = $data->getYear() ?: null;
-        $this->default = $data->getDefault();
-
-        if ($dt = $data->getCreatedAt()) {
-            $this->createdAt = $dt->toDateTime();
-        }
-    }
-
     public function __toString(): string
     {
         return $this->name;
+    }
+
+    public static function fromData(Car $data): self
+    {
+        $obj = new self();
+
+        $obj->id = $data->getId();
+        $obj->name = $data->getName();
+        $obj->vin = $data->getVin() ?: null;
+        $obj->year = $data->getYear() ?: null;
+        $obj->default = $data->getDefault();
+
+        if ($dt = $data->getCreatedAt()) {
+            $obj->createdAt = $dt->toDateTime();
+        }
+
+        return $obj;
     }
 
     public function reverse(): Car
