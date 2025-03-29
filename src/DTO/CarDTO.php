@@ -18,7 +18,7 @@ class CarDTO
     private ?string $vin;
     private ?int $year;
     private bool $default;
-    private ?DateTime $createdAt;
+    private ?DateTime $createdAt = null;
 
     public function __toString(): string
     {

@@ -35,9 +35,14 @@ class FuelController extends AbstractController
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
         }
 
-        $userSettings = $this->rpcUserRepository->getUserSettings($user);
-
         $fuelDto = new FuelDTO();
+
+        $userSettings = $this->rpcUserRepository->getUserSettings($user);
+        if ($userSettings) {
+            if ($userSettings->hasDefaultCar()) {
+                $fuelDto->setCar($userSettings->getDefaultCar());
+            }
+        }
 
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);

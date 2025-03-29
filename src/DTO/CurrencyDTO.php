@@ -17,7 +17,7 @@ class CurrencyDTO
     private string $name;
     private string $code;
     private bool $default;
-    private ?DateTime $createdAt;
+    private ?DateTime $createdAt = null;
 
     public function __toString(): string
     {

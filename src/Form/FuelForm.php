@@ -22,20 +22,12 @@ class FuelForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('defaultCar', RpcEntityType::class, [
+            ->add('car', RpcEntityType::class, [
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);
                 },
-                'required' => false,
-                'empty_data' => null,
             ])
-            ->add('defaultCurrency', RpcEntityType::class, [
-                'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
-                    return $rpcUserRepository->getCurrencies($user);
-                },
-                'required' => false,
-                'empty_data' => null,
-            ])
+            ->add('distance')
             ->add('submit', SubmitType::class)
         ;
     }

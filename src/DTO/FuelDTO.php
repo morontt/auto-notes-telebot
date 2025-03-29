@@ -16,11 +16,11 @@ class FuelDTO
     private int $id;
     private int $value;
     private int $distance;
-    private ?CarDTO $car;
-    private ?CostDTO $cost;
-    private ?FillingStationDTO $station;
-    private ?DateTime $date;
-    private ?DateTime $createdAt;
+    private ?CarDTO $car = null;
+    private ?CostDTO $cost = null;
+    private ?FillingStationDTO $station = null;
+    private ?DateTime $date = null;
+    private ?DateTime $createdAt = null;
 
     public static function fromData(Fuel $data): self
     {
@@ -69,6 +69,13 @@ class FuelDTO
     public function getCar(): ?CarDTO
     {
         return $this->car;
+    }
+
+    public function setCar(?CarDTO $car): self
+    {
+        $this->car = $car;
+
+        return $this;
     }
 
     public function getCost(): ?CostDTO

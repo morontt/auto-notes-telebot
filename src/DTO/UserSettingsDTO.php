@@ -74,6 +74,11 @@ class UserSettingsDTO
         return $this;
     }
 
+    public function hasDefaultCar(): bool
+    {
+        return isset($this->defaultCar);
+    }
+
     public function getDefaultCurrency(): ?CurrencyDTO
     {
         return $this->defaultCurrency;

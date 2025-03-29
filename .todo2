@@ -39,6 +39,18 @@
           "creation": 1742454982
         }
       ]
+    },
+    {
+      "text": "small CSS",
+      "priority": "medium",
+      "creation": 1743244503,
+      "tasks": [
+        {
+          "text": "https://pure-css.github.io/",
+          "priority": "low",
+          "creation": 1743244545
+        }
+      ]
     }
   ]
 }
