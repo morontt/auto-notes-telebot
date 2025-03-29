@@ -39,6 +39,18 @@
           "creation": 1742454982
         }
       ]
+    },
+    {
+      "text": "Correct manifest MIME-type",
+      "priority": "medium",
+      "creation": 1743240640,
+      "tasks": [
+        {
+          "text": "https://w3c.github.io/manifest/",
+          "priority": "low",
+          "creation": 1743240664
+        }
+      ]
     }
   ]
 }
