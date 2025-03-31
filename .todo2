@@ -51,6 +51,11 @@
           "creation": 1743244545
         }
       ]
+    },
+    {
+      "text": "Add validation for distance (cannot decrease)",
+      "priority": "medium",
+      "creation": 1743405310
     }
   ]
 }

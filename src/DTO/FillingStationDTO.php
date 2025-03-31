@@ -15,6 +15,11 @@ class FillingStationDTO
     private int $id;
     private string $name;
 
+    public function __toString(): string
+    {
+        return $this->name;
+    }
+
     public static function fromData(FillingStation $data): self
     {
         $obj = new self();

@@ -8,6 +8,7 @@
 
 namespace TeleBot\Form\Type;
 
+use LogicException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\ChoiceList\ChoiceList;
@@ -16,12 +17,14 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\Form\ChoiceList\RpcRepositoryChoiceLoader;
+use TeleBot\Service\RPC\FuelRepository;
 use TeleBot\Service\RPC\UserRepository;
 
 class RpcEntityType extends AbstractType
 {
     public function __construct(
         private readonly UserRepository $rpcUserRepository,
+        private readonly FuelRepository $rpcFuelRepository,
         private readonly Security $security
     ) {
     }
@@ -29,14 +32,27 @@ class RpcEntityType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $choiceLoader = function (Options $options): ChoiceLoaderInterface {
-            $repo = $this->rpcUserRepository;
+            $userRepo = $this->rpcUserRepository;
+            $fuelRepo = $this->rpcFuelRepository;
             $user = $this->security->getUser();
 
-            return ChoiceList::loader(
-                $this,
-                new RpcRepositoryChoiceLoader($options['query_callback'], $repo, $user),
-                [$options['query_callback']]
-            );
+            if (is_callable($options['query_callback'])) {
+                $loader = ChoiceList::loader(
+                    $this,
+                    new RpcRepositoryChoiceLoader($options['query_callback'], $userRepo, $user),
+                    [$options['query_callback']]
+                );
+            } elseif (is_callable($options['query_fuel_callback'])) {
+                $loader = ChoiceList::loader(
+                    $this,
+                    new RpcRepositoryChoiceLoader($options['query_fuel_callback'], $fuelRepo, $user),
+                    [$options['query_fuel_callback']]
+                );
+            } else {
+                throw new LogicException('query_callback or query_fuel_callback must be defined');
+            }
+
+            return $loader;
         };
 
         $choiceValue = function (Options $options) {
@@ -51,6 +67,7 @@ class RpcEntityType extends AbstractType
 
         $resolver->setDefaults([
             'query_callback' => null,
+            'query_fuel_callback' => null,
             'choices' => null,
             'choice_loader' => $choiceLoader,
             'choice_label' => ChoiceList::label($this, [__CLASS__, 'createChoiceLabel']),
@@ -58,8 +75,8 @@ class RpcEntityType extends AbstractType
             'choice_translation_domain' => false,
         ]);
 
-        $resolver->setRequired(['query_callback']);
-        $resolver->setAllowedTypes('query_callback', ['callable']);
+        $resolver->setAllowedTypes('query_callback', ['null', 'callable']);
+        $resolver->setAllowedTypes('query_fuel_callback', ['null', 'callable']);
     }
 
     public function getParent(): string

@@ -91,6 +91,11 @@ class UserSettingsDTO
         return $this;
     }
 
+    public function hasDefaultCurrency(): bool
+    {
+        return isset($this->defaultCurrency);
+    }
+
     public function getCreatedAt(): ?DateTime
     {
         return $this->createdAt;

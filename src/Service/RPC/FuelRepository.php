@@ -8,7 +8,9 @@
 
 namespace TeleBot\Service\RPC;
 
+use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
+use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Security\User;
 use Twirp\Error;
@@ -40,6 +42,29 @@ class FuelRepository extends AbstractRepository
 
             foreach ($fuels as $item) {
                 $result[] = FuelDTO::fromData($item);
+            }
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return FillingStationDTO[]
+     */
+    public function getFillingStations(User $user): array
+    {
+        $result = [];
+        try {
+            $response = $this->client->GetFillingStations($this->context($user), new GPBEmpty());
+            $stations = $response->getStations();
+            $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
+
+            foreach ($stations as $item) {
+                $result[] = FillingStationDTO::fromData($item);
             }
         } catch (Error $e) {
             $this->logger->error('gRPC error', [

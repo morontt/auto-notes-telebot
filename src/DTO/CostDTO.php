@@ -30,8 +30,22 @@ class CostDTO
         return 0.01 * $this->value;
     }
 
+    public function setValue(float $value): self
+    {
+        $this->value = (int)(0.5 + 100 * $value);
+
+        return $this;
+    }
+
     public function getCurrencyCode(): string
     {
         return $this->currencyCode;
+    }
+
+    public function setCurrencyCode(string $currencyCode): self
+    {
+        $this->currencyCode = $currencyCode;
+
+        return $this;
     }
 }

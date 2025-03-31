@@ -13,9 +13,9 @@ use Xelbot\Com\Autonotes\Fuel;
 
 class FuelDTO
 {
-    private int $id;
-    private int $value;
-    private int $distance;
+    private int $id = 0;
+    private int $value = 0;
+    private ?int $distance = null;
     private ?CarDTO $car = null;
     private ?CostDTO $cost = null;
     private ?FillingStationDTO $station = null;
@@ -61,9 +61,23 @@ class FuelDTO
         return 0.01 * $this->value;
     }
 
+    public function setValue(float $value): self
+    {
+        $this->value = (int)(0.5 + 100 * $value);
+
+        return $this;
+    }
+
     public function getDistance(): int
     {
         return $this->distance;
+    }
+
+    public function setDistance(int $distance): self
+    {
+        $this->distance = $distance;
+
+        return $this;
     }
 
     public function getCar(): ?CarDTO
@@ -83,14 +97,35 @@ class FuelDTO
         return $this->cost;
     }
 
+    public function setCost(?CostDTO $cost): self
+    {
+        $this->cost = $cost;
+
+        return $this;
+    }
+
     public function getStation(): ?FillingStationDTO
     {
         return $this->station;
     }
 
+    public function setStation(?FillingStationDTO $station): self
+    {
+        $this->station = $station;
+
+        return $this;
+    }
+
     public function getDate(): ?DateTime
     {
         return $this->date;
+    }
+
+    public function setDate(?DateTime $date): self
+    {
+        $this->date = $date;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?DateTime

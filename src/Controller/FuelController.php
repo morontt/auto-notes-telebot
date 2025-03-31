@@ -8,10 +8,12 @@
 
 namespace TeleBot\Controller;
 
+use DateTime;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Form\FuelForm;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
@@ -36,17 +38,28 @@ class FuelController extends AbstractController
         }
 
         $fuelDto = new FuelDTO();
+        $fuelDto->setDate(new DateTime());
 
         $userSettings = $this->rpcUserRepository->getUserSettings($user);
         if ($userSettings) {
             if ($userSettings->hasDefaultCar()) {
                 $fuelDto->setCar($userSettings->getDefaultCar());
             }
+            if ($userSettings->hasDefaultCurrency()) {
+                $costDto = new CostDTO();
+                $costDto->setCurrencyCode($userSettings->getDefaultCurrency()->getCode());
+
+                $fuelDto->setCost($costDto);
+            }
         }
 
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
+            $fuel = $form->getData();
+            var_dump($fuel);
+            die;
+
             return $this->redirectToRoute('dashboard');
         }
 
