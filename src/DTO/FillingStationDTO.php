@@ -30,6 +30,14 @@ class FillingStationDTO
         return $obj;
     }
 
+    public function reverse(): FillingStation
+    {
+        $obj = new FillingStation();
+        $obj->setId($this->id);
+
+        return $obj;
+    }
+
     public function getId(): int
     {
         return $this->id;

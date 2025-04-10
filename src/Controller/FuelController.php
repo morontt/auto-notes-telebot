@@ -56,9 +56,7 @@ class FuelController extends AbstractController
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $fuel = $form->getData();
-            var_dump($fuel);
-            die;
+            $this->rpcFuelRepository->saveFuel($user, $form->getData());
 
             return $this->redirectToRoute('dashboard');
         }

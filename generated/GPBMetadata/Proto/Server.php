@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-ó
+€
 proto/server.protoxelbot.com.autonotesgoogle/protobuf/timestamp.proto"2
 LoginRequest
 username (	
@@ -95,10 +95,11 @@ updated_at (2.google.protobuf.Timestamp2ª
 GetCurrencies.google.protobuf.Empty(.xelbot.com.autonotes.CurrencyCollectionS
 GetDefaultCurrency.google.protobuf.Empty%.xelbot.com.autonotes.DefaultCurrencyM
 GetUserSettings.google.protobuf.Empty".xelbot.com.autonotes.UserSettingsZ
-SaveUserSettings".xelbot.com.autonotes.UserSettings".xelbot.com.autonotes.UserSettings2Ω
+SaveUserSettings".xelbot.com.autonotes.UserSettings".xelbot.com.autonotes.UserSettings2Å
 FuelRepositoryM
 GetFuels.xelbot.com.autonotes.Limit$.xelbot.com.autonotes.FuelCollection\\
-GetFillingStations.google.protobuf.Empty..xelbot.com.autonotes.FillingStationCollectionB$Z"xelbot.com/auto-notes/server/protobproto3'
+GetFillingStations.google.protobuf.Empty..xelbot.com.autonotes.FillingStationCollectionB
+SaveFuel.xelbot.com.autonotes.Fuel.xelbot.com.autonotes.FuelB$Z"xelbot.com/auto-notes/server/protobproto3'
         , true);
 
         static::$is_initialized = true;

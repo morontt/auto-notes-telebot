@@ -25,6 +25,16 @@ class CostDTO
         return $obj;
     }
 
+    public function reverse(): Cost
+    {
+        $obj = new Cost();
+
+        $obj->setValue($this->value);
+        $obj->setCurrency($this->currencyCode);
+
+        return $obj;
+    }
+
     public function getValue(): float
     {
         return 0.01 * $this->value;

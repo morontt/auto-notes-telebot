@@ -52,6 +52,23 @@ class FuelRepository extends AbstractRepository
         return $result;
     }
 
+    public function saveFuel(User $user, FuelDTO $fuel): ?FuelDTO
+    {
+        $result = null;
+        try {
+            $response = $this->client->SaveFuel($this->context($user), $fuel->reverse());
+            $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
+
+            $result = FuelDTO::fromData($response);
+        } catch (Error $e) {
+            $this->logger->error('gRPC error', [
+                'error' => $e,
+            ]);
+        }
+
+        return $result;
+    }
+
     /**
      * @return FillingStationDTO[]
      */

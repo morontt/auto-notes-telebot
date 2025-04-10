@@ -8,7 +8,9 @@
 
 namespace TeleBot\DTO;
 
+use DateInterval;
 use DateTime;
+use Google\Protobuf\Timestamp;
 use Xelbot\Com\Autonotes\Fuel;
 
 class FuelDTO
@@ -46,6 +48,33 @@ class FuelDTO
 
         if ($dt = $data->getCreatedAt()) {
             $obj->createdAt = $dt->toDateTime();
+        }
+
+        return $obj;
+    }
+
+    public function reverse(): Fuel
+    {
+        $obj = new Fuel();
+
+        $obj->setId($this->id);
+        $obj->setValue($this->value);
+
+        if ($this->car) {
+            $obj->setCar($this->car->reverse());
+        }
+        if ($this->station) {
+            $obj->setStation($this->station->reverse());
+        }
+        if ($this->cost) {
+            $obj->setCost($this->cost->reverse());
+        }
+        if ($this->date) {
+            $ts = new Timestamp();
+            $date = clone $this->date;
+            $ts->fromDateTime($date->add(new DateInterval('PT12H')));
+
+            $obj->setDate($ts);
         }
 
         return $obj;

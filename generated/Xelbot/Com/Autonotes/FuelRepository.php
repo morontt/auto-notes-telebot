@@ -30,4 +30,13 @@ interface FuelRepository
      * @throws \Twirp\Error
      */
     public function GetFillingStations(array $ctx, \Google\Protobuf\GPBEmpty $req): \Xelbot\Com\Autonotes\FillingStationCollection;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.FuelRepository/SaveFuel</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function SaveFuel(array $ctx, \Xelbot\Com\Autonotes\Fuel $req): \Xelbot\Com\Autonotes\Fuel;
 }

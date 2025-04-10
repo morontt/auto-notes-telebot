@@ -15,7 +15,6 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\DTO\CostDTO;
-use TeleBot\DTO\CurrencyDTO;
 use TeleBot\Service\RPC\UserRepository;
 
 class CostType extends AbstractType
@@ -31,18 +30,15 @@ class CostType extends AbstractType
         /* @var \TeleBot\Security\User $user */
         $user = $this->security->getUser();
 
+        $choices = [];
+        foreach ($this->rpcUserRepository->getCurrencies($user) as $currency) {
+            $choices[(string)$currency] = $currency->getCode();
+        }
+
         $builder
             ->add('value', TextType::class)
             ->add('currencyCode', ChoiceType::class, [
-                'choices' => $this->rpcUserRepository->getCurrencies($user),
-                'choice_label' => fn (CurrencyDTO $currency) => (string)$currency,
-                'choice_value' => function ($currency) {
-                    if ($currency instanceof CurrencyDTO) {
-                        return $currency->getCode();
-                    }
-
-                    return $currency;
-                },
+                'choices' => $choices,
             ])
         ;
     }
