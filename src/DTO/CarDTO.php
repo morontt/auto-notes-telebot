@@ -8,8 +8,8 @@
 
 namespace TeleBot\DTO;
 
+use AutoNotes\Car;
 use DateTime;
-use Xelbot\Com\Autonotes\Car;
 
 class CarDTO
 {

@@ -39,10 +39,9 @@
     },
     "autoload": {
         "psr-4": {
+            "AutoNotes\\": "generated/AutoNotes",
             "TeleBot\\": "src",
-            "GPBMetadata\\": "generated/GPBMetadata",
-            "Tests\\": "tests/",
-            "Xelbot\\": "generated/Xelbot"
+            "Tests\\": "tests/"
         }
     },
     "conflict": {

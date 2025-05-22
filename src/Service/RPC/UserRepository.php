@@ -8,6 +8,7 @@
 
 namespace TeleBot\Service\RPC;
 
+use AutoNotes\UserRepositoryClient;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use RuntimeException;
@@ -16,7 +17,6 @@ use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\UserSettingsDTO;
 use TeleBot\Security\User;
 use Twirp\Error;
-use Xelbot\Com\Autonotes\UserRepositoryClient;
 
 class UserRepository extends AbstractRepository
 {

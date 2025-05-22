@@ -8,14 +8,14 @@
 
 namespace TeleBot\Service\RPC;
 
+use AutoNotes\FuelRepositoryClient;
+use AutoNotes\Limit;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Security\User;
 use Twirp\Error;
-use Xelbot\Com\Autonotes\FuelRepositoryClient;
-use Xelbot\Com\Autonotes\Limit;
 
 class FuelRepository extends AbstractRepository
 {

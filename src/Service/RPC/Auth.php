@@ -8,10 +8,10 @@
 
 namespace TeleBot\Service\RPC;
 
+use AutoNotes\AuthClient;
+use AutoNotes\LoginRequest;
 use Psr\Log\LoggerInterface;
 use Twirp\Error;
-use Xelbot\Com\Autonotes\AuthClient;
-use Xelbot\Com\Autonotes\LoginRequest;
 
 class Auth
 {

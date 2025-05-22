@@ -8,10 +8,10 @@
 
 namespace TeleBot\DTO;
 
+use AutoNotes\Fuel;
 use DateInterval;
 use DateTime;
 use Google\Protobuf\Timestamp;
-use Xelbot\Com\Autonotes\Fuel;
 
 class FuelDTO
 {

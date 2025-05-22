@@ -8,8 +8,8 @@
 
 namespace TeleBot\DTO;
 
+use AutoNotes\Currency;
 use DateTime;
-use Xelbot\Com\Autonotes\Currency;
 
 class CurrencyDTO
 {

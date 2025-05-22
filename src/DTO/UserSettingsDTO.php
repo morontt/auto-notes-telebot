@@ -8,8 +8,8 @@
 
 namespace TeleBot\DTO;
 
+use AutoNotes\UserSettings;
 use DateTime;
-use Xelbot\Com\Autonotes\UserSettings;
 
 class UserSettingsDTO
 {

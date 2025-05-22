@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use Xelbot\Com\Autonotes\Cost;
+use AutoNotes\Cost;
 
 class CostDTO
 {

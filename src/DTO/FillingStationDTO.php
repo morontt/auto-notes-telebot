@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use Xelbot\Com\Autonotes\FillingStation;
+use AutoNotes\FillingStation;
 
 class FillingStationDTO
 {
