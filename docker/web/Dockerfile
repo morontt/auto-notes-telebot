@@ -18,6 +18,7 @@ RUN apt-get update \
     libzip-dev \
     mariadb-client \
     protobuf-compiler \
+    libprotobuf-dev \
     ; \
     apt-get clean && rm -rf /tmp/* /var/tmp/*
 
