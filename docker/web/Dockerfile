@@ -17,6 +17,8 @@ RUN apt-get update \
     zip unzip \
     libzip-dev \
     mariadb-client \
+    protobuf-compiler \
+    libprotobuf-dev \
     ; \
     apt-get clean && rm -rf /tmp/* /var/tmp/*
 
@@ -32,6 +34,9 @@ RUN docker-php-ext-install -j$(nproc) zip opcache pdo_mysql \
 RUN a2enmod rewrite remoteip && a2dismod deflate -f
 RUN set -x && curl -sS https://getcomposer.org/installer | php \
     && mv composer.phar /usr/local/bin/composer
+
+RUN curl -Ls https://raw.githubusercontent.com/twirphp/twirp/master/install.sh | bash \
+    && mv ./bin/protoc-gen-twirp_php /usr/local/bin/protoc-gen-twirp_php
 
 COPY ./.bashrc /root/.bashrc
 RUN usermod -u ${HOST_UID} www-data && groupmod -g ${HOST_UID} www-data
