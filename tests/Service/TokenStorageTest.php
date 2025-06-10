@@ -20,7 +20,7 @@ class TokenStorageTest extends TestCase
     {
         $repositoryMock = $this->createMock(AccessTokenRepository::class);
 
-        $storage = new TokenStorage($repositoryMock, md5(time()));
+        $storage = new TokenStorage($repositoryMock, md5((string)time()));
 
         $sourceString = 'Hello, Alice!';
         $enc = $storage->encrypt($sourceString);

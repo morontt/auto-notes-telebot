@@ -71,7 +71,7 @@ class TokenStorage
         return openssl_decrypt(base64_decode($parts[1]), self::CIPHER, $this->secret, 0, $this->getVector($salt));
     }
 
-    private function getVector($salt): string
+    private function getVector(string $salt): string
     {
         return substr(hash('sha1', $this->secret . $salt, true), 0, openssl_cipher_iv_length(self::CIPHER));
     }

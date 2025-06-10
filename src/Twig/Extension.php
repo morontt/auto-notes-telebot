@@ -16,6 +16,8 @@ class Extension extends AbstractExtension
 {
     /**
      * Source: https://www.compart.com/en/unicode/category/Sc
+     *
+     * @var array<string, int>
      */
     private static array $currencyToCodePoints = [
         'EUR' => 0x20AC,
@@ -25,6 +27,9 @@ class Extension extends AbstractExtension
         'USD' => 0x24,
     ];
 
+    /**
+     * @var array<string, string>
+     */
     private static array $currencyToString = [
         'PLN' => 'zł',
     ];

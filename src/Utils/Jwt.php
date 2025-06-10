@@ -20,6 +20,7 @@ class Jwt
             throw new LogicException('Invalid access token');
         }
 
+        /** @var string|false $str */
         $str = base64_decode($jwtParts[1]);
         if ($str === false) {
             throw new LogicException('Invalid access token');
