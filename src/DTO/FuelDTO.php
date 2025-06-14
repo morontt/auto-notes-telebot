@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use AutoNotes\Fuel;
+use AutoNotes\Server\Fuel;
 use DateInterval;
 use DateTime;
 use Google\Protobuf\Timestamp;

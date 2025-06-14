@@ -8,7 +8,7 @@
 
 namespace TeleBot\Service\RPC;
 
-use AutoNotes\UserRepositoryClient;
+use AutoNotes\Server\UserRepositoryClient;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use RuntimeException;

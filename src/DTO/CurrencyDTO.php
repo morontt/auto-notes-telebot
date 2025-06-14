@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use AutoNotes\Currency;
+use AutoNotes\Server\Currency;
 use DateTime;
 
 class CurrencyDTO

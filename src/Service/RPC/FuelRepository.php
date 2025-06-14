@@ -8,8 +8,8 @@
 
 namespace TeleBot\Service\RPC;
 
-use AutoNotes\FuelRepositoryClient;
-use AutoNotes\Limit;
+use AutoNotes\Server\FuelRepositoryClient;
+use AutoNotes\Server\Limit;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;

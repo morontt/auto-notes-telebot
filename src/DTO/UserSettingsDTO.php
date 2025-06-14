@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use AutoNotes\UserSettings;
+use AutoNotes\Server\UserSettings;
 use DateTime;
 
 class UserSettingsDTO

@@ -8,7 +8,7 @@
 
 namespace TeleBot\DTO;
 
-use AutoNotes\Car;
+use AutoNotes\Server\Car;
 use DateTime;
 
 class CarDTO
