@@ -6,7 +6,7 @@
  * Time: 10:23
  */
 
-namespace Service;
+namespace Tests\Service;
 
 use PHPUnit\Framework\Attributes\CoversClass;
 use PHPUnit\Framework\TestCase;
