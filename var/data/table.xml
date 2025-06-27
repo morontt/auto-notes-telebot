@@ -1,185 +1,1269 @@
+<?xml version="1.0" encoding='utf-8'?>
 <table>
-<tbody class="TableBlock__body-tFxf5"><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>01, 101</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Республика Адыгея</p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>02, 102, 702</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Республика Башкортостан</p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>03, 103</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Бурятия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>04</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Алтай</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>05</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Республика Дагестан</p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>06</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Ингушетия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>07</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Кабардино-Балкарская Республика</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>08</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Калмыкия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>09, 109</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Карачаево-Черкесская Республика</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>10</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Карелия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>11, 111</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Коми (Сыктывкар)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>12</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Марий Эл</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>13, 113</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Мордовия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>14</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Саха (Якутия)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>15</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Северная Осетия — Алания</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>16, 116, 716</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Татарстан</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>17</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Тыва</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>18, 118</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Удмуртская Республика</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>19</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Хакасия</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>20, 95</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Чеченская Республика</p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>21, 121</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Чувашская Республика (Чувашия)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>22, 122</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Алтайский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>23, 93, 123, 193, 323</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Краснодарский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>24, 84, 88, 124</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Красноярский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>25, 125, 725</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Приморский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>26, 126</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ставропольский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>27</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Хабаровский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>28</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Амурская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>29</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Архангельская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>30, 130</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Астраханская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>31</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Белгородская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>32</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Брянская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>33</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Владимирская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>34, 134</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Волгоградская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>35</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Вологодская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>36, 136</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Воронежская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>37</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ивановская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>38, 138</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Иркутская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>39, 91, 139</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Калининградская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>40</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Калужская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>41</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Камчатский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>42, 142</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Кемеровская область (Кузбасс)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>43</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Кировская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>44</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Костромская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>45</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Курганская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>46</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Курская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>47, 147</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ленинградская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>48</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Липецкая область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>49</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Магаданская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>50, 90, 150, 190, 250, 550, 750, 790</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Московская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>51</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Мурманская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>52, 152, 252</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Нижегородская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>53</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Новгородская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>54, 154, 754</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Новосибирская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>55, 155</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Омская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>56, 156</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Оренбургская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>57</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Орловская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>58, 158</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Пензенская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>59, 159</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Пермский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>60</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Псковская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>61, 161, 761</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ростовская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>62</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Рязанская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>63, 163, 763</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Самарская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>64, 164</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Саратовская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>65</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Сахалинская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>66, 96, 196</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Свердловская область (Екатеринбург)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>67</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Смоленская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>68</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Тамбовская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>69, 169</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Тверская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>70</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Томская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>71</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Тульская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>72, 172</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Тюменская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>73, 173</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ульяновская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>74, 174, 774</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Челябинская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>75</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Забайкальский край</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>76</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ярославская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>77, 97, 99, 177, 197, 199, 777, 797, 799, 977</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Москва</p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>78, 98, 178, 198</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Санкт-Петербург</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>79</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Еврейская автономная область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>80, 180</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Донецкая Народная Республика (<span style="text-align:right">ДНР)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>81, 181</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p>Луганская Народная Республика (<span style="text-align:right">ЛНР)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>82, 182</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Республика Крым</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>83</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ненецкий автономный округ</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>84, 184</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Херсонская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>85, 185</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Запорожская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>86, 186</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ханты-Мансийский автономный округ (Югра)</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>87</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Чукотский автономный округ</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>89</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Ямало-Ненецкий автономный округ</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>92, 192</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Севастополь</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>188</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Харьковская область</span></p>
-</div></td></tr><tr><td><div class="MarkupText TableRow__row-tDb1f"><p>94</p>
-</div></td><td><div class="MarkupText TableRow__row-tDb1f"><p><span style="text-align:right">Зарубежные территории, обслуживаемые МВД РФ, Байконур</span></p>
-</div></td></tr></tbody>
+    <tbody class="TableBlock__body-tFxf5">
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>01, 101</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Республика Адыгея</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>02, 102, 702</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Республика Башкортостан</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>03, 103</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Бурятия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>04</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Алтай</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>05</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Республика Дагестан</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>06</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Ингушетия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>07</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Кабардино-Балкарская Республика</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>08</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Калмыкия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>09, 109</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Карачаево-Черкесская Республика</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>10</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Карелия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>11, 111</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Коми (Сыктывкар)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>12</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Марий Эл</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>13, 113</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Мордовия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>14</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Саха (Якутия)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>15</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Северная Осетия — Алания</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>16, 116, 716</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Татарстан</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>17</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Тыва</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>18, 118</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Удмуртская Республика</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>19</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Хакасия</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>20, 95</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Чеченская Республика</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>21, 121</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Чувашская Республика (Чувашия)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>22, 122</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Алтайский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>23, 93, 123, 193, 323</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Краснодарский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>24, 84, 88, 124</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Красноярский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>25, 125, 725</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Приморский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>26, 126</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ставропольский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>27</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Хабаровский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>28</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Амурская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>29</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Архангельская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>30, 130</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Астраханская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>31</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Белгородская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>32</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Брянская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>33</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Владимирская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>34, 134</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Волгоградская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>35</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Вологодская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>36, 136</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Воронежская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>37</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ивановская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>38, 138</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Иркутская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>39, 91, 139</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Калининградская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>40</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Калужская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>41</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Камчатский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>42, 142</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Кемеровская область (Кузбасс)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>43</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Кировская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>44</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Костромская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>45</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Курганская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>46</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Курская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>47, 147</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ленинградская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>48</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Липецкая область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>49</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Магаданская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>50, 90, 150, 190, 250, 550, 750, 790</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Московская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>51</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Мурманская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>52, 152, 252</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Нижегородская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>53</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Новгородская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>54, 154, 754</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Новосибирская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>55, 155</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Омская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>56, 156</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Оренбургская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>57</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Орловская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>58, 158</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Пензенская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>59, 159</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Пермский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>60</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Псковская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>61, 161, 761</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ростовская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>62</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Рязанская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>63, 163, 763</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Самарская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>64, 164</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Саратовская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>65</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Сахалинская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>66, 96, 196</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Свердловская область (Екатеринбург)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>67</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Смоленская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>68</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Тамбовская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>69, 169</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Тверская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>70</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Томская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>71</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Тульская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>72, 172</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Тюменская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>73, 173</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ульяновская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>74, 174, 774</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Челябинская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>75</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Забайкальский край</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>76</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ярославская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>77, 97, 99, 177, 197, 199, 777, 797, 799, 977</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Москва</p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>78, 98, 178, 198</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Санкт-Петербург</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>79</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Еврейская автономная область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>80, 180</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Донецкая Народная Республика (
+                        <span style="text-align:right">ДНР)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>81, 181</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>Луганская Народная Республика (
+                        <span style="text-align:right">ЛНР)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>82, 182</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Республика Крым</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>83</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ненецкий автономный округ</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>84, 184</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Херсонская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>85, 185</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Запорожская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>86, 186</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ханты-Мансийский автономный округ (Югра)</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>87</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Чукотский автономный округ</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>89</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Ямало-Ненецкий автономный округ</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>92, 192</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Севастополь</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>188</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Харьковская область</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>94</p>
+                </div>
+            </td>
+            <td>
+                <div class="MarkupText TableRow__row-tDb1f">
+                    <p>
+                        <span style="text-align:right">Зарубежные территории, обслуживаемые МВД РФ, Байконур</span>
+                    </p>
+                </div>
+            </td>
+        </tr>
+    </tbody>
 </table>
