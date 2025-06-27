@@ -15,6 +15,9 @@ use Doctrine\ORM\QueryBuilder;
 use Doctrine\Persistence\ManagerRegistry;
 use TeleBot\Entity\Code;
 
+/**
+ * @extends ServiceEntityRepository<Code>
+ */
 class CodeRepository extends ServiceEntityRepository
 {
     public const LIFETIME = 'P2D';
