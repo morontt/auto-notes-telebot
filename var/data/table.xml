@@ -1105,9 +1105,7 @@
             </td>
             <td>
                 <div class="MarkupText TableRow__row-tDb1f">
-                    <p>Донецкая Народная Республика (
-                        <span style="text-align:right">ДНР)</span>
-                    </p>
+                    <p>ДНР</p>
                 </div>
             </td>
         </tr>
@@ -1119,9 +1117,7 @@
             </td>
             <td>
                 <div class="MarkupText TableRow__row-tDb1f">
-                    <p>Луганская Народная Республика (
-                        <span style="text-align:right">ЛНР)</span>
-                    </p>
+                    <p>ЛНР</p>
                 </div>
             </td>
         </tr>
