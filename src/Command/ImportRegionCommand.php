@@ -17,7 +17,7 @@ use TeleBot\Entity\RegionCode;
 
 class ImportRegionCommand extends Command
 {
-    public function __construct(private EntityManagerInterface $em)
+    public function __construct(private readonly EntityManagerInterface $em)
     {
         parent::__construct();
     }
