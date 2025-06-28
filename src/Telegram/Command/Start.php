@@ -18,11 +18,8 @@ class Start implements TelegramCommandInterface
 {
     use TelegramCommandTrait;
 
-    private CodeGenerator $codeGenerator;
-
-    public function __construct(CodeGenerator $codeGenerator)
+    public function __construct(private readonly CodeGenerator $codeGenerator)
     {
-        $this->codeGenerator = $codeGenerator;
     }
 
     public function execute(Message $message): void
