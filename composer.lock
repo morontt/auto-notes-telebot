@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "eb9016d31627c00c1f5717b43a1ba9e7",
+    "content-hash": "fe6350ecfd3d1503db8e1aac19fe4aba",
     "packages": [
         {
             "name": "doctrine/cache",
@@ -6594,16 +6594,16 @@
         },
         {
             "name": "xelbot/lib-telegram",
-            "version": "1.1",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/xelbot/lib-telegram.git",
-                "reference": "3b392a2eb37d31cabe421f0a297eded873a6c665"
+                "reference": "eaa38b00a671314cbd8da2256b4786aac313153d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xelbot/lib-telegram/zipball/3b392a2eb37d31cabe421f0a297eded873a6c665",
-                "reference": "3b392a2eb37d31cabe421f0a297eded873a6c665",
+                "url": "https://api.github.com/repos/xelbot/lib-telegram/zipball/eaa38b00a671314cbd8da2256b4786aac313153d",
+                "reference": "eaa38b00a671314cbd8da2256b4786aac313153d",
                 "shasum": ""
             },
             "require": {
@@ -6617,6 +6617,7 @@
             "require-dev": {
                 "friendsofphp/php-cs-fixer": "^3.39"
             },
+            "default-branch": true,
             "type": "library",
             "autoload": {
                 "psr-4": {
@@ -6643,9 +6644,9 @@
             ],
             "support": {
                 "issues": "https://github.com/xelbot/lib-telegram/issues",
-                "source": "https://github.com/xelbot/lib-telegram/tree/1.1"
+                "source": "https://github.com/xelbot/lib-telegram/tree/master"
             },
-            "time": "2025-02-21T07:51:19+00:00"
+            "time": "2025-06-28T08:55:22+00:00"
         }
     ],
     "packages-dev": [
@@ -10630,7 +10631,8 @@
     "aliases": [],
     "minimum-stability": "dev",
     "stability-flags": {
-        "roave/security-advisories": 20
+        "roave/security-advisories": 20,
+        "xelbot/lib-telegram": 20
     },
     "prefer-stable": true,
     "prefer-lowest": false,
