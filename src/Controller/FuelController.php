@@ -9,6 +9,7 @@
 namespace TeleBot\Controller;
 
 use DateTime;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Form\FuelForm;
+use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
@@ -31,10 +33,13 @@ class FuelController extends AbstractController
     #[Route('/add', name: 'fuel_add')]
     public function createAction(Request $request): Response
     {
-        /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
         if (!$user) {
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$user instanceof AccessTokenAwareInterface) {
+            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
         }
 
         $fuelDto = new FuelDTO();

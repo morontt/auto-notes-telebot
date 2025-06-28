@@ -14,7 +14,7 @@ use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
-use TeleBot\Security\User;
+use TeleBot\Security\AccessTokenAwareInterface;
 use Twirp\Error;
 
 class FuelRepository extends AbstractRepository
@@ -29,7 +29,7 @@ class FuelRepository extends AbstractRepository
     /**
      * @return FuelDTO[]
      */
-    public function getFuels(User $user, int $limit = 7): array
+    public function getFuels(AccessTokenAwareInterface $user, int $limit = 7): array
     {
         $limitObj = new Limit();
         $limitObj->setLimit($limit);
@@ -52,7 +52,7 @@ class FuelRepository extends AbstractRepository
         return $result;
     }
 
-    public function saveFuel(User $user, FuelDTO $fuel): ?FuelDTO
+    public function saveFuel(AccessTokenAwareInterface $user, FuelDTO $fuel): ?FuelDTO
     {
         $result = null;
         try {
@@ -72,7 +72,7 @@ class FuelRepository extends AbstractRepository
     /**
      * @return FillingStationDTO[]
      */
-    public function getFillingStations(User $user): array
+    public function getFillingStations(AccessTokenAwareInterface $user): array
     {
         $result = [];
         try {

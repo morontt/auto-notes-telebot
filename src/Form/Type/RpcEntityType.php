@@ -17,6 +17,7 @@ use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\OptionsResolver\Options;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\Form\ChoiceList\RpcRepositoryChoiceLoader;
+use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\FuelRepository;
 use TeleBot\Service\RPC\UserRepository;
 
@@ -35,6 +36,9 @@ class RpcEntityType extends AbstractType
             $userRepo = $this->rpcUserRepository;
             $fuelRepo = $this->rpcFuelRepository;
             $user = $this->security->getUser();
+            if (!$user instanceof AccessTokenAwareInterface) {
+                throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
+            }
 
             if (is_callable($options['query_callback'])) {
                 $loader = ChoiceList::loader(

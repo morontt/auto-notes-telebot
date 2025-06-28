@@ -8,6 +8,7 @@
 
 namespace TeleBot\Form\Type;
 
+use LogicException;
 use Symfony\Bundle\SecurityBundle\Security;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -15,6 +16,7 @@ use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\DTO\CostDTO;
+use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\UserRepository;
 
 class CostType extends AbstractType
@@ -27,8 +29,10 @@ class CostType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
-        /* @var \TeleBot\Security\User $user */
         $user = $this->security->getUser();
+        if (!$user instanceof AccessTokenAwareInterface) {
+            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
+        }
 
         $choices = [];
         foreach ($this->rpcUserRepository->getCurrencies($user) as $currency) {

@@ -21,6 +21,8 @@ class WebHookController extends AbstractController
      */
     private Robot $telegramBot;
 
+    private string $secretToken;
+
     /**
      * @param Robot $telegramBot
      * @param string $secretToken

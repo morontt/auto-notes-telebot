@@ -14,10 +14,10 @@ use Doctrine\ORM\Mapping as ORM;
 trait TimeTrait
 {
     #[ORM\Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private $createdAt;
+    private DateTime $createdAt;
 
     #[ORM\Column(type: 'datetime', nullable: true)]
-    private $updatedAt;
+    private ?DateTime $updatedAt = null;
 
     public function getCreatedAt(): DateTime
     {

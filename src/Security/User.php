@@ -12,12 +12,12 @@ use LogicException;
 use Symfony\Component\Security\Core\User\UserInterface;
 use TeleBot\Utils\Jwt;
 
-class User implements UserInterface
+class User implements UserInterface, AccessTokenAwareInterface
 {
     private string $username;
-    private ?string $accessToken;
+    private ?string $accessToken = null;
 
-    public function __construct($username)
+    public function __construct(string $username)
     {
         $this->username = $username;
     }

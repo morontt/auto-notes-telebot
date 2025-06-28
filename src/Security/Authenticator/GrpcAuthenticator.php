@@ -64,7 +64,7 @@ class GrpcAuthenticator extends AbstractLoginFormAuthenticator
         return $this->httpUtils->createRedirectResponse($request, $this->determineTargetUrl($request));
     }
 
-    public function checkPassword($credentials, UserInterface $user): bool
+    public function checkPassword(mixed $credentials, UserInterface $user): bool
     {
         if (!$user instanceof User) {
             throw new LogicException(sprintf('Class "%s" not supported', get_debug_type($user)));

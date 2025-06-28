@@ -16,6 +16,7 @@ class ClacksResponseListener implements EventSubscriberInterface
 {
     private const HEADER_NAME = 'X-Clacks-Overhead';
 
+    /** @var string[] */
     private array $clacksSet = [
         'Terry Pratchett',
         'Clive Sinclair',
@@ -39,7 +40,7 @@ class ClacksResponseListener implements EventSubscriberInterface
 
         $idx = mt_rand(0, count($this->clacksSet) - 1);
 
-        $event->getResponse()->headers->set(static::HEADER_NAME, 'GNU ' . $this->clacksSet[$idx]);
+        $event->getResponse()->headers->set(self::HEADER_NAME, 'GNU ' . $this->clacksSet[$idx]);
     }
 
     public static function getSubscribedEvents(): array

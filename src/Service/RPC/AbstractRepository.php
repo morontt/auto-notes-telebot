@@ -8,12 +8,15 @@
 
 namespace TeleBot\Service\RPC;
 
-use TeleBot\Security\User;
+use TeleBot\Security\AccessTokenAwareInterface;
 use Twirp\Context;
 
 abstract class AbstractRepository
 {
-    protected function context(User $user): array
+    /**
+     * @return array<string, string>
+     */
+    protected function context(AccessTokenAwareInterface $user): array
     {
         return Context::withHttpRequestHeaders([], [
             'Authorization' => 'Bearer ' . $user->getAccessToken(),

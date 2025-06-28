@@ -10,7 +10,7 @@ namespace TeleBot\EventListener;
 
 use JsonException;
 use Psr\Log\LoggerInterface;
-use Symfony\Component\HttpFoundation\ParameterBag;
+use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
 
@@ -54,7 +54,7 @@ class JsonBodyListener
                         );
 
                         if (is_array($data)) {
-                            $request->request = new ParameterBag($data);
+                            $request->request = new InputBag($data);
 
                             return;
                         }

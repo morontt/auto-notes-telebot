@@ -15,7 +15,7 @@ use RuntimeException;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\UserSettingsDTO;
-use TeleBot\Security\User;
+use TeleBot\Security\AccessTokenAwareInterface;
 use Twirp\Error;
 
 class UserRepository extends AbstractRepository
@@ -28,11 +28,9 @@ class UserRepository extends AbstractRepository
     }
 
     /**
-     * @param User $user
-     *
      * @return CarDTO[]
      */
-    public function getCars(User $user): array
+    public function getCars(AccessTokenAwareInterface $user): array
     {
         $result = [];
         try {
@@ -52,7 +50,7 @@ class UserRepository extends AbstractRepository
         return $result;
     }
 
-    public function getDefaultCurrency(User $user): ?CurrencyDTO
+    public function getDefaultCurrency(AccessTokenAwareInterface $user): ?CurrencyDTO
     {
         $result = null;
         try {
@@ -79,7 +77,7 @@ class UserRepository extends AbstractRepository
     /**
      * @return CurrencyDTO[]
      */
-    public function getCurrencies(User $user): array
+    public function getCurrencies(AccessTokenAwareInterface $user): array
     {
         $result = [];
         try {
@@ -99,7 +97,7 @@ class UserRepository extends AbstractRepository
         return $result;
     }
 
-    public function getUserSettings(User $user): ?UserSettingsDTO
+    public function getUserSettings(AccessTokenAwareInterface $user): ?UserSettingsDTO
     {
         $result = null;
         try {
@@ -115,7 +113,7 @@ class UserRepository extends AbstractRepository
         return $result;
     }
 
-    public function saveUserSettings(User $user, UserSettingsDTO $userSettings): UserSettingsDTO
+    public function saveUserSettings(AccessTokenAwareInterface $user, UserSettingsDTO $userSettings): UserSettingsDTO
     {
         try {
             $response = $this->client->SaveUserSettings($this->context($user), $userSettings->reverse());

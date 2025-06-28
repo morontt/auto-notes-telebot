@@ -9,6 +9,7 @@
 namespace TeleBot\Controller;
 
 use DateTime;
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,6 +17,7 @@ use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\Form\Settings\CodeForm;
 use TeleBot\Form\Settings\UserSettingsForm;
 use TeleBot\Repository\CodeRepository;
+use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/settings')]
@@ -24,10 +26,13 @@ class SettingsController extends AbstractController
     #[Route('/', name: 'settings')]
     public function settingsAction(CodeRepository $repository, RpcUserRepository $rpcUserRepository): Response
     {
-        /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
         if (!$user) {
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$user instanceof AccessTokenAwareInterface) {
+            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
         }
 
         $code = $repository->getLastByUser($user->getUserId());
@@ -42,10 +47,13 @@ class SettingsController extends AbstractController
     #[Route('/connect', name: 'tg_connect')]
     public function connectAction(Request $request, CodeRepository $repository): Response
     {
-        /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
         if (!$user) {
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$user instanceof AccessTokenAwareInterface) {
+            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
         }
 
         $form = $this->createForm(CodeForm::class);
@@ -79,10 +87,13 @@ class SettingsController extends AbstractController
     #[Route('/edit', name: 'settings_edit')]
     public function settingsEditAction(Request $request, RpcUserRepository $rpcUserRepository): Response
     {
-        /* @var \TeleBot\Security\User $user */
         $user = $this->getUser();
         if (!$user) {
             return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
+        }
+
+        if (!$user instanceof AccessTokenAwareInterface) {
+            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
         }
 
         $userSettings = $rpcUserRepository->getUserSettings($user);

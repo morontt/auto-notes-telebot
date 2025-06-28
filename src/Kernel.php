@@ -22,6 +22,9 @@ class Kernel extends BaseKernel
 {
     use MicroKernelTrait;
 
+    /**
+     * @return \Symfony\Component\HttpKernel\Bundle\BundleInterface[]
+     */
     public function registerBundles(): array
     {
         $bundles = [
