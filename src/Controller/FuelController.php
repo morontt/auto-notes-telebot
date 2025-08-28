@@ -52,7 +52,10 @@ class FuelController extends AbstractController
             }
             if ($userSettings->hasDefaultCurrency()) {
                 $costDto = new CostDTO();
-                $costDto->setCurrencyCode($userSettings->getDefaultCurrency()->getCode());
+                $currency = $userSettings->getDefaultCurrency();
+                if ($currency) {
+                    $costDto->setCurrencyCode($currency->getCode());
+                }
 
                 $fuelDto->setCost($costDto);
             }

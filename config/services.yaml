@@ -28,6 +28,9 @@ services:
     TeleBot\EventListener\JsonBodyListener:
         tags:
             - { name: kernel.event_listener, event: kernel.request, priority: 10 }
+    TeleBot\EventListener\TwirpErrorListener:
+        tags:
+            - { name: kernel.event_listener, method: 'onKernelException' }
 
     TeleBot\Form\Type\CostType: ~
     TeleBot\Form\Type\RpcEntityType: ~

@@ -1,0 +1,70 @@
+* {
+  -webkit-box-sizing: content-box;
+  box-sizing: content-box; }
+
+body {
+  padding: 0;
+  margin: 0;
+  background-image: url("/assets/errors/FVS.jpg");
+  font-family: "DejaVu Sans Mono", monospace; }
+
+.error-div {
+  position: relative;
+  height: 100vh;
+  background-color: rgba(34, 34, 34, 0.85); }
+  .error-div .error {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    -webkit-transform: translate(-50%, -50%);
+    -ms-transform: translate(-50%, -50%);
+    transform: translate(-50%, -50%);
+    background-color: #222;
+    padding: 68px 92px;
+    border-radius: 32px; }
+
+.error {
+  max-width: 460px;
+  width: 100%;
+  text-align: center;
+  line-height: 1.4; }
+  .error .error-header {
+    height: 158px;
+    line-height: 153px; }
+    .error .error-header h1 {
+      color: #222;
+      font-size: 130px;
+      letter-spacing: 10px;
+      margin: 0;
+      font-weight: 700;
+      text-shadow: 0 0 4px #AAA; }
+      .error .error-header h1 span {
+        text-shadow: 2px 2px 0 #FFAB00, -2px -2px 0 #FFAB00, 0 0 32px #FFAB00; }
+  .error p {
+    color: #c9c9c9;
+    font-size: 16px;
+    font-weight: 400;
+    margin-top: 0;
+    margin-bottom: 15px; }
+  .error a {
+    font-size: 14px;
+    text-decoration: none;
+    text-transform: uppercase;
+    background: 0 0;
+    color: #c9c9c9;
+    border: 2px solid #c9c9c9;
+    display: inline-block;
+    padding: 10px 25px;
+    font-weight: 700;
+    -webkit-transition: .3s all;
+    transition: .3s all; }
+    .error a:hover {
+      color: #FFAB00;
+      border-color: #FFAB00; }
+
+@media only screen and (max-width: 480px) {
+  .error .error-header {
+    height: 122px;
+    line-height: 122px; }
+    .error .error-header h1 {
+      font-size: 100px; } }

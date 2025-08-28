@@ -1,0 +1,11 @@
+{% extends '@Twig/Exception/base_error.html.twig' %}
+
+{% block title %}403 Доступ запрещён{% endblock %}
+
+{% block error_body %}
+    <div class="error-header">
+        <h1>4<span>&#x1F928;</span>3</h1>
+    </div>
+    <p>Доступ запрещён. Кстати, что ты тут забыл?</p>
+    <a href="/">На главную</a>
+{% endblock %}

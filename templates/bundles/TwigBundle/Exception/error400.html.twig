@@ -1,0 +1,11 @@
+{% extends '@Twig/Exception/base_error.html.twig' %}
+
+{% block title %}400 Bad Request{% endblock %}
+
+{% block error_body %}
+    <div class="error-header">
+        <h1>4<span>&#x1F635;</span>0</h1>
+    </div>
+    <p>"Плохой запрос", сервер не понимает запрос из-за неверных или неожиданных данных...</p>
+    <a href="/">На главную</a>
+{% endblock %}

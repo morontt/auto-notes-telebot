@@ -15,7 +15,6 @@ use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Security\AccessTokenAwareInterface;
-use Twirp\Error;
 
 class FuelRepository extends AbstractRepository
 {
@@ -28,65 +27,51 @@ class FuelRepository extends AbstractRepository
 
     /**
      * @return FuelDTO[]
+     *
+     * @throws \Twirp\Error
      */
     public function getFuels(AccessTokenAwareInterface $user, int $limit = 7): array
     {
         $limitObj = new Limit();
         $limitObj->setLimit($limit);
 
+        $response = $this->client->GetFuels($this->context($user), $limitObj);
+        $fuels = $response->getFuels();
+        $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
+
         $result = [];
-        try {
-            $response = $this->client->GetFuels($this->context($user), $limitObj);
-            $fuels = $response->getFuels();
-            $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
-
-            foreach ($fuels as $item) {
-                $result[] = FuelDTO::fromData($item);
-            }
-        } catch (Error $e) {
-            $this->logger->error('gRPC error', [
-                'error' => $e,
-            ]);
-        }
-
-        return $result;
-    }
-
-    public function saveFuel(AccessTokenAwareInterface $user, FuelDTO $fuel): ?FuelDTO
-    {
-        $result = null;
-        try {
-            $response = $this->client->SaveFuel($this->context($user), $fuel->reverse());
-            $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
-
-            $result = FuelDTO::fromData($response);
-        } catch (Error $e) {
-            $this->logger->error('gRPC error', [
-                'error' => $e,
-            ]);
+        foreach ($fuels as $item) {
+            $result[] = FuelDTO::fromData($item);
         }
 
         return $result;
     }
 
     /**
+     * @throws \Twirp\Error
+     */
+    public function saveFuel(AccessTokenAwareInterface $user, FuelDTO $fuel): FuelDTO
+    {
+        $response = $this->client->SaveFuel($this->context($user), $fuel->reverse());
+        $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
+
+        return FuelDTO::fromData($response);
+    }
+
+    /**
      * @return FillingStationDTO[]
+     *
+     * @throws \Twirp\Error
      */
     public function getFillingStations(AccessTokenAwareInterface $user): array
     {
-        $result = [];
-        try {
-            $response = $this->client->GetFillingStations($this->context($user), new GPBEmpty());
-            $stations = $response->getStations();
-            $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
+        $response = $this->client->GetFillingStations($this->context($user), new GPBEmpty());
+        $stations = $response->getStations();
+        $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
 
-            foreach ($stations as $item) {
-                $result[] = FillingStationDTO::fromData($item);
-            }
-        } catch (Error $e) {
-            $this->logger->error('gRPC error', [
-                'error' => $e,
-            ]);
+        $result = [];
+        foreach ($stations as $item) {
+            $result[] = FillingStationDTO::fromData($item);
         }
 
         return $result;
