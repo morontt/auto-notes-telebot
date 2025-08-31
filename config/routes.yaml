@@ -2,10 +2,6 @@ logout:
     path: /logout
 
 when@dev:
-    _errors:
-        resource: '@FrameworkBundle/Resources/config/routing/errors.xml'
-        prefix: /_error
-
     updates_form:
         path: /debug/updates
         controller: TeleBot\Controller\DebugController::updatesFormAction
