@@ -1,4 +1,5 @@
 <?php
+
 /**
  * User: morontt
  * Date: 31.08.2025
@@ -7,6 +8,7 @@
 
 namespace TeleBot\Controller;
 
+use LogicException;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
@@ -17,7 +19,7 @@ class ErrorController extends AbstractController
     public function renderAction(string $code): Response
     {
         if (!$this->container->has('twig')) {
-            throw new \LogicException('Twig is not available');
+            throw new LogicException('Twig is not available');
         }
 
         /** @var \Twig\Environment $twig */

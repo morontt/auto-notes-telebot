@@ -47,6 +47,10 @@ class Fuel extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 8;</code>
      */
     protected $created_at = null;
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType type = 9;</code>
+     */
+    protected $type = null;
 
     /**
      * Constructor.
@@ -63,6 +67,7 @@ class Fuel extends \Google\Protobuf\Internal\Message
      *     @type int $distance
      *     @type \AutoNotes\Server\Car $car
      *     @type \Google\Protobuf\Timestamp $created_at
+     *     @type \AutoNotes\Server\FuelType $type
      * }
      */
     public function __construct($data = NULL) {
@@ -296,6 +301,38 @@ class Fuel extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType type = 9;</code>
+     * @return \AutoNotes\Server\FuelType|null
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    public function hasType()
+    {
+        return isset($this->type);
+    }
+
+    public function clearType()
+    {
+        unset($this->type);
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType type = 9;</code>
+     * @param \AutoNotes\Server\FuelType $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkMessage($var, \AutoNotes\Server\FuelType::class);
+        $this->type = $var;
 
         return $this;
     }

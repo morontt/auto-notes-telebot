@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-í
+”
 proto/server.protoxelbot.com.autonotes.servergoogle/protobuf/timestamp.proto"
 Limit
 limit ("\'
@@ -33,9 +33,10 @@ class Server
 year (
 default (.
 
-created_at (2.google.protobuf.Timestamp"?
+created_at (2.google.protobuf.Timestamp"z
 CarCollection.
-cars (2 .xelbot.com.autonotes.server.Car"Z
+cars (2 .xelbot.com.autonotes.server.Car9
+meta (2+.xelbot.com.autonotes.server.PaginationMeta"Z
 FillingStation
 
 id (
@@ -43,7 +44,13 @@ created_at (2.google.protobuf.Timestamp"?
 
 created_at (2.google.protobuf.Timestamp"Y
 FillingStationCollection=
-stations (2+.xelbot.com.autonotes.server.FillingStation"«
+stations (2+.xelbot.com.autonotes.server.FillingStation"$
+FuelType
+
+id (
+name (	"J
+FuelTypeCollection4
+types (2%.xelbot.com.autonotes.server.FuelType"à
 Fuel
 
 id (/
@@ -54,9 +61,11 @@ created_at (2.google.protobuf.Timestamp"Y
 distance (-
 car (2 .xelbot.com.autonotes.server.Car.
 
-created_at (2.google.protobuf.Timestamp"B
+created_at (2.google.protobuf.Timestamp3
+type	 (2%.xelbot.com.autonotes.server.FuelType"}
 FuelCollection0
-fuels (2!.xelbot.com.autonotes.server.Fuel"s
+fuels (2!.xelbot.com.autonotes.server.Fuel9
+meta (2+.xelbot.com.autonotes.server.PaginationMeta"s
 Currency
 
 id (
@@ -70,7 +79,10 @@ created_at (2.google.protobuf.Timestamp"Y
 found ("O
 CurrencyCollection9
 
-currencies (2%.xelbot.com.autonotes.server.Currency"ò
+currencies (2%.xelbot.com.autonotes.server.Currency"/
+PaginationMeta
+current (
+last ("ò
 UserSettings
 
 id (5
@@ -85,10 +97,11 @@ updated_at (2.google.protobuf.Timestamp2Õ
 GetCurrencies.google.protobuf.Empty/.xelbot.com.autonotes.server.CurrencyCollectionZ
 GetDefaultCurrency.google.protobuf.Empty,.xelbot.com.autonotes.server.DefaultCurrencyT
 GetUserSettings.google.protobuf.Empty).xelbot.com.autonotes.server.UserSettingsh
-SaveUserSettings).xelbot.com.autonotes.server.UserSettings).xelbot.com.autonotes.server.UserSettings2¤
+SaveUserSettings).xelbot.com.autonotes.server.UserSettings).xelbot.com.autonotes.server.UserSettings2ý
 FuelRepository[
 GetFuels".xelbot.com.autonotes.server.Limit+.xelbot.com.autonotes.server.FuelCollectionc
-GetFillingStations.google.protobuf.Empty5.xelbot.com.autonotes.server.FillingStationCollectionP
+GetFillingStations.google.protobuf.Empty5.xelbot.com.autonotes.server.FillingStationCollectionW
+GetFuelTypes.google.protobuf.Empty/.xelbot.com.autonotes.server.FuelTypeCollectionP
 SaveFuel!.xelbot.com.autonotes.server.Fuel!.xelbot.com.autonotes.server.FuelBTZ\'xelbot.com/auto-notes/server/rpc/serverÊAutoNotes\\ServerâAutoNotes\\Server\\Metabproto3'
         , true);
 

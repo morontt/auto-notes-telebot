@@ -126,6 +126,29 @@ abstract class FuelRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function GetFuelTypes(array $ctx, \Google\Protobuf\GPBEmpty $in): \AutoNotes\Server\FuelTypeCollection
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
+        $ctx = Context::withServiceName($ctx, 'FuelRepository');
+        $ctx = Context::withMethodName($ctx, 'GetFuelTypes');
+
+        $out = new \AutoNotes\Server\FuelTypeCollection();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.server.FuelRepository/GetFuelTypes';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.server.FuelRepository/GetFuelTypes';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function SaveFuel(array $ctx, \AutoNotes\Server\Fuel $in): \AutoNotes\Server\Fuel
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');

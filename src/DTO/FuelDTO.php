@@ -21,6 +21,7 @@ class FuelDTO
     private ?CarDTO $car = null;
     private ?CostDTO $cost = null;
     private ?FillingStationDTO $station = null;
+    private ?FuelTypeDTO $type = null;
     private ?DateTime $date = null;
     private ?DateTime $createdAt = null;
 
@@ -40,6 +41,9 @@ class FuelDTO
         }
         if ($data->hasStation()) {
             $obj->station = FillingStationDTO::fromData($data->getStation());
+        }
+        if ($data->hasType()) {
+            $obj->type = FuelTypeDTO::fromData($data->getType());
         }
 
         if ($dt = $data->getDate()) {
@@ -68,6 +72,9 @@ class FuelDTO
         }
         if ($this->cost) {
             $obj->setCost($this->cost->reverse());
+        }
+        if ($this->type) {
+            $obj->setType($this->type->reverse());
         }
         if ($this->date) {
             $ts = new Timestamp();
@@ -141,6 +148,18 @@ class FuelDTO
     public function setStation(?FillingStationDTO $station): self
     {
         $this->station = $station;
+
+        return $this;
+    }
+
+    public function getType(): ?FuelTypeDTO
+    {
+        return $this->type;
+    }
+
+    public function setType(?FuelTypeDTO $type): self
+    {
+        $this->type = $type;
 
         return $this;
     }

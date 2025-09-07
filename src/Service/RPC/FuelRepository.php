@@ -14,6 +14,7 @@ use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
+use TeleBot\DTO\FuelTypeDTO;
 use TeleBot\Security\AccessTokenAwareInterface;
 
 class FuelRepository extends AbstractRepository
@@ -72,6 +73,25 @@ class FuelRepository extends AbstractRepository
         $result = [];
         foreach ($stations as $item) {
             $result[] = FillingStationDTO::fromData($item);
+        }
+
+        return $result;
+    }
+
+    /**
+     * @return FuelTypeDTO[]
+     *
+     * @throws \Twirp\Error
+     */
+    public function getFuelTypes(AccessTokenAwareInterface $user): array
+    {
+        $response = $this->client->GetFuelTypes($this->context($user), new GPBEmpty());
+        $types = $response->getTypes();
+        $this->logger->debug('gRPC response', ['types_cnt' => count($types)]);
+
+        $result = [];
+        foreach ($types as $item) {
+            $result[] = FuelTypeDTO::fromData($item);
         }
 
         return $result;

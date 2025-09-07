@@ -11,6 +11,7 @@
             <tr>
                 <th>Дата</th>
                 <th>Объём</th>
+                <th></th>
                 <th>АЗС</th>
                 <th></th>
                 <th>Авто</th>
@@ -23,9 +24,10 @@
             <tr>
                 <td>{{ fuel.date|date('Y-m-d') }}</td>
                 <td>{{ fuel.value|number_format(2, '.', '') }}</td>
+                <td>{{ fuel.type.name }}</td>
                 <td>{{ fuel.station.name }}</td>
                 <td>{{ fuel.cost.value|number_format(2, '.', '') }} {{ fuel.cost.currencyCode|currency_symbol }}</td>
-                <td>{{ fuel.car.name }}</td>
+                <td>{% if fuel.car %}{{ fuel.car.name }}{% else %}-{% endif %}</td>
                 <td>{% if fuel.distance > 0 %}{{ fuel.distance }}{% else %}-{% endif %}</td>
             </tr>
             {% endfor %}

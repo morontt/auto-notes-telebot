@@ -34,6 +34,15 @@ interface FuelRepository
     /**
      *
      *
+     * Generated from protobuf method <code>xelbot.com.autonotes.server.FuelRepository/GetFuelTypes</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function GetFuelTypes(array $ctx, \Google\Protobuf\GPBEmpty $req): \AutoNotes\Server\FuelTypeCollection;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>xelbot.com.autonotes.server.FuelRepository/SaveFuel</code>
      *
      * @throws \Twirp\Error
