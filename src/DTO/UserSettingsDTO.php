@@ -18,6 +18,7 @@ class UserSettingsDTO
     private ?CurrencyDTO $defaultCurrency = null;
     private ?DateTime $createdAt = null;
     private ?DateTime $updatedAt = null;
+    private ?FuelTypeDTO $defaultFuelType = null;
 
     public static function fromData(UserSettings $data): self
     {
@@ -30,6 +31,12 @@ class UserSettingsDTO
         }
         if ($data->hasDefaultCurrency()) {
             $obj->defaultCurrency = CurrencyDTO::fromData($data->getDefaultCurrency());
+        }
+        if ($data->hasDefaultCurrency()) {
+            $obj->defaultCurrency = CurrencyDTO::fromData($data->getDefaultCurrency());
+        }
+        if ($data->hasDefaultFuelType()) {
+            $obj->defaultFuelType = FuelTypeDTO::fromData($data->getDefaultFuelType());
         }
 
         if ($dt = $data->getCreatedAt()) {
@@ -52,6 +59,9 @@ class UserSettingsDTO
         }
         if ($this->defaultCurrency) {
             $obj->setDefaultCurrency($this->defaultCurrency->reverse());
+        }
+        if ($this->defaultFuelType) {
+            $obj->setDefaultFuelType($this->defaultFuelType->reverse());
         }
 
         return $obj;
@@ -94,6 +104,23 @@ class UserSettingsDTO
     public function hasDefaultCurrency(): bool
     {
         return isset($this->defaultCurrency);
+    }
+
+    public function hasDefaultFuelType(): bool
+    {
+        return isset($this->defaultFuelType);
+    }
+
+    public function getDefaultFuelType(): ?FuelTypeDTO
+    {
+        return $this->defaultFuelType;
+    }
+
+    public function setDefaultFuelType(?FuelTypeDTO $defaultFuelType): self
+    {
+        $this->defaultFuelType = $defaultFuelType;
+
+        return $this;
     }
 
     public function getCreatedAt(): ?DateTime

@@ -31,10 +31,10 @@ class FuelForm extends AbstractType
             ->add('cost', CostType::class)
             ->add('date', DateType::class)
             ->add('car', RpcEntityType::class, [
-                'required' => false,
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);
                 },
+                'required' => false,
             ])
             ->add('station', RpcEntityType::class, [
                 'query_fuel_callback' => function (RpcFuelRepository $rpcUserRepository, User $user) {

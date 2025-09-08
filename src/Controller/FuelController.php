@@ -59,6 +59,9 @@ class FuelController extends AbstractController
 
                 $fuelDto->setCost($costDto);
             }
+            if ($userSettings->hasDefaultFuelType()) {
+                $fuelDto->setType($userSettings->getDefaultFuelType());
+            }
         }
 
         $form = $this->createForm(FuelForm::class, $fuelDto);

@@ -40,8 +40,14 @@
         </tbody>
     </table>
     <p>Валюта по умолчанию:
-        {% if currency %}
-            {{ currency.name }} ({{ currency.code|currency_symbol }})
+        {% if userSettings.hasDefaultCurrency() %}
+            {{ userSettings.defaultCurrency.name }} ({{ userSettings.defaultCurrency.code|currency_symbol }})
+        {% else %}
+            ?
+        {% endif %}
+        <br>Топливо по умолчанию:
+        {% if userSettings.hasDefaultFuelType() %}
+            {{ userSettings.defaultFuelType.name }}
         {% else %}
             ?
         {% endif %}

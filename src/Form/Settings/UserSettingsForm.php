@@ -15,6 +15,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\DTO\UserSettingsDTO;
 use TeleBot\Form\Type\RpcEntityType;
 use TeleBot\Security\User;
+use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 class UserSettingsForm extends AbstractType
@@ -32,6 +33,13 @@ class UserSettingsForm extends AbstractType
             ->add('defaultCurrency', RpcEntityType::class, [
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCurrencies($user);
+                },
+                'required' => false,
+                'empty_data' => null,
+            ])
+            ->add('defaultFuelType', RpcEntityType::class, [
+                'query_fuel_callback' => function (RpcFuelRepository $rpcUserRepository, User $user) {
+                    return $rpcUserRepository->getFuelTypes($user);
                 },
                 'required' => false,
                 'empty_data' => null,

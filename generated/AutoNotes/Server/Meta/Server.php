@@ -18,7 +18,7 @@ class Server
         \GPBMetadata\Google\Protobuf\Timestamp::initOnce();
         $pool->internalAddGeneratedFile(
             '
-”
+Ö
 proto/server.protoxelbot.com.autonotes.servergoogle/protobuf/timestamp.proto"
 Limit
 limit ("\'
@@ -82,7 +82,7 @@ created_at (2.google.protobuf.Timestamp"Y
 currencies (2%.xelbot.com.autonotes.server.Currency"/
 PaginationMeta
 current (
-last ("ò
+last ("´
 UserSettings
 
 id (5
@@ -91,7 +91,8 @@ currencies (2%.xelbot.com.autonotes.server.Currency"/
 
 created_at (2.google.protobuf.Timestamp.
 
-updated_at (2.google.protobuf.Timestamp2Õ
+updated_at (2.google.protobuf.Timestamp@
+default_fuel_type (2%.xelbot.com.autonotes.server.FuelType2Õ
 UserRepositoryM
 GetCars.google.protobuf.Empty*.xelbot.com.autonotes.server.CarCollectionX
 GetCurrencies.google.protobuf.Empty/.xelbot.com.autonotes.server.CurrencyCollectionZ

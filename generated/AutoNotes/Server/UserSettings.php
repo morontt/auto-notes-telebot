@@ -33,6 +33,10 @@ class UserSettings extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp updated_at = 5;</code>
      */
     protected $updated_at = null;
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType default_fuel_type = 6;</code>
+     */
+    protected $default_fuel_type = null;
 
     /**
      * Constructor.
@@ -45,6 +49,7 @@ class UserSettings extends \Google\Protobuf\Internal\Message
      *     @type \AutoNotes\Server\Currency $default_currency
      *     @type \Google\Protobuf\Timestamp $created_at
      *     @type \Google\Protobuf\Timestamp $updated_at
+     *     @type \AutoNotes\Server\FuelType $default_fuel_type
      * }
      */
     public function __construct($data = NULL) {
@@ -198,6 +203,38 @@ class UserSettings extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->updated_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType default_fuel_type = 6;</code>
+     * @return \AutoNotes\Server\FuelType|null
+     */
+    public function getDefaultFuelType()
+    {
+        return $this->default_fuel_type;
+    }
+
+    public function hasDefaultFuelType()
+    {
+        return isset($this->default_fuel_type);
+    }
+
+    public function clearDefaultFuelType()
+    {
+        unset($this->default_fuel_type);
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.FuelType default_fuel_type = 6;</code>
+     * @param \AutoNotes\Server\FuelType $var
+     * @return $this
+     */
+    public function setDefaultFuelType($var)
+    {
+        GPBUtil::checkMessage($var, \AutoNotes\Server\FuelType::class);
+        $this->default_fuel_type = $var;
 
         return $this;
     }
