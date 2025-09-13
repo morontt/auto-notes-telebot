@@ -20,7 +20,7 @@ interface FuelRepository
      *
      * @throws \Twirp\Error
      */
-    public function GetFuels(array $ctx, \AutoNotes\Server\Limit $req): \AutoNotes\Server\FuelCollection;
+    public function GetFuels(array $ctx, \AutoNotes\Server\FuelFilter $req): \AutoNotes\Server\FuelCollection;
 
     /**
      *

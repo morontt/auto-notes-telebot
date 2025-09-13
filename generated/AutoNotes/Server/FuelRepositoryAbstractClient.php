@@ -80,7 +80,7 @@ abstract class FuelRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
-    public function GetFuels(array $ctx, \AutoNotes\Server\Limit $in): \AutoNotes\Server\FuelCollection
+    public function GetFuels(array $ctx, \AutoNotes\Server\FuelFilter $in): \AutoNotes\Server\FuelCollection
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
         $ctx = Context::withServiceName($ctx, 'FuelRepository');

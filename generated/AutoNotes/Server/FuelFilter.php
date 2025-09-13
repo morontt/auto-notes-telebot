@@ -9,14 +9,18 @@ use Google\Protobuf\Internal\RepeatedField;
 use Google\Protobuf\Internal\GPBUtil;
 
 /**
- * Generated from protobuf message <code>xelbot.com.autonotes.server.Limit</code>
+ * Generated from protobuf message <code>xelbot.com.autonotes.server.FuelFilter</code>
  */
-class Limit extends \Google\Protobuf\Internal\Message
+class FuelFilter extends \Google\Protobuf\Internal\Message
 {
     /**
      * Generated from protobuf field <code>int32 limit = 1;</code>
      */
     protected $limit = 0;
+    /**
+     * Generated from protobuf field <code>int32 page = 2;</code>
+     */
+    protected $page = 0;
 
     /**
      * Constructor.
@@ -25,6 +29,7 @@ class Limit extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type int $limit
+     *     @type int $page
      * }
      */
     public function __construct($data = NULL) {
@@ -50,6 +55,28 @@ class Limit extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->limit = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 page = 2;</code>
+     * @return int
+     */
+    public function getPage()
+    {
+        return $this->page;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 page = 2;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setPage($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->page = $var;
 
         return $this;
     }

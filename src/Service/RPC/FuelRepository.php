@@ -8,8 +8,8 @@
 
 namespace TeleBot\Service\RPC;
 
+use AutoNotes\Server\FuelFilter;
 use AutoNotes\Server\FuelRepositoryClient;
-use AutoNotes\Server\Limit;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
@@ -33,7 +33,7 @@ class FuelRepository extends AbstractRepository
      */
     public function getFuels(AccessTokenAwareInterface $user, int $limit = 7): array
     {
-        $limitObj = new Limit();
+        $limitObj = new FuelFilter();
         $limitObj->setLimit($limit);
 
         $response = $this->client->GetFuels($this->context($user), $limitObj);

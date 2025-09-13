@@ -185,7 +185,7 @@ final class FuelRepositoryServer implements RequestHandlerInterface
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \AutoNotes\Server\Limit();
+            $in = new \AutoNotes\Server\FuelFilter();
             $in->mergeFromJsonString((string)$req->getBody(), true);
 
             $out = $this->svc->GetFuels($ctx, $in);
@@ -222,7 +222,7 @@ final class FuelRepositoryServer implements RequestHandlerInterface
         try {
             $ctx = $this->hook->requestRouted($ctx);
 
-            $in = new \AutoNotes\Server\Limit();
+            $in = new \AutoNotes\Server\FuelFilter();
             $in->mergeFromString((string)$req->getBody());
 
             $out = $this->svc->GetFuels($ctx, $in);
