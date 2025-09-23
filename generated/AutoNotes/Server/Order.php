@@ -49,6 +49,10 @@ class Order extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.xelbot.com.autonotes.server.OrderType type = 9;</code>
      */
     protected $type = null;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 10;</code>
+     */
+    protected $created_at = null;
 
     /**
      * Constructor.
@@ -65,6 +69,7 @@ class Order extends \Google\Protobuf\Internal\Message
      *     @type int $distance
      *     @type \AutoNotes\Server\Car $car
      *     @type \AutoNotes\Server\OrderType $type
+     *     @type \Google\Protobuf\Timestamp $created_at
      * }
      */
     public function __construct($data = NULL) {
@@ -316,6 +321,38 @@ class Order extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \AutoNotes\Server\OrderType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function hasCreatedAt()
+    {
+        return isset($this->created_at);
+    }
+
+    public function clearCreatedAt()
+    {
+        unset($this->created_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 10;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->created_at = $var;
 
         return $this;
     }

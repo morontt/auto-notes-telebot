@@ -37,6 +37,10 @@ class Expense extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.xelbot.com.autonotes.server.ExpenseType type = 6;</code>
      */
     protected $type = 0;
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 7;</code>
+     */
+    protected $created_at = null;
 
     /**
      * Constructor.
@@ -50,6 +54,7 @@ class Expense extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $date
      *     @type \AutoNotes\Server\Car $car
      *     @type int $type
+     *     @type \Google\Protobuf\Timestamp $created_at
      * }
      */
     public function __construct($data = NULL) {
@@ -215,6 +220,38 @@ class Expense extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkEnum($var, \AutoNotes\Server\ExpenseType::class);
         $this->type = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 7;</code>
+     * @return \Google\Protobuf\Timestamp|null
+     */
+    public function getCreatedAt()
+    {
+        return $this->created_at;
+    }
+
+    public function hasCreatedAt()
+    {
+        return isset($this->created_at);
+    }
+
+    public function clearCreatedAt()
+    {
+        unset($this->created_at);
+    }
+
+    /**
+     * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 7;</code>
+     * @param \Google\Protobuf\Timestamp $var
+     * @return $this
+     */
+    public function setCreatedAt($var)
+    {
+        GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
+        $this->created_at = $var;
 
         return $this;
     }

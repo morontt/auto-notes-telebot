@@ -25,6 +25,15 @@ interface FuelRepository
     /**
      *
      *
+     * Generated from protobuf method <code>xelbot.com.autonotes.server.FuelRepository/FindFuel</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function FindFuel(array $ctx, \AutoNotes\Server\IdRequest $req): \AutoNotes\Server\Fuel;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>xelbot.com.autonotes.server.FuelRepository/GetFillingStations</code>
      *
      * @throws \Twirp\Error

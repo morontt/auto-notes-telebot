@@ -103,6 +103,29 @@ abstract class OrderRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function FindOrder(array $ctx, \AutoNotes\Server\IdRequest $in): \AutoNotes\Server\Order
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
+        $ctx = Context::withServiceName($ctx, 'OrderRepository');
+        $ctx = Context::withMethodName($ctx, 'FindOrder');
+
+        $out = new \AutoNotes\Server\Order();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.server.OrderRepository/FindOrder';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.server.OrderRepository/FindOrder';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function GetOrderTypes(array $ctx, \Google\Protobuf\GPBEmpty $in): \AutoNotes\Server\OrderTypeCollection
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
@@ -162,6 +185,29 @@ abstract class OrderRepositoryAbstractClient
             $url = $url.'/xelbot.com.autonotes.server.OrderRepository/GetExpenses';
         } else {
             $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.server.OrderRepository/GetExpenses';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
+    public function FindExpense(array $ctx, \AutoNotes\Server\IdRequest $in): \AutoNotes\Server\Expense
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
+        $ctx = Context::withServiceName($ctx, 'OrderRepository');
+        $ctx = Context::withMethodName($ctx, 'FindExpense');
+
+        $out = new \AutoNotes\Server\Expense();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.server.OrderRepository/FindExpense';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.server.OrderRepository/FindExpense';
         }
 
         $this->doRequest($ctx, $url, $in, $out);

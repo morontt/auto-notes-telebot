@@ -17,10 +17,6 @@ class CarCollection extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>repeated .xelbot.com.autonotes.server.Car cars = 1;</code>
      */
     private $cars;
-    /**
-     * Generated from protobuf field <code>.xelbot.com.autonotes.server.PaginationMeta meta = 2;</code>
-     */
-    protected $meta = null;
 
     /**
      * Constructor.
@@ -29,7 +25,6 @@ class CarCollection extends \Google\Protobuf\Internal\Message
      *     Optional. Data for populating the Message object.
      *
      *     @type array<\AutoNotes\Server\Car>|\Google\Protobuf\Internal\RepeatedField $cars
-     *     @type \AutoNotes\Server\PaginationMeta $meta
      * }
      */
     public function __construct($data = NULL) {
@@ -55,38 +50,6 @@ class CarCollection extends \Google\Protobuf\Internal\Message
     {
         $arr = GPBUtil::checkRepeatedField($var, \Google\Protobuf\Internal\GPBType::MESSAGE, \AutoNotes\Server\Car::class);
         $this->cars = $arr;
-
-        return $this;
-    }
-
-    /**
-     * Generated from protobuf field <code>.xelbot.com.autonotes.server.PaginationMeta meta = 2;</code>
-     * @return \AutoNotes\Server\PaginationMeta|null
-     */
-    public function getMeta()
-    {
-        return $this->meta;
-    }
-
-    public function hasMeta()
-    {
-        return isset($this->meta);
-    }
-
-    public function clearMeta()
-    {
-        unset($this->meta);
-    }
-
-    /**
-     * Generated from protobuf field <code>.xelbot.com.autonotes.server.PaginationMeta meta = 2;</code>
-     * @param \AutoNotes\Server\PaginationMeta $var
-     * @return $this
-     */
-    public function setMeta($var)
-    {
-        GPBUtil::checkMessage($var, \AutoNotes\Server\PaginationMeta::class);
-        $this->meta = $var;
 
         return $this;
     }

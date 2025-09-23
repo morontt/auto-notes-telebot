@@ -25,6 +25,15 @@ interface OrderRepository
     /**
      *
      *
+     * Generated from protobuf method <code>xelbot.com.autonotes.server.OrderRepository/FindOrder</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function FindOrder(array $ctx, \AutoNotes\Server\IdRequest $req): \AutoNotes\Server\Order;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>xelbot.com.autonotes.server.OrderRepository/GetOrderTypes</code>
      *
      * @throws \Twirp\Error
@@ -48,6 +57,15 @@ interface OrderRepository
      * @throws \Twirp\Error
      */
     public function GetExpenses(array $ctx, \AutoNotes\Server\ExpenseFilter $req): \AutoNotes\Server\ExpenseCollection;
+
+    /**
+     *
+     *
+     * Generated from protobuf method <code>xelbot.com.autonotes.server.OrderRepository/FindExpense</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function FindExpense(array $ctx, \AutoNotes\Server\IdRequest $req): \AutoNotes\Server\Expense;
 
     /**
      *
