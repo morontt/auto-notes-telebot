@@ -129,6 +129,12 @@ table td {
     padding: .25em
 }
 
+table td.idx {
+    color: silver;
+    padding: 0 .4em;
+    text-align: right;
+}
+
 table tr:first-child th {
     border-top: 0
 }

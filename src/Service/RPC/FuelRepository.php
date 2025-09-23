@@ -31,12 +31,9 @@ class FuelRepository extends AbstractRepository
      *
      * @throws \Twirp\Error
      */
-    public function getFuels(AccessTokenAwareInterface $user, int $limit = 7): array
+    public function getFuels(AccessTokenAwareInterface $user, FuelFilter $filter): array
     {
-        $limitObj = new FuelFilter();
-        $limitObj->setLimit($limit);
-
-        $response = $this->client->GetFuels($this->context($user), $limitObj);
+        $response = $this->client->GetFuels($this->context($user), $filter);
         $fuels = $response->getFuels();
         $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
 

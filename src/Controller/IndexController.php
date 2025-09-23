@@ -8,14 +8,12 @@
 
 namespace TeleBot\Controller;
 
-use LogicException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
+use AutoNotes\Server\FuelFilter;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\FuelRepository;
 
-class IndexController extends AbstractController
+class IndexController extends BaseController
 {
     #[Route('/')]
     public function indexAction(): Response
@@ -24,18 +22,13 @@ class IndexController extends AbstractController
     }
 
     #[Route('/dashboard', name: 'dashboard')]
-    public function dashboardAction(FuelRepository $rpcUserRepository): Response
+    public function dashboardAction(FuelRepository $rpcFuelRepository): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
-        }
+        $filterObj = new FuelFilter();
+        $filterObj->setLimit(7);
 
-        if (!$user instanceof AccessTokenAwareInterface) {
-            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
-        }
-
-        $fuels = $rpcUserRepository->getFuels($user);
+        $user = $this->getAppUser();
+        $fuels = $rpcFuelRepository->getFuels($user, $filterObj);
 
         return $this->render('index/dashboard.html.twig', [
             'fuels' => $fuels,

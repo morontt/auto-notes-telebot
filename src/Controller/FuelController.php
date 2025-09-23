@@ -8,21 +8,19 @@
 
 namespace TeleBot\Controller;
 
+use AutoNotes\Server\FuelFilter;
 use DateTime;
-use LogicException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Form\FuelForm;
-use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/fuel')]
-class FuelController extends AbstractController
+class FuelController extends BaseController
 {
     public function __construct(
         private readonly RpcFuelRepository $rpcFuelRepository,
@@ -30,21 +28,34 @@ class FuelController extends AbstractController
     ) {
     }
 
+    #[Route('', name: 'fuel_list')]
+    public function listAction(Request $request): Response
+    {
+        $limit = (int)$request->query->get('limit', 10);
+        $page = (int)$request->query->get('page', 1);
+
+        $filterObj = new FuelFilter();
+        $filterObj
+            ->setPage($page)
+            ->setLimit($limit)
+        ;
+
+        $user = $this->getAppUser();
+        $fuels = $this->rpcFuelRepository->getFuels($user, $filterObj);
+
+        return $this->render('fuel/list.html.twig', [
+            'fuels' => $fuels,
+            'offset' => $page > 1 ? $limit * ($page - 1) : 0,
+        ]);
+    }
+
     #[Route('/add', name: 'fuel_add')]
     public function createAction(Request $request): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
-        }
-
-        if (!$user instanceof AccessTokenAwareInterface) {
-            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
-        }
-
         $fuelDto = new FuelDTO();
         $fuelDto->setDate(new DateTime());
 
+        $user = $this->getAppUser();
         $userSettings = $this->rpcUserRepository->getUserSettings($user);
         if ($userSettings) {
             if ($userSettings->hasDefaultCar()) {
@@ -69,7 +80,7 @@ class FuelController extends AbstractController
         if ($form->isSubmitted() && $form->isValid()) {
             $this->rpcFuelRepository->saveFuel($user, $form->getData());
 
-            return $this->redirectToRoute('dashboard');
+            return $this->redirectToRoute('fuel_list');
         }
 
         return $this->render('fuel/add.html.twig', [

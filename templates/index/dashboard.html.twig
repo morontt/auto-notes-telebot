@@ -5,6 +5,23 @@
 {% block headerline %}Дашборд{% endblock %}
 
 {% block body %}
+    <p>Разделы:</p>
+    <nav>
+        <ul>
+            <li>
+                <a href="{{ path('fuel_list') }}" title="Топливо">&#x26FD;</a>
+            </li>
+            <li>
+                <a href="/" title="Заказы">&#x1F9FE;</a>
+            </li>
+            <li>
+                <a href="/" title="СТО/Работа">&#x1F527;</a>
+            </li>
+            <li>
+                <a href="/" title="Расходы">&#x1FA99;</a>
+            </li>
+        </ul>
+    </nav>
     <p>Топливо:</p>
     <table>
         <thead>

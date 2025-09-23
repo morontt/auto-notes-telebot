@@ -9,32 +9,21 @@
 namespace TeleBot\Controller;
 
 use DateTime;
-use LogicException;
-use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\Form\Settings\CodeForm;
 use TeleBot\Form\Settings\UserSettingsForm;
 use TeleBot\Repository\CodeRepository;
-use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/settings')]
-class SettingsController extends AbstractController
+class SettingsController extends BaseController
 {
     #[Route('/', name: 'settings')]
     public function settingsAction(CodeRepository $repository, RpcUserRepository $rpcUserRepository): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
-        }
-
-        if (!$user instanceof AccessTokenAwareInterface) {
-            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
-        }
-
+        $user = $this->getAppUser();
         $code = $repository->getLastByUser($user->getUserId());
 
         return $this->render('settings/settings.html.twig', [
@@ -47,14 +36,7 @@ class SettingsController extends AbstractController
     #[Route('/connect', name: 'tg_connect')]
     public function connectAction(Request $request, CodeRepository $repository): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
-        }
-
-        if (!$user instanceof AccessTokenAwareInterface) {
-            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
-        }
+        $user = $this->getAppUser();
 
         $form = $this->createForm(CodeForm::class);
         $form->handleRequest($request);
@@ -87,15 +69,7 @@ class SettingsController extends AbstractController
     #[Route('/edit', name: 'settings_edit')]
     public function settingsEditAction(Request $request, RpcUserRepository $rpcUserRepository): Response
     {
-        $user = $this->getUser();
-        if (!$user) {
-            return new Response(Response::$statusTexts[Response::HTTP_FORBIDDEN], Response::HTTP_FORBIDDEN);
-        }
-
-        if (!$user instanceof AccessTokenAwareInterface) {
-            throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
-        }
-
+        $user = $this->getAppUser();
         $userSettings = $rpcUserRepository->getUserSettings($user);
 
         $form = $this->createForm(UserSettingsForm::class, $userSettings);
