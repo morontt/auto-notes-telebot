@@ -28,7 +28,7 @@ class FuelController extends BaseController
     ) {
     }
 
-    #[Route('', name: 'fuel_list')]
+    #[Route('', name: 'fuel_list', defaults: ['page' => 1])]
     public function listAction(Request $request): Response
     {
         $limit = (int)$request->query->get('limit', 10);

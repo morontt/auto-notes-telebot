@@ -41,6 +41,7 @@
         {% endif %}
         </tbody>
     </table>
+    {{ pagination(fuels.paginationMeta, 'fuel_list') }}
     <p>
         Добавить запись &rarr; <a href="{{ path('fuel_add') }}">&#x26FD;</a>
     </p>

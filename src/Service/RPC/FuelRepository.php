@@ -15,6 +15,7 @@ use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\DTO\FuelTypeDTO;
+use TeleBot\DTO\List\FuelDTOList;
 use TeleBot\Security\AccessTokenAwareInterface;
 
 class FuelRepository extends AbstractRepository
@@ -27,22 +28,24 @@ class FuelRepository extends AbstractRepository
     }
 
     /**
-     * @return FuelDTO[]
-     *
      * @throws \Twirp\Error
      */
-    public function getFuels(AccessTokenAwareInterface $user, FuelFilter $filter): array
+    public function getFuels(AccessTokenAwareInterface $user, FuelFilter $filter): FuelDTOList
     {
         $response = $this->client->GetFuels($this->context($user), $filter);
-        $fuels = $response->getFuels();
-        $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
 
-        $result = [];
-        foreach ($fuels as $item) {
-            $result[] = FuelDTO::fromData($item);
+        $current = $response->getMeta()?->getCurrent() ?? 1;
+        $last = $response->getMeta()?->getLast() ?? 1;
+
+        $fuels = new FuelDTOList($current, $last);
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getFuels() as $item) {
+            $fuels->add(FuelDTO::fromData($item));
         }
 
-        return $result;
+        $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
+
+        return $fuels;
     }
 
     /**
