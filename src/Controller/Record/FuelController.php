@@ -6,13 +6,14 @@
  * Time: 13:24
  */
 
-namespace TeleBot\Controller;
+namespace TeleBot\Controller\Record;
 
 use AutoNotes\Server\FuelFilter;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use TeleBot\Controller\BaseController;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\Form\FuelForm;
@@ -43,7 +44,7 @@ class FuelController extends BaseController
         $user = $this->getAppUser();
         $fuels = $this->rpcFuelRepository->getFuels($user, $filterObj);
 
-        return $this->render('fuel/list.html.twig', [
+        return $this->render('record/fuel/list.html.twig', [
             'fuels' => $fuels,
             'offset' => $page > 1 ? $limit * ($page - 1) : 0,
         ]);
@@ -83,7 +84,7 @@ class FuelController extends BaseController
             return $this->redirectToRoute('fuel_list');
         }
 
-        return $this->render('fuel/add.html.twig', [
+        return $this->render('record/fuel/add.html.twig', [
             'form' => $form,
         ]);
     }
