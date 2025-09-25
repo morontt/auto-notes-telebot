@@ -1,10 +1,11 @@
 <?php
-
 /**
  * User: morontt
  * Date: 15.02.2025
  * Time: 14:31
  */
+
+declare(strict_types=1);
 
 namespace TeleBot\Service\RPC;
 

@@ -1,4 +1,4 @@
-<?php
+<?php declare(strict_types=1);
 
 /**
  * User: morontt
@@ -25,7 +25,7 @@ class BaseList implements Iterator, Countable
     private int $position;
     private PaginationMeta $meta;
 
-    public function __construct(int $current, int $last)
+    public function __construct(int $current = 1, int $last = 1)
     {
         $this->container = [];
         $this->position = 0;

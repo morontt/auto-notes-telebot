@@ -1,5 +1,4 @@
-<?php
-
+<?php declare(strict_types=1);
 /**
  * User: morontt
  * Date: 25.02.2025
@@ -29,8 +28,7 @@ class TokenData
             throw new LogicException('Invalid access token');
         }
 
-        // @phpstan-ignore assign.propertyType
-        $this->userId = $data['uid'];
+        $this->userId = (int)$data['uid'];
         $this->userName = $data['uname'];
 
         try {
@@ -39,7 +37,7 @@ class TokenData
             $tz = new DateTimeZone('UTC');
         }
 
-        $this->issuedAt = DateTime::createFromFormat('U', $data['iat'])->setTimezone($tz);
-        $this->expiredAt = DateTime::createFromFormat('U', $data['exp'])->setTimezone($tz);
+        $this->issuedAt = DateTime::createFromFormat('U', (string)$data['iat'])->setTimezone($tz);
+        $this->expiredAt = DateTime::createFromFormat('U', (string)$data['exp'])->setTimezone($tz);
     }
 }
