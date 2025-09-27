@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 23.09.2025
@@ -9,13 +8,14 @@
 namespace TeleBot\DTO\List;
 
 use Countable;
+use InvalidArgumentException;
 use Iterator;
 
 /**
- * @template T
+ * @template T of object
  * @template-implements Iterator<int, T>
  */
-class BaseList implements Iterator, Countable
+abstract class BaseList implements Iterator, Countable
 {
     /**
      * @var T[]
@@ -31,6 +31,22 @@ class BaseList implements Iterator, Countable
         $this->position = 0;
 
         $this->meta = new PaginationMeta($current, $last);
+    }
+
+    abstract public function supportedClass(): string;
+
+    /**
+     * @phpstan-param T $item
+     */
+    public function add(object $item): void
+    {
+        if (get_class($item) !== $this->supportedClass()) {
+            throw new InvalidArgumentException(
+                sprintf('Invalid list class: %s, expected %s', get_class($item), $this->supportedClass())
+            );
+        }
+
+        $this->addItem($item);
     }
 
     public function getPaginationMeta(): PaginationMeta
@@ -74,7 +90,7 @@ class BaseList implements Iterator, Countable
     /**
      * @param T $item
      */
-    protected function addItem(mixed $item): void
+    protected function addItem(object $item): void
     {
         $this->container[] = $item;
     }

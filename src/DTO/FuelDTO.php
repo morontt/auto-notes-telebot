@@ -12,7 +12,7 @@ use DateInterval;
 use DateTime;
 use Google\Protobuf\Timestamp;
 
-class FuelDTO
+class FuelDTO extends BaseDTO
 {
     private int $id = 0;
     private int $value = 0;

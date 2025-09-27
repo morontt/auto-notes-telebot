@@ -14,6 +14,7 @@ use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
+use Symfony\Component\Routing\Requirement\Requirement;
 use TeleBot\Controller\BaseController;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
@@ -76,6 +77,25 @@ class FuelController extends BaseController
                 $fuelDto->setType($userSettings->getDefaultFuelType());
             }
         }
+
+        $form = $this->createForm(FuelForm::class, $fuelDto);
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $this->rpcFuelRepository->saveFuel($user, $form->getData());
+
+            return $this->redirectToRoute('fuel_list');
+        }
+
+        return $this->render('record/fuel/add.html.twig', [
+            'form' => $form,
+        ]);
+    }
+
+    #[Route('/{id}/edit', name: 'fuel_edit', requirements: ['id' => Requirement::DIGITS])]
+    public function editAction(Request $request, string $id): Response
+    {
+        $user = $this->getAppUser();
+        $fuelDto = $this->rpcFuelRepository->findFuel($user, (int)$id);
 
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);

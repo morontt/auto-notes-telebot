@@ -9,7 +9,7 @@ namespace TeleBot\DTO;
 
 use AutoNotes\Server\FuelType;
 
-class FuelTypeDTO
+class FuelTypeDTO extends BaseDTO
 {
     private int $id;
     private string $name;

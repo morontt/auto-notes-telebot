@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 23.09.2025
@@ -15,8 +14,8 @@ use TeleBot\DTO\FuelDTO;
  */
 class FuelDTOList extends BaseList
 {
-    public function add(FuelDTO $item): void
+    public function supportedClass(): string
     {
-        $this->addItem($item);
+        return FuelDTO::class;
     }
 }

@@ -9,7 +9,7 @@ namespace TeleBot\DTO;
 
 use AutoNotes\Server\Cost;
 
-class CostDTO
+class CostDTO extends BaseDTO
 {
     private int $value;
     private string $currencyCode;

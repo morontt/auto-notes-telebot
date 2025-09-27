@@ -11,12 +11,15 @@ namespace TeleBot\Service\RPC;
 
 use AutoNotes\Server\FuelFilter;
 use AutoNotes\Server\FuelRepositoryClient;
+use AutoNotes\Server\IdRequest;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
 use TeleBot\DTO\FuelTypeDTO;
+use TeleBot\DTO\List\FillingStationDTOList;
 use TeleBot\DTO\List\FuelDTOList;
+use TeleBot\DTO\List\FuelTypeDTOList;
 use TeleBot\Security\AccessTokenAwareInterface;
 
 class FuelRepository extends AbstractRepository
@@ -52,6 +55,20 @@ class FuelRepository extends AbstractRepository
     /**
      * @throws \Twirp\Error
      */
+    public function findFuel(AccessTokenAwareInterface $user, int $id): FuelDTO
+    {
+        $req = new IdRequest();
+        $req->setId($id);
+
+        $response = $this->client->FindFuel($this->context($user), $req);
+        $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
+
+        return FuelDTO::fromData($response);
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
     public function saveFuel(AccessTokenAwareInterface $user, FuelDTO $fuel): FuelDTO
     {
         $response = $this->client->SaveFuel($this->context($user), $fuel->reverse());
@@ -61,40 +78,38 @@ class FuelRepository extends AbstractRepository
     }
 
     /**
-     * @return FillingStationDTO[]
-     *
      * @throws \Twirp\Error
      */
-    public function getFillingStations(AccessTokenAwareInterface $user): array
+    public function getFillingStations(AccessTokenAwareInterface $user): FillingStationDTOList
     {
         $response = $this->client->GetFillingStations($this->context($user), new GPBEmpty());
-        $stations = $response->getStations();
-        $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
 
-        $result = [];
-        foreach ($stations as $item) {
-            $result[] = FillingStationDTO::fromData($item);
+        $stations = new FillingStationDTOList();
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getStations() as $item) {
+            $stations->add(FillingStationDTO::fromData($item));
         }
 
-        return $result;
+        $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
+
+        return $stations;
     }
 
     /**
-     * @return FuelTypeDTO[]
-     *
      * @throws \Twirp\Error
      */
-    public function getFuelTypes(AccessTokenAwareInterface $user): array
+    public function getFuelTypes(AccessTokenAwareInterface $user): FuelTypeDTOList
     {
         $response = $this->client->GetFuelTypes($this->context($user), new GPBEmpty());
-        $types = $response->getTypes();
-        $this->logger->debug('gRPC response', ['types_cnt' => count($types)]);
 
-        $result = [];
-        foreach ($types as $item) {
-            $result[] = FuelTypeDTO::fromData($item);
+        $types = new FuelTypeDTOList();
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getTypes() as $item) {
+            $types->add(FuelTypeDTO::fromData($item));
         }
 
-        return $result;
+        $this->logger->debug('gRPC response', ['types_cnt' => count($types)]);
+
+        return $types;
     }
 }

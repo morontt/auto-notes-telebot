@@ -10,7 +10,7 @@ namespace TeleBot\DTO;
 use AutoNotes\Server\Currency;
 use DateTime;
 
-class CurrencyDTO
+class CurrencyDTO extends BaseDTO
 {
     private int $id;
     private string $name;

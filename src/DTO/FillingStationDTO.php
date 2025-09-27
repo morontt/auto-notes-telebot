@@ -9,7 +9,7 @@ namespace TeleBot\DTO;
 
 use AutoNotes\Server\FillingStation;
 
-class FillingStationDTO
+class FillingStationDTO extends BaseDTO
 {
     private int $id;
     private string $name;

@@ -16,6 +16,7 @@
                 <th></th>
                 <th>Авто</th>
                 <th>Пробег</th>
+                <th></th>
             </tr>
         </thead>
         <tbody>
@@ -32,6 +33,11 @@
                     <td>{{ fuel.cost.value|number_format(2, '.', '') }} {{ fuel.cost.currencyCode|currency_symbol }}</td>
                     <td>{% if fuel.car %}{{ fuel.car.name }}{% else %}-{% endif %}</td>
                     <td>{% if fuel.distance > 0 %}{{ fuel.distance }}{% else %}-{% endif %}</td>
+                    <td>
+                        &#x2027; <a href="{{ path('fuel_edit', {id: fuel.id}) }}">&#x270D;&#xFE0F;</a>
+                        <!-- &#x2027; <a href="{{ path('fuel_edit', {id: fuel.id}) }}">&#x1F5D1;&#xFE0F;</a> -->
+                        &#x2027;
+                    </td>
                 </tr>
             {% endfor %}
         {% else %}

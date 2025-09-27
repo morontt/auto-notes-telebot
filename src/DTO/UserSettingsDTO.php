@@ -10,7 +10,7 @@ namespace TeleBot\DTO;
 use AutoNotes\Server\UserSettings;
 use DateTime;
 
-class UserSettingsDTO
+class UserSettingsDTO extends BaseDTO
 {
     private int $id;
     private ?CarDTO $defaultCar = null;
