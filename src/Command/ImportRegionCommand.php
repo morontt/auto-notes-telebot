@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 27.06.2025
@@ -32,7 +31,7 @@ class ImportRegionCommand extends Command
 
     protected function execute(InputInterface $input, OutputInterface $output): int
     {
-        $data = simplexml_load_string(file_get_contents(__DIR__ . '/../../var/data/table.xml'));
+        $data = simplexml_load_string(file_get_contents(__DIR__ . '/../../var/data/regions_table.xml'));
         foreach ($data->tbody->tr as $row) {
             $codes = array_map('trim', explode(',', (string)$row->td[0]->div->p));
 
