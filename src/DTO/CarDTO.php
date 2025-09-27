@@ -12,12 +12,12 @@ use DateTime;
 
 class CarDTO extends BaseDTO
 {
-    private int $id;
-    private string $name;
-    private ?string $vin;
-    private ?int $year;
-    private bool $default;
-    private ?DateTime $createdAt = null;
+    protected int $id;
+    protected string $name;
+    protected ?string $vin;
+    protected ?int $year;
+    protected bool $default;
+    protected ?DateTime $createdAt = null;
 
     public function __toString(): string
     {

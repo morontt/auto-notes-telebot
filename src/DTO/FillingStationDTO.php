@@ -11,8 +11,8 @@ use AutoNotes\Server\FillingStation;
 
 class FillingStationDTO extends BaseDTO
 {
-    private int $id;
-    private string $name;
+    protected int $id;
+    protected string $name;
 
     public function __toString(): string
     {

@@ -20,15 +20,20 @@ use TeleBot\DTO\FuelTypeDTO;
 use TeleBot\DTO\List\FillingStationDTOList;
 use TeleBot\DTO\List\FuelDTOList;
 use TeleBot\DTO\List\FuelTypeDTOList;
+use TeleBot\LogTrait;
 use TeleBot\Security\AccessTokenAwareInterface;
 
 class FuelRepository extends AbstractRepository
 {
+    use LogTrait;
+
     private FuelRepositoryClient $client;
 
-    public function __construct(string $grpcUrl, private readonly LoggerInterface $logger)
+    public function __construct(string $grpcUrl, LoggerInterface $logger)
     {
         $this->client = new FuelRepositoryClient($grpcUrl);
+
+        $this->setLogger($logger);
     }
 
     /**
@@ -47,7 +52,7 @@ class FuelRepository extends AbstractRepository
             $fuels->add(FuelDTO::fromData($item));
         }
 
-        $this->logger->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
+        $this->debug('gRPC response', ['fuels_cnt' => count($fuels)]);
 
         return $fuels;
     }
@@ -61,7 +66,7 @@ class FuelRepository extends AbstractRepository
         $req->setId($id);
 
         $response = $this->client->FindFuel($this->context($user), $req);
-        $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
+        $this->debug('gRPC response', ['fuel_id' => $response->getId()]);
 
         return FuelDTO::fromData($response);
     }
@@ -71,8 +76,10 @@ class FuelRepository extends AbstractRepository
      */
     public function saveFuel(AccessTokenAwareInterface $user, FuelDTO $fuel): FuelDTO
     {
+        $this->debug('Save fuel', ['data' => $fuel->toArray()]);
+
         $response = $this->client->SaveFuel($this->context($user), $fuel->reverse());
-        $this->logger->debug('gRPC response', ['fuel_id' => $response->getId()]);
+        $this->debug('gRPC response', ['fuel_id' => $response->getId()]);
 
         return FuelDTO::fromData($response);
     }
@@ -90,7 +97,7 @@ class FuelRepository extends AbstractRepository
             $stations->add(FillingStationDTO::fromData($item));
         }
 
-        $this->logger->debug('gRPC response', ['stations_cnt' => count($stations)]);
+        $this->debug('gRPC response', ['stations_cnt' => count($stations)]);
 
         return $stations;
     }
@@ -108,7 +115,7 @@ class FuelRepository extends AbstractRepository
             $types->add(FuelTypeDTO::fromData($item));
         }
 
-        $this->logger->debug('gRPC response', ['types_cnt' => count($types)]);
+        $this->debug('gRPC response', ['types_cnt' => count($types)]);
 
         return $types;
     }

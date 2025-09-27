@@ -11,13 +11,17 @@ namespace TeleBot\EventListener;
 use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\HttpKernel\Event\ExceptionEvent;
+use TeleBot\LogTrait;
 use Twirp\Error;
 use Twirp\ErrorCode;
 
 class TwirpErrorListener
 {
-    public function __construct(private readonly LoggerInterface $logger)
+    use LogTrait;
+
+    public function __construct(LoggerInterface $logger)
     {
+        $this->setLogger($logger);
     }
 
     public function onKernelException(ExceptionEvent $event): void
@@ -27,11 +31,11 @@ class TwirpErrorListener
             $statusCode = ErrorCode::serverHTTPStatusFromErrorCode($e->getErrorCode()) ?: 500;
 
             if ($statusCode >= 500) {
-                $this->logger->critical('gRPC internal error', [
+                $this->critical('gRPC internal error', [
                     'error' => $e,
                 ]);
             } else {
-                $this->logger->error('gRPC error', [
+                $this->error('gRPC error', [
                     'error' => $e,
                 ]);
             }

@@ -16,16 +16,21 @@ use RuntimeException;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CurrencyDTO;
 use TeleBot\DTO\UserSettingsDTO;
+use TeleBot\LogTrait;
 use TeleBot\Security\AccessTokenAwareInterface;
 use Twirp\Error;
 
 class UserRepository extends AbstractRepository
 {
+    use LogTrait;
+
     private UserRepositoryClient $client;
 
-    public function __construct(string $grpcUrl, private readonly LoggerInterface $logger)
+    public function __construct(string $grpcUrl, LoggerInterface $logger)
     {
         $this->client = new UserRepositoryClient($grpcUrl);
+
+        $this->setLogger($logger);
     }
 
     /**
@@ -37,13 +42,13 @@ class UserRepository extends AbstractRepository
         try {
             $response = $this->client->GetCars($this->context($user), new GPBEmpty());
             $cars = $response->getCars();
-            $this->logger->debug('gRPC response', ['cars_cnt' => count($cars)]);
+            $this->debug('gRPC response', ['cars_cnt' => count($cars)]);
 
             foreach ($cars as $item) {
                 $result[] = CarDTO::fromData($item);
             }
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'error' => $e,
             ]);
         }
@@ -57,17 +62,17 @@ class UserRepository extends AbstractRepository
         try {
             $response = $this->client->GetDefaultCurrency($this->context($user), new GPBEmpty());
             $found = $response->getFound();
-            $this->logger->debug('gRPC response', ['found' => $found]);
+            $this->debug('gRPC response', ['found' => $found]);
 
             if ($found) {
                 if ($response->hasCurrency()) {
                     $result = CurrencyDTO::fromData($response->getCurrency());
                 } else {
-                    $this->logger->error('gRPC response without currency but found=true');
+                    $this->error('gRPC response without currency but found=true');
                 }
             }
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'error' => $e,
             ]);
         }
@@ -84,13 +89,13 @@ class UserRepository extends AbstractRepository
         try {
             $response = $this->client->GetCurrencies($this->context($user), new GPBEmpty());
             $currencies = $response->getCurrencies();
-            $this->logger->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
+            $this->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
 
             foreach ($currencies as $item) {
                 $result[] = CurrencyDTO::fromData($item);
             }
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'error' => $e,
             ]);
         }
@@ -106,7 +111,7 @@ class UserRepository extends AbstractRepository
 
             $result = UserSettingsDTO::fromData($response);
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'error' => $e,
             ]);
         }
@@ -121,7 +126,7 @@ class UserRepository extends AbstractRepository
 
             return UserSettingsDTO::fromData($response);
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'error' => $e,
             ]);
         }

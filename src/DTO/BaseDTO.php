@@ -9,11 +9,17 @@ namespace TeleBot\DTO;
 
 class BaseDTO
 {
+    /**
+     * @phpstan-ignore missingType.iterableValue
+     */
     public function toArray(): array
     {
         return $this->doToArray(get_object_vars($this));
     }
 
+    /**
+     * @phpstan-ignore missingType.iterableValue, missingType.iterableValue
+     */
     private function doToArray(array $objVars): array
     {
         $result = [];

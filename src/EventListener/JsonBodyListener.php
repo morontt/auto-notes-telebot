@@ -13,14 +13,15 @@ use Psr\Log\LoggerInterface;
 use Symfony\Component\HttpFoundation\InputBag;
 use Symfony\Component\HttpKernel\Event\RequestEvent;
 use Symfony\Component\HttpKernel\Exception\BadRequestHttpException;
+use TeleBot\LogTrait;
 
 class JsonBodyListener
 {
-    private LoggerInterface $logger;
+    use LogTrait;
 
     public function __construct(LoggerInterface $logger)
     {
-        $this->logger = $logger;
+        $this->setLogger($logger);
     }
 
     /**
@@ -59,7 +60,7 @@ class JsonBodyListener
                             return;
                         }
                     } catch (JsonException $e) {
-                        $this->logger->error('JsonException', ['exception' => $e]);
+                        $this->error('JsonException', ['exception' => $e]);
                     }
 
                     throw new BadRequestHttpException('Invalid ' . $format . ' message received');

@@ -11,8 +11,8 @@ use AutoNotes\Server\Cost;
 
 class CostDTO extends BaseDTO
 {
-    private int $value;
-    private string $currencyCode;
+    protected int $value;
+    protected string $currencyCode;
 
     public static function fromData(Cost $data): self
     {

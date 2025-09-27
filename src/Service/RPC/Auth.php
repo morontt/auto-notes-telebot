@@ -12,15 +12,20 @@ namespace TeleBot\Service\RPC;
 use AutoNotes\Auth\AuthClient;
 use AutoNotes\Auth\LoginRequest;
 use Psr\Log\LoggerInterface;
+use TeleBot\LogTrait;
 use Twirp\Error;
 
 class Auth
 {
+    use LogTrait;
+
     private AuthClient $client;
 
-    public function __construct(string $grpcUrl, private readonly LoggerInterface $logger)
+    public function __construct(string $grpcUrl, LoggerInterface $logger)
     {
         $this->client = new AuthClient($grpcUrl);
+
+        $this->setLogger($logger);
     }
 
     public function getToken(string $username, string $password): ?string
@@ -33,11 +38,11 @@ class Auth
 
         try {
             $response = $this->client->GetToken([], $loginRequest);
-            $this->logger->debug('gRPC response', ['token' => substr($response->getToken(), 0, 64) . '...']);
+            $this->debug('gRPC response', ['token' => substr($response->getToken(), 0, 64) . '...']);
 
             return $response->getToken();
         } catch (Error $e) {
-            $this->logger->error('gRPC error', [
+            $this->error('gRPC error', [
                 'username' => $username,
                 'error' => $e,
             ]);

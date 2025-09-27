@@ -14,15 +14,15 @@ use Google\Protobuf\Timestamp;
 
 class FuelDTO extends BaseDTO
 {
-    private int $id = 0;
-    private int $value = 0;
-    private ?int $distance = null;
-    private ?CarDTO $car = null;
-    private ?CostDTO $cost = null;
-    private ?FillingStationDTO $station = null;
-    private ?FuelTypeDTO $type = null;
-    private ?DateTime $date = null;
-    private ?DateTime $createdAt = null;
+    protected int $id = 0;
+    protected int $value = 0;
+    protected ?int $distance = null;
+    protected ?CarDTO $car = null;
+    protected ?CostDTO $cost = null;
+    protected ?FillingStationDTO $station = null;
+    protected ?FuelTypeDTO $type = null;
+    protected ?DateTime $date = null;
+    protected ?DateTime $createdAt = null;
 
     public static function fromData(Fuel $data): self
     {

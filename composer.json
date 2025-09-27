@@ -15,6 +15,7 @@
         "google/protobuf": "^4.29",
         "guzzlehttp/guzzle": "^7.9",
         "guzzlehttp/psr7": "^2.7",
+        "psr/log": "^3.0",
         "symfony/config": "^6.4",
         "symfony/dependency-injection": "^6.4",
         "symfony/dotenv": "^6.4",

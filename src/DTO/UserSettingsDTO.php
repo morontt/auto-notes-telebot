@@ -12,12 +12,12 @@ use DateTime;
 
 class UserSettingsDTO extends BaseDTO
 {
-    private int $id;
-    private ?CarDTO $defaultCar = null;
-    private ?CurrencyDTO $defaultCurrency = null;
-    private ?DateTime $createdAt = null;
-    private ?DateTime $updatedAt = null;
-    private ?FuelTypeDTO $defaultFuelType = null;
+    protected int $id;
+    protected ?CarDTO $defaultCar = null;
+    protected ?CurrencyDTO $defaultCurrency = null;
+    protected ?DateTime $createdAt = null;
+    protected ?DateTime $updatedAt = null;
+    protected ?FuelTypeDTO $defaultFuelType = null;
 
     public static function fromData(UserSettings $data): self
     {

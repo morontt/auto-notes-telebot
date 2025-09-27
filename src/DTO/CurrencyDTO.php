@@ -12,11 +12,11 @@ use DateTime;
 
 class CurrencyDTO extends BaseDTO
 {
-    private int $id;
-    private string $name;
-    private string $code;
-    private bool $default;
-    private ?DateTime $createdAt = null;
+    protected int $id;
+    protected string $name;
+    protected string $code;
+    protected bool $default;
+    protected ?DateTime $createdAt = null;
 
     public function __toString(): string
     {
