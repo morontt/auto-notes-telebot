@@ -12,13 +12,13 @@ namespace TeleBot\Service\RPC;
 use AutoNotes\Server\UserRepositoryClient;
 use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
-use RuntimeException;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CurrencyDTO;
+use TeleBot\DTO\List\CarDTOList;
+use TeleBot\DTO\List\CurrencyDTOList;
 use TeleBot\DTO\UserSettingsDTO;
 use TeleBot\LogTrait;
 use TeleBot\Security\AccessTokenAwareInterface;
-use Twirp\Error;
 
 class UserRepository extends AbstractRepository
 {
@@ -34,103 +34,81 @@ class UserRepository extends AbstractRepository
     }
 
     /**
-     * @return CarDTO[]
+     * @throws \Twirp\Error
      */
-    public function getCars(AccessTokenAwareInterface $user): array
+    public function getCars(AccessTokenAwareInterface $user): CarDTOList
     {
-        $result = [];
-        try {
-            $response = $this->client->GetCars($this->context($user), new GPBEmpty());
-            $cars = $response->getCars();
-            $this->debug('gRPC response', ['cars_cnt' => count($cars)]);
+        $response = $this->client->GetCars($this->context($user), new GPBEmpty());
 
-            foreach ($cars as $item) {
-                $result[] = CarDTO::fromData($item);
-            }
-        } catch (Error $e) {
-            $this->error('gRPC error', [
-                'error' => $e,
-            ]);
+        $cars = new CarDTOList();
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getCars() as $item) {
+            $cars->add(CarDTO::fromData($item));
         }
 
-        return $result;
+        $this->debug('gRPC response', ['cars_cnt' => count($cars)]);
+
+        return $cars;
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     public function getDefaultCurrency(AccessTokenAwareInterface $user): ?CurrencyDTO
     {
         $result = null;
-        try {
-            $response = $this->client->GetDefaultCurrency($this->context($user), new GPBEmpty());
-            $found = $response->getFound();
-            $this->debug('gRPC response', ['found' => $found]);
 
-            if ($found) {
-                if ($response->hasCurrency()) {
-                    $result = CurrencyDTO::fromData($response->getCurrency());
-                } else {
-                    $this->error('gRPC response without currency but found=true');
-                }
+        $response = $this->client->GetDefaultCurrency($this->context($user), new GPBEmpty());
+        $found = $response->getFound();
+        $this->debug('gRPC response', ['found' => $found]);
+
+        if ($found) {
+            if ($response->hasCurrency()) {
+                $result = CurrencyDTO::fromData($response->getCurrency());
+            } else {
+                $this->error('gRPC response without currency but found=true');
             }
-        } catch (Error $e) {
-            $this->error('gRPC error', [
-                'error' => $e,
-            ]);
         }
 
         return $result;
     }
 
     /**
-     * @return CurrencyDTO[]
+     * @throws \Twirp\Error
      */
-    public function getCurrencies(AccessTokenAwareInterface $user): array
+    public function getCurrencies(AccessTokenAwareInterface $user): CurrencyDTOList
     {
-        $result = [];
-        try {
-            $response = $this->client->GetCurrencies($this->context($user), new GPBEmpty());
-            $currencies = $response->getCurrencies();
-            $this->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
+        $response = $this->client->GetCurrencies($this->context($user), new GPBEmpty());
 
-            foreach ($currencies as $item) {
-                $result[] = CurrencyDTO::fromData($item);
-            }
-        } catch (Error $e) {
-            $this->error('gRPC error', [
-                'error' => $e,
-            ]);
+        $currencies = new CurrencyDTOList();
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getCurrencies() as $item) {
+            $currencies->add(CurrencyDTO::fromData($item));
         }
 
-        return $result;
+        $this->debug('gRPC response', ['currencies_cnt' => count($currencies)]);
+
+        return $currencies;
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     public function getUserSettings(AccessTokenAwareInterface $user): ?UserSettingsDTO
     {
-        $result = null;
-        try {
-            $response = $this->client->GetUserSettings($this->context($user), new GPBEmpty());
+        $response = $this->client->GetUserSettings($this->context($user), new GPBEmpty());
 
-            $result = UserSettingsDTO::fromData($response);
-        } catch (Error $e) {
-            $this->error('gRPC error', [
-                'error' => $e,
-            ]);
-        }
-
-        return $result;
+        return UserSettingsDTO::fromData($response);
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     public function saveUserSettings(AccessTokenAwareInterface $user, UserSettingsDTO $userSettings): UserSettingsDTO
     {
-        try {
-            $response = $this->client->SaveUserSettings($this->context($user), $userSettings->reverse());
+        $this->debug('Save user settings', ['data' => $userSettings->toArray()]);
+        $response = $this->client->SaveUserSettings($this->context($user), $userSettings->reverse());
 
-            return UserSettingsDTO::fromData($response);
-        } catch (Error $e) {
-            $this->error('gRPC error', [
-                'error' => $e,
-            ]);
-        }
-
-        throw new RuntimeException('Failed to save user settings');
+        return UserSettingsDTO::fromData($response);
     }
 }
