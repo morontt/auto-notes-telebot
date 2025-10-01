@@ -151,6 +151,10 @@ table tr td:last-child, table tr th:last-child {
     border-right: 0
 }
 
+table.striped tbody tr:nth-child(even) {
+    color: gray;
+}
+
 h1, h2, h3, h4, h5, h6 {
     font-family: "DejaVu Sans", Verdana, sans-serif
 }

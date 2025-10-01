@@ -5,17 +5,16 @@
 {% block headerline %}Заказы{% endblock %}
 
 {% block body %}
-    <table>
+    {% include 'nav.html.twig' %}
+    <table class="striped">
         <thead>
             <tr>
                 <th></th>
                 <th>Дата</th>
                 <th></th>
                 <th></th>
-                <th></th>
-                <th></th>
-                <th>Авто</th>
                 <th>Пробег</th>
+                <th>Исп.</th>
                 <th></th>
             </tr>
         </thead>
@@ -27,14 +26,21 @@
                 <tr>
                     <td class="idx">{{ idx }}</td>
                     <td>{{ item.date|date('Y-m-d') }}</td>
-                    <td>{{ item.description }}</td>
-                    <td>{{ item.capacity }}</td>
-                    <td>{{ item.type.name }}</td>
+                    <td>{% if item.type %}{{ item.type.name }}{% endif %}</td>
                     <td>{{ item.cost.value|number_format(2, '.', '') }} {{ item.cost.currencyCode|currency_symbol }}</td>
-                    <td>{% if item.car %}{{ item.car.name }}{% else %}-{% endif %}</td>
                     <td>{% if item.distance > 0 %}{{ item.distance }}{% else %}-{% endif %}</td>
+                    <td>{% if item.usedAt %}{{ item.usedAt|date('Y-m-d') }}{% else %}-{% endif %}</td>
                     <td>
+                        &#x2027; <a href="/">&#x270D;&#xFE0F;</a>
+                        &#x2027;
                     </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="3">{{ item.description }}</td>
+                    <td>{{ item.capacity }}</td>
+                    <td>{% if item.car %}{{ item.car.name }}{% else %}-{% endif %}</td>
+                    <td></td>
                 </tr>
             {% endfor %}
         {% else %}
