@@ -19,14 +19,14 @@ class RegionCode
     #[ORM\Column(type: UlidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
-    private $id;
+    private ?Ulid $id;
 
     #[ORM\ManyToOne(targetEntity: Region::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $region;
+    private Region $region;
 
     #[ORM\Column(type: 'string', length: 3)]
-    private $code;
+    private string $code;
 
     public function getId(): ?Ulid
     {

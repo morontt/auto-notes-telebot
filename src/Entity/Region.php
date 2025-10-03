@@ -19,10 +19,10 @@ class Region
     #[ORM\Column(type: UlidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
-    private $id;
+    private ?Ulid $id;
 
     #[ORM\Column(type: 'string', length: 128)]
-    private $name;
+    private string $name;
 
     public function getId(): ?Ulid
     {

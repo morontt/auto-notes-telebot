@@ -27,7 +27,7 @@ class CodeGenerator
 
         $code = new Code();
         $code
-            ->setTelegramUserId($tgUserId)
+            ->setTelegramUserId((string)$tgUserId)
             ->setCode($random)
         ;
 

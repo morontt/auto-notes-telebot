@@ -25,16 +25,16 @@ class AccessToken
     #[ORM\Column(type: UlidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
-    private $id;
+    private ?Ulid $id;
 
     #[ORM\Column(type: 'integer', unique: true)]
-    private $userId;
+    private int $userId;
 
     #[ORM\Column(type: Types::TEXT, length: 65000)]
-    private $token;
+    private string $token;
 
     #[ORM\Column(type: 'datetime', nullable: false)]
-    private $expiredAt;
+    private DateTime $expiredAt;
 
     public function __construct()
     {
@@ -51,7 +51,7 @@ class AccessToken
         return $this->userId;
     }
 
-    public function setUserId($userId): self
+    public function setUserId(int $userId): self
     {
         $this->userId = $userId;
 
@@ -63,7 +63,7 @@ class AccessToken
         return $this->token;
     }
 
-    public function setToken($token): self
+    public function setToken(string $token): self
     {
         $this->token = $token;
 

@@ -24,16 +24,16 @@ class Code
     #[ORM\Column(type: UlidType::NAME, unique: true)]
     #[ORM\GeneratedValue(strategy: 'CUSTOM')]
     #[ORM\CustomIdGenerator(class: 'doctrine.ulid_generator')]
-    private $id;
+    private ?Ulid $id;
 
     #[ORM\Column(type: 'integer', nullable: true)]
-    private $userId;
+    private ?int $userId;
 
     #[ORM\Column(type: 'bigint')]
-    private $telegramUserId;
+    private string $telegramUserId;
 
     #[ORM\Column(type: 'string', length: 6)]
-    private $code;
+    private string $code;
 
     public function __construct()
     {
@@ -57,12 +57,12 @@ class Code
         return $this;
     }
 
-    public function getTelegramUserId(): int
+    public function getTelegramUserId(): string
     {
         return $this->telegramUserId;
     }
 
-    public function setTelegramUserId($telegramUserId): self
+    public function setTelegramUserId(string $telegramUserId): self
     {
         $this->telegramUserId = $telegramUserId;
 
