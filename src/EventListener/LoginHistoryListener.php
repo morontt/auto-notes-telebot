@@ -1,20 +1,21 @@
 <?php declare(strict_types=1);
 /**
  * User: morontt
- * Date: 26.02.2025
- * Time: 09:32
+ * Date: 03.10.2025
+ * Time: 08:09
  */
 
 namespace TeleBot\EventListener;
 
+use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\EventDispatcher\EventSubscriberInterface;
 use Symfony\Component\Security\Http\Event\LoginSuccessEvent;
+use TeleBot\Entity\LoginHistory;
 use TeleBot\Security\User;
-use TeleBot\Service\TokenStorage;
 
-readonly class SaveTokenListener implements EventSubscriberInterface
+readonly class LoginHistoryListener implements EventSubscriberInterface
 {
-    public function __construct(private TokenStorage $storage)
+    public function __construct(private EntityManagerInterface $em)
     {
     }
 
@@ -24,11 +25,15 @@ readonly class SaveTokenListener implements EventSubscriberInterface
         if ($user instanceof User) {
             $id = $user->getUserId();
 
-            $this->storage->setToken($user->getAccessToken(), $id);
+            $loginEvent = new LoginHistory();
+            $loginEvent->setUserId($id);
+
+            $this->em->persist($loginEvent);
+            $this->em->flush();
         }
     }
 
-    public static function getSubscribedEvents(): array
+    public static function getSubscribedEvents()
     {
         return [LoginSuccessEvent::class => 'onSuccessfulLogin'];
     }
