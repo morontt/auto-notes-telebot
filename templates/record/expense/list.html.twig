@@ -1,0 +1,52 @@
+{% extends "base.html.twig" %}
+
+{% block title %}Расходы | Автоблокнот{% endblock %}
+
+{% block headerline %}Расходы{% endblock %}
+
+{% block body %}
+    {% include 'nav.html.twig' %}
+    <table class="striped">
+        <thead>
+            <tr>
+                <th></th>
+                <th>Дата</th>
+                <th></th>
+                <th></th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+        {% if expenses|length > 0 %}
+            {% set idx = offset %}
+            {% for item in expenses %}
+                {% set idx = idx + 1 %}
+                <tr>
+                    <td class="idx">{{ idx }}</td>
+                    <td>{{ item.date|date('Y-m-d') }}</td>
+                    <td>{{ item.cost.value|number_format(2, '.', '') }} {{ item.cost.currencyCode|currency_symbol }}</td>
+                    <td>{{ item.type|expense_type }}</td>
+                    <td>
+                        &#x2027; <a href="/">&#x270D;&#xFE0F;</a>
+                        &#x2027;
+                    </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan="2">{{ item.description }}</td>
+                    <td>{% if item.car %}{{ item.car.name }}{% else %}-{% endif %}</td>
+                    <td></td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="8" style="text-align: center">Нет данных</td>
+            </tr>
+        {% endif %}
+        </tbody>
+    </table>
+    {{ pagination(expenses.paginationMeta, 'expense_list') }}
+    <p>
+{#        Добавить запись &rarr; <a href="{{ path('fuel_add') }}">&#x26FD;</a>#}
+    </p>
+{% endblock %}

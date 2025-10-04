@@ -1,11 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * User: morontt
  * Date: 23.03.2025
  * Time: 13:24
  */
-
-declare(strict_types=1);
 
 namespace TeleBot\Controller\Record;
 
@@ -22,7 +20,7 @@ use TeleBot\Form\FuelForm;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
-#[Route('/fuel')]
+#[Route('/records/fuel')]
 class FuelController extends BaseController
 {
     public function __construct(
@@ -44,11 +42,10 @@ class FuelController extends BaseController
         ;
 
         $user = $this->getAppUser();
-        $fuels = $this->rpcFuelRepository->getFuels($user, $filterObj);
 
         return $this->render('record/fuel/list.html.twig', [
-            'fuels' => $fuels,
-            'offset' => $page > 1 ? $limit * ($page - 1) : 0,
+            'fuels' => $this->rpcFuelRepository->getFuels($user, $filterObj),
+            'offset' => $this->offset($page, $limit),
         ]);
     }
 

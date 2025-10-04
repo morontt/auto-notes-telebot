@@ -1,11 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * User: morontt
  * Date: 13.09.2025
  * Time: 13:22
  */
-
-declare(strict_types=1);
 
 namespace TeleBot\Controller;
 
@@ -16,7 +14,7 @@ use TeleBot\Security\AccessTokenAwareInterface;
 
 class BaseController extends AbstractController
 {
-    public function getAppUser(): AccessTokenAwareInterface
+    protected function getAppUser(): AccessTokenAwareInterface
     {
         $user = $this->getUser();
         if (!$user) {
@@ -28,5 +26,10 @@ class BaseController extends AbstractController
         }
 
         return $user;
+    }
+
+    protected function offset(int $page, int $limit): int
+    {
+        return $page > 1 ? $limit * ($page - 1) : 0;
     }
 }

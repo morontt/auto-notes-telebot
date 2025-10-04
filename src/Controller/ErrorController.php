@@ -1,11 +1,9 @@
-<?php
+<?php declare(strict_types=1);
 /**
  * User: morontt
  * Date: 31.08.2025
  * Time: 13:17
  */
-
-declare(strict_types=1);
 
 namespace TeleBot\Controller;
 

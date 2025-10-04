@@ -10,7 +10,7 @@ namespace TeleBot\DTO\List;
 use TeleBot\DTO\CurrencyDTO;
 
 /**
- * @template-extends BaseList<CurrencyDTO>
+ * @extends BaseList<CurrencyDTO>
  */
 class CurrencyDTOList extends BaseList
 {

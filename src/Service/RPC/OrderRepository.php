@@ -9,9 +9,12 @@ declare(strict_types=1);
 
 namespace TeleBot\Service\RPC;
 
+use AutoNotes\Server\ExpenseFilter;
 use AutoNotes\Server\OrderFilter;
 use AutoNotes\Server\OrderRepositoryClient;
 use Psr\Log\LoggerInterface;
+use TeleBot\DTO\ExpenseDTO;
+use TeleBot\DTO\List\ExpenseDTOList;
 use TeleBot\DTO\List\OrderDTOList;
 use TeleBot\DTO\OrderDTO;
 use TeleBot\LogTrait;
@@ -49,5 +52,23 @@ class OrderRepository extends AbstractRepository
         $this->debug('gRPC response', ['orders_cnt' => count($orders)]);
 
         return $orders;
+    }
+
+    public function getExpenses(AccessTokenAwareInterface $user, ExpenseFilter $filter): ExpenseDTOList
+    {
+        $response = $this->client->GetExpenses($this->context($user), $filter);
+
+        $current = $response->getMeta()?->getCurrent() ?? 1;
+        $last = $response->getMeta()?->getLast() ?? 1;
+
+        $expenses = new ExpenseDTOList($current, $last);
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getExpenses() as $item) {
+            $expenses->add(ExpenseDTO::fromData($item));
+        }
+
+        $this->debug('gRPC response', ['expenses_cnt' => count($expenses)]);
+
+        return $expenses;
     }
 }

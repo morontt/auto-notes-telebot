@@ -1,36 +1,32 @@
 <?php declare(strict_types=1);
 /**
  * User: morontt
- * Date: 27.09.2025
- * Time: 12:57
+ * Date: 03.10.2025
+ * Time: 22:45
  */
 
 namespace TeleBot\DTO;
 
-use AutoNotes\Server\Order;
+use AutoNotes\Server\Expense;
 use DateTime;
 
-class OrderDTO extends BaseDTO
+class ExpenseDTO
 {
     protected int $id = 0;
     protected string $description = '';
-    protected ?string $capacity = null;
-    protected ?int $distance = null;
+    protected int $type = 0;
     protected ?CarDTO $car = null;
     protected ?CostDTO $cost = null;
-    protected ?OrderTypeDTO $type = null;
     protected ?DateTime $date = null;
-    protected ?DateTime $usedAt = null;
     protected ?DateTime $createdAt = null;
 
-    public static function fromData(Order $data): self
+    public static function fromData(Expense $data): self
     {
         $obj = new self();
 
         $obj->id = $data->getId();
-        $obj->distance = $data->getDistance();
         $obj->description = $data->getDescription();
-        $obj->capacity = $data->getCapacity();
+        $obj->type = $data->getType();
 
         if ($data->hasCar()) {
             $obj->car = CarDTO::fromData($data->getCar());
@@ -38,16 +34,9 @@ class OrderDTO extends BaseDTO
         if ($data->hasCost()) {
             $obj->cost = CostDTO::fromData($data->getCost());
         }
-        if ($data->hasType()) {
-            $obj->type = OrderTypeDTO::fromData($data->getType());
-        }
 
         if ($dt = $data->getDate()) {
             $obj->date = $dt->toDateTime();
-        }
-
-        if ($dt = $data->getUsedAt()) {
-            $obj->usedAt = $dt->toDateTime();
         }
 
         if ($dt = $data->getCreatedAt()) {
@@ -74,26 +63,14 @@ class OrderDTO extends BaseDTO
         return $this;
     }
 
-    public function getCapacity(): ?string
+    public function getType(): int
     {
-        return $this->capacity;
+        return $this->type;
     }
 
-    public function setCapacity(?string $capacity): self
+    public function setType(int $type): self
     {
-        $this->capacity = $capacity;
-
-        return $this;
-    }
-
-    public function getDistance(): ?int
-    {
-        return $this->distance;
-    }
-
-    public function setDistance(?int $distance): self
-    {
-        $this->distance = $distance;
+        $this->type = $type;
 
         return $this;
     }
@@ -122,18 +99,6 @@ class OrderDTO extends BaseDTO
         return $this;
     }
 
-    public function getType(): ?OrderTypeDTO
-    {
-        return $this->type;
-    }
-
-    public function setType(?OrderTypeDTO $type): self
-    {
-        $this->type = $type;
-
-        return $this;
-    }
-
     public function getDate(): ?DateTime
     {
         return $this->date;
@@ -142,18 +107,6 @@ class OrderDTO extends BaseDTO
     public function setDate(?DateTime $date): self
     {
         $this->date = $date;
-
-        return $this;
-    }
-
-    public function getUsedAt(): ?DateTime
-    {
-        return $this->usedAt;
-    }
-
-    public function setUsedAt(?DateTime $usedAt): self
-    {
-        $this->usedAt = $usedAt;
 
         return $this;
     }

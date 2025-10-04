@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 23.02.2025
@@ -8,12 +7,17 @@
 
 namespace TeleBot\Twig;
 
+use AutoNotes\Server\ExpenseType;
+use Psr\Log\LoggerInterface;
+use TeleBot\LogTrait;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
 
 class Extension extends AbstractExtension
 {
+    use LogTrait;
+
     /**
      * Source: https://www.compart.com/en/unicode/category/Sc
      *
@@ -34,6 +38,11 @@ class Extension extends AbstractExtension
         'PLN' => 'zł',
     ];
 
+    public function __construct(LoggerInterface $logger)
+    {
+        $this->setLogger($logger);
+    }
+
     public function getFunctions(): array
     {
         return [
@@ -45,6 +54,7 @@ class Extension extends AbstractExtension
     {
         return [
             new TwigFilter('currency_symbol', [self::class, 'currencySymbol']),
+            new TwigFilter('expense_type', [$this, 'expenseType']),
         ];
     }
 
@@ -69,5 +79,40 @@ class Extension extends AbstractExtension
         }
 
         return $code;
+    }
+
+    public function expenseType(int $type): string
+    {
+        $typeStr = '???';
+        switch ($type) {
+            case ExpenseType::GARAGE:
+                $typeStr = 'Гараж';
+                break;
+            case ExpenseType::TOOLS:
+                $typeStr = 'Инструменты';
+                break;
+            case ExpenseType::TAX:
+                $typeStr = 'Налоги';
+                break;
+            case ExpenseType::INSURANCE:
+                $typeStr = 'Страховка';
+                break;
+            case ExpenseType::ROAD:
+                $typeStr = 'Дорога';
+                break;
+            case ExpenseType::WASHING:
+                $typeStr = 'Мойка';
+                break;
+            case ExpenseType::PARKING:
+                $typeStr = 'Парковка';
+                break;
+            case ExpenseType::OTHER:
+                $typeStr = 'Разное';
+                break;
+            default:
+                $this->warning('unknown expense type', ['type' => $type]);
+        }
+
+        return $typeStr;
     }
 }

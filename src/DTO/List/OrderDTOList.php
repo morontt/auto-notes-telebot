@@ -10,7 +10,7 @@ namespace TeleBot\DTO\List;
 use TeleBot\DTO\OrderDTO;
 
 /**
- * @template-extends BaseList<OrderDTO>
+ * @extends BaseList<OrderDTO>
  */
 class OrderDTOList extends BaseList
 {

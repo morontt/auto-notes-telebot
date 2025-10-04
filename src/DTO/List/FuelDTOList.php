@@ -10,7 +10,7 @@ namespace TeleBot\DTO\List;
 use TeleBot\DTO\FuelDTO;
 
 /**
- * @template-extends BaseList<FuelDTO>
+ * @extends BaseList<FuelDTO>
  */
 class FuelDTOList extends BaseList
 {

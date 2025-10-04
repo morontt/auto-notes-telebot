@@ -10,7 +10,7 @@ namespace TeleBot\DTO\List;
 use TeleBot\DTO\CarDTO;
 
 /**
- * @template-extends BaseList<CarDTO>
+ * @extends BaseList<CarDTO>
  */
 class CarDTOList extends BaseList
 {

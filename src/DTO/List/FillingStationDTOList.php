@@ -10,7 +10,7 @@ namespace TeleBot\DTO\List;
 use TeleBot\DTO\FillingStationDTO;
 
 /**
- * @template-extends BaseList<FillingStationDTO>
+ * @extends BaseList<FillingStationDTO>
  */
 class FillingStationDTOList extends BaseList
 {
