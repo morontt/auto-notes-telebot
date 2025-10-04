@@ -7,9 +7,9 @@
 
 namespace TeleBot\Twig;
 
-use AutoNotes\Server\ExpenseType;
 use Psr\Log\LoggerInterface;
 use TeleBot\LogTrait;
+use TeleBot\Utils\GrpcReferense;
 use Twig\Extension\AbstractExtension;
 use Twig\TwigFilter;
 use Twig\TwigFunction;
@@ -83,34 +83,10 @@ class Extension extends AbstractExtension
 
     public function expenseType(int $type): string
     {
-        $typeStr = '???';
-        switch ($type) {
-            case ExpenseType::GARAGE:
-                $typeStr = 'Гараж';
-                break;
-            case ExpenseType::TOOLS:
-                $typeStr = 'Инструменты';
-                break;
-            case ExpenseType::TAX:
-                $typeStr = 'Налоги';
-                break;
-            case ExpenseType::INSURANCE:
-                $typeStr = 'Страховка';
-                break;
-            case ExpenseType::ROAD:
-                $typeStr = 'Дорога';
-                break;
-            case ExpenseType::WASHING:
-                $typeStr = 'Мойка';
-                break;
-            case ExpenseType::PARKING:
-                $typeStr = 'Парковка';
-                break;
-            case ExpenseType::OTHER:
-                $typeStr = 'Разное';
-                break;
-            default:
-                $this->warning('unknown expense type', ['type' => $type]);
+        $typeStr = GrpcReferense::$expenseTypeTitle[$type] ?? '';
+        if (!$typeStr) {
+            $typeStr = '???';
+            $this->warning('unknown expense type', ['type' => $type]);
         }
 
         return $typeStr;
