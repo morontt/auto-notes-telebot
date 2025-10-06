@@ -10,6 +10,7 @@ declare(strict_types=1);
 namespace TeleBot\Service\RPC;
 
 use AutoNotes\Server\ExpenseFilter;
+use AutoNotes\Server\IdRequest;
 use AutoNotes\Server\OrderFilter;
 use AutoNotes\Server\OrderRepositoryClient;
 use Psr\Log\LoggerInterface;
@@ -54,6 +55,33 @@ class OrderRepository extends AbstractRepository
         return $orders;
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
+    public function findOrder(AccessTokenAwareInterface $user, int $id): OrderDTO
+    {
+        $req = new IdRequest();
+        $req->setId($id);
+
+        $response = $this->client->FindOrder($this->context($user), $req);
+        $this->debug('gRPC response', ['order_id' => $response->getId()]);
+
+        return OrderDTO::fromData($response);
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function saveOrder(AccessTokenAwareInterface $user, OrderDTO $order): OrderDTO
+    {
+        $this->debug('Save order', ['data' => $order->toArray()]);
+
+        $response = $this->client->SaveOrder($this->context($user), $order->reverse());
+        $this->debug('gRPC response', ['order_id' => $response->getId()]);
+
+        return OrderDTO::fromData($response);
+    }
+
     public function getExpenses(AccessTokenAwareInterface $user, ExpenseFilter $filter): ExpenseDTOList
     {
         $response = $this->client->GetExpenses($this->context($user), $filter);
@@ -70,5 +98,32 @@ class OrderRepository extends AbstractRepository
         $this->debug('gRPC response', ['expenses_cnt' => count($expenses)]);
 
         return $expenses;
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function findExpense(AccessTokenAwareInterface $user, int $id): ExpenseDTO
+    {
+        $req = new IdRequest();
+        $req->setId($id);
+
+        $response = $this->client->FindExpense($this->context($user), $req);
+        $this->debug('gRPC response', ['expense_id' => $response->getId()]);
+
+        return ExpenseDTO::fromData($response);
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function saveExpense(AccessTokenAwareInterface $user, ExpenseDTO $expense): ExpenseDTO
+    {
+        $this->debug('Save expense', ['data' => $expense->toArray()]);
+
+        $response = $this->client->SaveExpense($this->context($user), $expense->reverse());
+        $this->debug('gRPC response', ['expense_id' => $response->getId()]);
+
+        return ExpenseDTO::fromData($response);
     }
 }

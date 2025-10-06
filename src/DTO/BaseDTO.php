@@ -7,6 +7,10 @@
 
 namespace TeleBot\DTO;
 
+use DateInterval;
+use DateTime;
+use Google\Protobuf\Timestamp;
+
 class BaseDTO
 {
     /**
@@ -15,6 +19,20 @@ class BaseDTO
     public function toArray(): array
     {
         return $this->doToArray(get_object_vars($this));
+    }
+
+    public static function fromPbTimestamp(Timestamp $ts): DateTime
+    {
+        return $ts->toDateTime()->add(new DateInterval('PT12H'));
+    }
+
+    public static function toPbTimestamp(DateTime $dt): Timestamp
+    {
+        $ts = new Timestamp();
+        $date = clone $dt;
+        $ts->fromDateTime($date->add(new DateInterval('PT12H')));
+
+        return $ts;
     }
 
     /**

@@ -22,4 +22,18 @@ class GrpcReferense
         ExpenseType::PARKING   => 'Парковка',
         ExpenseType::OTHER     => 'Разное',
     ];
+
+    /**
+     * @return array<string, int>
+     */
+    public static function expenseTypeChoices(): array
+    {
+        $choices = [];
+        foreach (self::$expenseTypeTitle as $key => $value) {
+            $choices[$value] = $key;
+        }
+        ksort($choices);
+
+        return $choices;
+    }
 }

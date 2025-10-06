@@ -27,7 +27,7 @@
                     <td>{{ item.cost.value|number_format(2, '.', '') }} {{ item.cost.currencyCode|currency_symbol }}</td>
                     <td>{{ item.type|expense_type }}</td>
                     <td>
-                        &#x2027; <a href="/">&#x270D;&#xFE0F;</a>
+                        &#x2027; <a href="{{ path('expense_edit', {id: item.id}) }}">&#x270D;&#xFE0F;</a>
                         &#x2027;
                     </td>
                 </tr>
@@ -47,6 +47,6 @@
     </table>
     {{ pagination(expenses.paginationMeta, 'expense_list') }}
     <p>
-{#        Добавить запись &rarr; <a href="{{ path('fuel_add') }}">&#x26FD;</a>#}
+        Добавить запись &rarr; <a href="{{ path('expense_add') }}">&#x1FA99;</a>
     </p>
 {% endblock %}

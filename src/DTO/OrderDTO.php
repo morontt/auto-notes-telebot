@@ -43,15 +43,44 @@ class OrderDTO extends BaseDTO
         }
 
         if ($dt = $data->getDate()) {
-            $obj->date = $dt->toDateTime();
+            $obj->date = self::fromPbTimestamp($dt);
         }
 
         if ($dt = $data->getUsedAt()) {
-            $obj->usedAt = $dt->toDateTime();
+            $obj->usedAt = self::fromPbTimestamp($dt);
         }
 
         if ($dt = $data->getCreatedAt()) {
             $obj->createdAt = $dt->toDateTime();
+        }
+
+        return $obj;
+    }
+
+    public function reverse(): Order
+    {
+        $obj = new Order();
+
+        $obj->setId($this->id);
+        $obj->setDescription($this->description);
+
+        if ($this->capacity) {
+            $obj->setCapacity($this->capacity);
+        }
+        if ($this->car) {
+            $obj->setCar($this->car->reverse());
+        }
+        if ($this->cost) {
+            $obj->setCost($this->cost->reverse());
+        }
+        if ($this->type) {
+            $obj->setType($this->type->reverse());
+        }
+        if ($this->date) {
+            $obj->setDate(self::toPbTimestamp($this->date));
+        }
+        if ($this->usedAt) {
+            $obj->setUsedAt(self::toPbTimestamp($this->usedAt));
         }
 
         return $obj;

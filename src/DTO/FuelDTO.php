@@ -8,9 +8,7 @@
 namespace TeleBot\DTO;
 
 use AutoNotes\Server\Fuel;
-use DateInterval;
 use DateTime;
-use Google\Protobuf\Timestamp;
 
 class FuelDTO extends BaseDTO
 {
@@ -46,7 +44,7 @@ class FuelDTO extends BaseDTO
         }
 
         if ($dt = $data->getDate()) {
-            $obj->date = $dt->toDateTime();
+            $obj->date = self::fromPbTimestamp($dt);
         }
 
         if ($dt = $data->getCreatedAt()) {
@@ -76,11 +74,7 @@ class FuelDTO extends BaseDTO
             $obj->setType($this->type->reverse());
         }
         if ($this->date) {
-            $ts = new Timestamp();
-            $date = clone $this->date;
-            $ts->fromDateTime($date->add(new DateInterval('PT12H')));
-
-            $obj->setDate($ts);
+            $obj->setDate(self::toPbTimestamp($this->date));
         }
 
         return $obj;

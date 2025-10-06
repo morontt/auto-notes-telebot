@@ -10,7 +10,7 @@ namespace TeleBot\DTO;
 use AutoNotes\Server\Expense;
 use DateTime;
 
-class ExpenseDTO
+class ExpenseDTO extends BaseDTO
 {
     protected int $id = 0;
     protected string $description = '';
@@ -36,11 +36,34 @@ class ExpenseDTO
         }
 
         if ($dt = $data->getDate()) {
-            $obj->date = $dt->toDateTime();
+            $obj->date = self::fromPbTimestamp($dt);
         }
 
         if ($dt = $data->getCreatedAt()) {
             $obj->createdAt = $dt->toDateTime();
+        }
+
+        return $obj;
+    }
+
+    public function reverse(): Expense
+    {
+        $obj = new Expense();
+
+        $obj->setId($this->id);
+        $obj->setDescription($this->description);
+
+        if ($this->car) {
+            $obj->setCar($this->car->reverse());
+        }
+        if ($this->cost) {
+            $obj->setCost($this->cost->reverse());
+        }
+        if ($this->type) {
+            $obj->setType($this->type);
+        }
+        if ($this->date) {
+            $obj->setDate(self::toPbTimestamp($this->date));
         }
 
         return $obj;

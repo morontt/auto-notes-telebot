@@ -25,7 +25,7 @@ class FuelController extends BaseController
 {
     public function __construct(
         private readonly RpcFuelRepository $rpcFuelRepository,
-        private readonly RpcUserRepository $rpcUserRepository
+        private readonly RpcUserRepository $rpcUserRepository,
     ) {
     }
 
