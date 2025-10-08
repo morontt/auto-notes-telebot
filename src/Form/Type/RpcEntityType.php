@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 13.03.2025
@@ -19,6 +18,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use TeleBot\Form\ChoiceList\RpcRepositoryChoiceLoader;
 use TeleBot\Security\AccessTokenAwareInterface;
 use TeleBot\Service\RPC\FuelRepository;
+use TeleBot\Service\RPC\OrderRepository;
 use TeleBot\Service\RPC\UserRepository;
 
 class RpcEntityType extends AbstractType
@@ -26,7 +26,8 @@ class RpcEntityType extends AbstractType
     public function __construct(
         private readonly UserRepository $rpcUserRepository,
         private readonly FuelRepository $rpcFuelRepository,
-        private readonly Security $security
+        private readonly OrderRepository $rpcOrderRepository,
+        private readonly Security $security,
     ) {
     }
 
@@ -35,6 +36,7 @@ class RpcEntityType extends AbstractType
         $choiceLoader = function (Options $options): ChoiceLoaderInterface {
             $userRepo = $this->rpcUserRepository;
             $fuelRepo = $this->rpcFuelRepository;
+            $orderRepo = $this->rpcOrderRepository;
             $user = $this->security->getUser();
             if (!$user instanceof AccessTokenAwareInterface) {
                 throw new LogicException(sprintf('User "%s" not supported', get_debug_type($user)));
@@ -52,8 +54,14 @@ class RpcEntityType extends AbstractType
                     new RpcRepositoryChoiceLoader($options['query_fuel_callback'], $fuelRepo, $user),
                     [$options['query_fuel_callback']]
                 );
+            } elseif (is_callable($options['query_order_callback'])) {
+                $loader = ChoiceList::loader(
+                    $this,
+                    new RpcRepositoryChoiceLoader($options['query_order_callback'], $orderRepo, $user),
+                    [$options['query_order_callback']]
+                );
             } else {
-                throw new LogicException('query_callback or query_fuel_callback must be defined');
+                throw new LogicException('query_callback must be defined');
             }
 
             return $loader;
@@ -72,6 +80,7 @@ class RpcEntityType extends AbstractType
         $resolver->setDefaults([
             'query_callback' => null,
             'query_fuel_callback' => null,
+            'query_order_callback' => null,
             'choices' => null,
             'choice_loader' => $choiceLoader,
             'choice_label' => ChoiceList::label($this, [__CLASS__, 'createChoiceLabel']),
@@ -81,6 +90,7 @@ class RpcEntityType extends AbstractType
 
         $resolver->setAllowedTypes('query_callback', ['null', 'callable']);
         $resolver->setAllowedTypes('query_fuel_callback', ['null', 'callable']);
+        $resolver->setAllowedTypes('query_order_callback', ['null', 'callable']);
     }
 
     public function getParent(): string

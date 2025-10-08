@@ -50,6 +50,9 @@ class ExpenseController extends BaseController
         ]);
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     #[Route('/add', name: 'expense_add')]
     public function createAction(Request $request): Response
     {
@@ -84,6 +87,9 @@ class ExpenseController extends BaseController
         ]);
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     #[Route('/{id}/edit', name: 'expense_edit', requirements: ['id' => Requirement::DIGITS])]
     public function editAction(Request $request, string $id): Response
     {

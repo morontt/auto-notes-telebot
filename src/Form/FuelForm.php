@@ -28,7 +28,9 @@ class FuelForm extends AbstractType
         $builder
             ->add('value', TextType::class)
             ->add('cost', CostType::class)
-            ->add('date', DateType::class)
+            ->add('date', DateType::class, [
+                'widget' => 'single_text',
+            ])
             ->add('car', RpcEntityType::class, [
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);

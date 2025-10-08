@@ -49,6 +49,9 @@ class FuelController extends BaseController
         ]);
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     #[Route('/add', name: 'fuel_add')]
     public function createAction(Request $request): Response
     {
@@ -88,6 +91,9 @@ class FuelController extends BaseController
         ]);
     }
 
+    /**
+     * @throws \Twirp\Error
+     */
     #[Route('/{id}/edit', name: 'fuel_edit', requirements: ['id' => Requirement::DIGITS])]
     public function editAction(Request $request, string $id): Response
     {

@@ -31,7 +31,7 @@
                     <td>{% if item.distance > 0 %}{{ item.distance }}{% else %}-{% endif %}</td>
                     <td>{% if item.usedAt %}{{ item.usedAt|date('Y-m-d') }}{% else %}-{% endif %}</td>
                     <td>
-                        &#x2027; <a href="/">&#x270D;&#xFE0F;</a>
+                        &#x2027; <a href="{{ path('order_edit', {id: item.id}) }}">&#x270D;&#xFE0F;</a>
                         &#x2027;
                     </td>
                 </tr>
@@ -52,6 +52,6 @@
     </table>
     {{ pagination(orders.paginationMeta, 'order_list') }}
     <p>
-{#        Добавить запись &rarr; <a href="{{ path('fuel_add') }}">&#x26FD;</a>#}
+        Добавить запись &rarr; <a href="{{ path('order_add') }}">&#x1F9FE;</a>
     </p>
 {% endblock %}

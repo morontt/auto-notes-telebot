@@ -13,11 +13,14 @@ use AutoNotes\Server\ExpenseFilter;
 use AutoNotes\Server\IdRequest;
 use AutoNotes\Server\OrderFilter;
 use AutoNotes\Server\OrderRepositoryClient;
+use Google\Protobuf\GPBEmpty;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\ExpenseDTO;
 use TeleBot\DTO\List\ExpenseDTOList;
 use TeleBot\DTO\List\OrderDTOList;
+use TeleBot\DTO\List\OrderTypeDTOList;
 use TeleBot\DTO\OrderDTO;
+use TeleBot\DTO\OrderTypeDTO;
 use TeleBot\LogTrait;
 use TeleBot\Security\AccessTokenAwareInterface;
 
@@ -125,5 +128,23 @@ class OrderRepository extends AbstractRepository
         $this->debug('gRPC response', ['expense_id' => $response->getId()]);
 
         return ExpenseDTO::fromData($response);
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function getOrderTypes(AccessTokenAwareInterface $user): OrderTypeDTOList
+    {
+        $response = $this->client->GetOrderTypes($this->context($user), new GPBEmpty());
+
+        $types = new OrderTypeDTOList();
+        // @phpstan-ignore foreach.nonIterable
+        foreach ($response->getTypes() as $item) {
+            $types->add(OrderTypeDTO::fromData($item));
+        }
+
+        $this->debug('gRPC response', ['types_cnt' => count($types)]);
+
+        return $types;
     }
 }
