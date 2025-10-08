@@ -45,6 +45,7 @@ class OrderForm extends AbstractType
                 },
                 'required' => false,
             ])
+            ->add('capacity', TextType::class)
             ->add('submit', SubmitType::class)
         ;
     }
