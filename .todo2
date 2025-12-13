@@ -21,7 +21,8 @@
     {
       "text": "Add metadata to collections for pagination",
       "priority": "medium",
-      "creation": 1741242850
+      "creation": 1741242850,
+      "completion": 1765639080
     },
     {
       "text": "Save user settings",

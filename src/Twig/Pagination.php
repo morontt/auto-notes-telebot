@@ -1,5 +1,4 @@
 <?php declare(strict_types=1);
-
 /**
  * User: morontt
  * Date: 24.09.2025
