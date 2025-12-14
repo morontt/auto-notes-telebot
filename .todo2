@@ -69,6 +69,11 @@
       "text": "Add validation for distance (cannot decrease)",
       "priority": "medium",
       "creation": 1743405310
+    },
+    {
+      "text": "Backup databases",
+      "priority": "medium",
+      "creation": 1765704621
     }
   ]
 }
