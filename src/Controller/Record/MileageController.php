@@ -41,7 +41,7 @@ class MileageController extends BaseController
         $user = $this->getAppUser();
 
         return $this->render('record/mileage/list.html.twig', [
-            'expenses' => $this->rpcCarRepository->getMileages($user, $filterObj),
+            'mileages' => $this->rpcCarRepository->getMileages($user, $filterObj),
             'offset' => $this->offset($page, $limit),
         ]);
     }
