@@ -13,7 +13,7 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use TeleBot\Controller\BaseController;
 use TeleBot\DTO\MileageDTO;
-use TeleBot\Form\ExpenseForm;
+use TeleBot\Form\MileageForm;
 use TeleBot\Service\RPC\CarRepository as RpcCarRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
@@ -63,7 +63,7 @@ class MileageController extends BaseController
             $mileageDto->setCar($userSettings->getDefaultCar());
         }
 
-        $form = $this->createForm(ExpenseForm::class, $mileageDto);
+        $form = $this->createForm(MileageForm::class, $mileageDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->rpcCarRepository->saveMileage($user, $form->getData());
