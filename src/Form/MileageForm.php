@@ -12,6 +12,7 @@ use Symfony\Component\Form\Extension\Core\Type\IntegerType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints;
 use TeleBot\DTO\MileageDTO;
 use TeleBot\Form\Type\RpcEntityType;
 use TeleBot\Security\User;
@@ -19,10 +20,14 @@ use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 class MileageForm extends AbstractType
 {
-        public function buildForm(FormBuilderInterface $builder, array $options): void
+    public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('distance', IntegerType::class)
+            ->add('distance', IntegerType::class, [
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                ],
+            ])
             ->add('car', RpcEntityType::class, [
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);

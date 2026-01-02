@@ -7,6 +7,7 @@
 namespace TeleBot\Controller\Record;
 
 use AutoNotes\Server\MileageFilter;
+use AutoNotes\Server\TwirpError;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -66,7 +67,18 @@ class MileageController extends BaseController
         $form = $this->createForm(MileageForm::class, $mileageDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->rpcCarRepository->saveMileage($user, $form->getData());
+            try {
+                $this->rpcCarRepository->saveMileage($user, $form->getData());
+            } catch (TwirpError $e) {
+                $catched = $this->twirpErrorToForm($e, $form);
+                if ($catched) {
+                    return $this->render('record/mileage/add.html.twig', [
+                        'form' => $form,
+                    ]);
+                }
+
+                throw $e;
+            }
 
             return $this->redirectToRoute('mileage_list');
         }
