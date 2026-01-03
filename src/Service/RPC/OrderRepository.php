@@ -46,7 +46,6 @@ class OrderRepository extends AbstractRepository
         $last = $response->getMeta()?->getLast() ?? 1;
 
         $orders = new OrderDTOList($current, $last);
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getOrders() as $item) {
             $orders->add(OrderDTO::fromData($item));
         }
@@ -91,7 +90,6 @@ class OrderRepository extends AbstractRepository
         $last = $response->getMeta()?->getLast() ?? 1;
 
         $expenses = new ExpenseDTOList($current, $last);
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getExpenses() as $item) {
             $expenses->add(ExpenseDTO::fromData($item));
         }
@@ -136,7 +134,6 @@ class OrderRepository extends AbstractRepository
         $response = $this->client->GetOrderTypes($this->context($user), new GPBEmpty());
 
         $types = new OrderTypeDTOList();
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getTypes() as $item) {
             $types->add(OrderTypeDTO::fromData($item));
         }

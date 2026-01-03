@@ -35,7 +35,6 @@ class CarRepository extends AbstractRepository
         $last = $response->getMeta()?->getLast() ?? 1;
 
         $items = new MileageDTOList($current, $last);
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getMileages() as $item) {
             $items->add(MileageDTO::fromData($item));
         }
