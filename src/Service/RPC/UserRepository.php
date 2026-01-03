@@ -41,7 +41,6 @@ class UserRepository extends AbstractRepository
         $response = $this->client->GetCars($this->context($user), new GPBEmpty());
 
         $cars = new CarDTOList();
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getCars() as $item) {
             $cars->add(CarDTO::fromData($item));
         }
@@ -81,7 +80,6 @@ class UserRepository extends AbstractRepository
         $response = $this->client->GetCurrencies($this->context($user), new GPBEmpty());
 
         $currencies = new CurrencyDTOList();
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getCurrencies() as $item) {
             $currencies->add(CurrencyDTO::fromData($item));
         }

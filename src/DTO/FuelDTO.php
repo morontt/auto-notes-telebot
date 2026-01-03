@@ -76,6 +76,9 @@ class FuelDTO extends BaseDTO
         if ($this->date) {
             $obj->setDate(self::toPbTimestamp($this->date));
         }
+        if ($this->distance) {
+            $obj->setDistance($this->distance);
+        }
 
         return $obj;
     }

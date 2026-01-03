@@ -8,6 +8,7 @@
 namespace TeleBot\Controller\Record;
 
 use AutoNotes\Server\FuelFilter;
+use AutoNotes\Server\TwirpError;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -81,7 +82,18 @@ class FuelController extends BaseController
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->rpcFuelRepository->saveFuel($user, $form->getData());
+            try {
+                $this->rpcFuelRepository->saveFuel($user, $form->getData());
+            } catch (TwirpError $e) {
+                $catched = $this->twirpErrorToForm($e, $form);
+                if ($catched) {
+                    return $this->render('record/fuel/add.html.twig', [
+                        'form' => $form,
+                    ]);
+                }
+
+                throw $e;
+            }
 
             return $this->redirectToRoute('fuel_list');
         }
@@ -103,7 +115,18 @@ class FuelController extends BaseController
         $form = $this->createForm(FuelForm::class, $fuelDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->rpcFuelRepository->saveFuel($user, $form->getData());
+            try {
+                $this->rpcFuelRepository->saveFuel($user, $form->getData());
+            } catch (TwirpError $e) {
+                $catched = $this->twirpErrorToForm($e, $form);
+                if ($catched) {
+                    return $this->render('record/fuel/add.html.twig', [
+                        'form' => $form,
+                    ]);
+                }
+
+                throw $e;
+            }
 
             return $this->redirectToRoute('fuel_list');
         }

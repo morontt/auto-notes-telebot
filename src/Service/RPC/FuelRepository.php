@@ -47,7 +47,6 @@ class FuelRepository extends AbstractRepository
         $last = $response->getMeta()?->getLast() ?? 1;
 
         $fuels = new FuelDTOList($current, $last);
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getFuels() as $item) {
             $fuels->add(FuelDTO::fromData($item));
         }
@@ -92,7 +91,6 @@ class FuelRepository extends AbstractRepository
         $response = $this->client->GetFillingStations($this->context($user), new GPBEmpty());
 
         $stations = new FillingStationDTOList();
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getStations() as $item) {
             $stations->add(FillingStationDTO::fromData($item));
         }
@@ -110,7 +108,6 @@ class FuelRepository extends AbstractRepository
         $response = $this->client->GetFuelTypes($this->context($user), new GPBEmpty());
 
         $types = new FuelTypeDTOList();
-        // @phpstan-ignore foreach.nonIterable
         foreach ($response->getTypes() as $item) {
             $types->add(FuelTypeDTO::fromData($item));
         }
