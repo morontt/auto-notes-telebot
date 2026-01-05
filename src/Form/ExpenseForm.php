@@ -26,21 +26,31 @@ class ExpenseForm extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('description', TextType::class)
-            ->add('cost', CostType::class)
+            ->add('description', TextType::class, [
+                'label' => 'form.label.description',
+            ])
+            ->add('cost', CostType::class, [
+                'label' => 'form.label.cost',
+            ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'form.label.date',
             ])
             ->add('car', RpcEntityType::class, [
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);
                 },
+                'label' => 'form.label.car',
                 'required' => false,
             ])
             ->add('type', ChoiceType::class, [
                 'choices' => GrpcReferense::expenseTypeChoices(),
+                'label' => 'form.label.expense_type',
+                'choice_translation_domain' => false,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'form.submit',
+            ])
         ;
     }
 

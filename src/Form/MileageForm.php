@@ -24,6 +24,7 @@ class MileageForm extends AbstractType
     {
         $builder
             ->add('distance', IntegerType::class, [
+                'label' => 'form.label.distance',
                 'constraints' => [
                     new Constraints\NotBlank(),
                 ],
@@ -32,11 +33,15 @@ class MileageForm extends AbstractType
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);
                 },
+                'label' => 'form.label.car',
             ])
             ->add('date', DateType::class, [
                 'widget' => 'single_text',
+                'label' => 'form.label.date',
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'form.submit',
+            ])
         ;
     }
 

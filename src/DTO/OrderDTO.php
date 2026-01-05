@@ -82,6 +82,9 @@ class OrderDTO extends BaseDTO
         if ($this->usedAt) {
             $obj->setUsedAt(self::toPbTimestamp($this->usedAt));
         }
+        if ($this->distance) {
+            $obj->setDistance($this->distance);
+        }
 
         return $obj;
     }

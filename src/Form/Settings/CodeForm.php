@@ -20,9 +20,11 @@ class CodeForm extends AbstractType
         $builder
             ->add('code', TextType::class, [
                 'required' => true,
-                'label' => 'Код',
+                'label' => 'form.label.user_code',
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'form.button.submit_code',
+            ])
         ;
     }
 }

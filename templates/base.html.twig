@@ -27,6 +27,24 @@
                     <a href="{{ path('settings') }}"
                        title="Настройки">{% if app.user %}&#x2699;&#xFE0F;{% else %}&#x1F512;{% endif %}</a>
                 </li>
+                {% if app.user %}
+                <li>&#x2506;</li>
+                <li>
+                    <a href="{{ path('fuel_list') }}" title="Топливо">&#x26FD;</a>
+                </li>
+                <li>
+                    <a href="{{ path('order_list') }}" title="Заказы">&#x1F9FE;</a>
+                </li>
+                <li>
+                    <a href="/" title="СТО/Работа">&#x1F527;</a>
+                </li>
+                <li>
+                    <a href="{{ path('expense_list') }}" title="Расходы">&#x1FA99;</a>
+                </li>
+                <li>
+                    <a href="{{ path('mileage_list') }}" title="Пробег">&#x1F6E3;&#xFE0F;</a>
+                </li>
+                {% endif %}
             </ul>
         </div>
     </nav>

@@ -1,0 +1,23 @@
+form:
+  label:
+    fuel_value: Объём
+    cost: ''
+    cost_value: Цена
+    currency_code: Валюта
+    date: Дата
+    car: Машина
+    filling_station: АЗС
+    fuel_type: Топливо
+    distance: Пробег
+    description: Описание
+    order_type: Тип
+    expense_type: Тип
+    used_at: Использовано
+    capacity: Количество
+    user_code: Код
+    default_car: Машина по умолчанию
+    default_currency: Валюьа по умолчанию
+    default_fuel: Топливо по умолчанию
+  button:
+    submit_code: Отправить
+  submit: Сохранить

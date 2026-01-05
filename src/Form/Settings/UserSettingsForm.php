@@ -27,6 +27,7 @@ class UserSettingsForm extends AbstractType
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCars($user);
                 },
+                'label' => 'form.label.default_car',
                 'required' => false,
                 'empty_data' => null,
             ])
@@ -34,6 +35,7 @@ class UserSettingsForm extends AbstractType
                 'query_callback' => function (RpcUserRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getCurrencies($user);
                 },
+                'label' => 'form.label.default_currency',
                 'required' => false,
                 'empty_data' => null,
             ])
@@ -41,10 +43,13 @@ class UserSettingsForm extends AbstractType
                 'query_fuel_callback' => function (RpcFuelRepository $rpcUserRepository, User $user) {
                     return $rpcUserRepository->getFuelTypes($user);
                 },
+                'label' => 'form.label.default_fuel',
                 'required' => false,
                 'empty_data' => null,
             ])
-            ->add('submit', SubmitType::class)
+            ->add('submit', SubmitType::class, [
+                'label' => 'form.submit',
+            ])
         ;
     }
 

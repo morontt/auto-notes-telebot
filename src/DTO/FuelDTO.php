@@ -100,12 +100,12 @@ class FuelDTO extends BaseDTO
         return $this;
     }
 
-    public function getDistance(): int
+    public function getDistance(): ?int
     {
         return $this->distance;
     }
 
-    public function setDistance(int $distance): self
+    public function setDistance(?int $distance): self
     {
         $this->distance = $distance;
 

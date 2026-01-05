@@ -40,9 +40,13 @@ class CostType extends AbstractType
         }
 
         $builder
-            ->add('value', TextType::class)
+            ->add('value', TextType::class, [
+                'label' => 'form.label.cost_value',
+            ])
             ->add('currencyCode', ChoiceType::class, [
                 'choices' => $choices,
+                'label' => 'form.label.currency_code',
+                'choice_translation_domain' => false,
             ])
         ;
     }
