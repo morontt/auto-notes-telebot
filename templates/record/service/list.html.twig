@@ -1,20 +1,17 @@
 {% extends "base.html.twig" %}
 
-{% block title %}Топливо | Автоблокнот{% endblock %}
+{% block title %}СТО/Работа | Автоблокнот{% endblock %}
 
-{% block headerline %}Топливо{% endblock %}
+{% block headerline %}СТО/Работа{% endblock %}
 
 {% block body %}
-    <table>
+    <table class="striped">
         <thead>
             <tr>
                 <th></th>
                 <th>Дата</th>
-                <th>Объём</th>
                 <th></th>
-                <th>АЗС</th>
                 <th></th>
-                <th>Авто</th>
                 <th>Пробег</th>
                 <th></th>
             </tr>
@@ -27,17 +24,23 @@
                 <tr>
                     <td class="idx">{{ idx }}</td>
                     <td>{{ item.date|date('Y-m-d') }}</td>
-                    <td>{{ item.value|number_format(2, '.', '') }}</td>
-                    <td>{{ item.type.name }}</td>
-                    <td>{{ item.station.name }}</td>
-                    <td>{{ item.cost.value|number_format(2, '.', '') }} {{ item.cost.currencyCode|currency_symbol }}</td>
-                    <td>{% if item.car %}{{ item.car.name }}{% else %}-{% endif %}</td>
+                    <td>{{ item.car.name }}</td>
+                    <td>
+                        {% if item.cost %}
+                            {{ item.cost.value|number_format(2, '.', '') }} {{ item.cost.currencyCode|currency_symbol }}
+                        {% else %}-{% endif %}
+                    </td>
                     <td>{% if item.distance > 0 %}{{ item.distance }}{% else %}-{% endif %}</td>
                     <td>
-                        &#x2027; <a href="{{ path('fuel_edit', {id: item.id}) }}">&#x270D;&#xFE0F;</a>
-                        <!-- &#x2027; <a href="{{ path('fuel_edit', {id: item.id}) }}">&#x1F5D1;&#xFE0F;</a> -->
+                        &#x2027; <a href="{{ path('service_edit', {id: item.id}) }}">&#x270D;&#xFE0F;</a>
                         &#x2027;
                     </td>
+                </tr>
+                <tr>
+                    <td></td>
+                    <td colspan=4>{{ item.description }}</td>
+
+                    <td></td>
                 </tr>
             {% endfor %}
         {% else %}
@@ -47,8 +50,8 @@
         {% endif %}
         </tbody>
     </table>
-    {{ pagination(items.paginationMeta, 'fuel_list') }}
+    {{ pagination(items.paginationMeta, 'service_list') }}
     <p>
-        Добавить запись &rarr; <a href="{{ path('fuel_add') }}">&#x26FD;</a>
+        Добавить запись &rarr; <a href="{{ path('service_add') }}">&#x1F527;</a>
     </p>
 {% endblock %}

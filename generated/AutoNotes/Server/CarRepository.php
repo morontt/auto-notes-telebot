@@ -25,6 +25,15 @@ interface CarRepository
     /**
      *
      *
+     * Generated from protobuf method <code>xelbot.com.autonotes.server.CarRepository/FindService</code>
+     *
+     * @throws \Twirp\Error
+     */
+    public function FindService(array $ctx, \AutoNotes\Server\IdRequest $req): \AutoNotes\Server\Service;
+
+    /**
+     *
+     *
      * Generated from protobuf method <code>xelbot.com.autonotes.server.CarRepository/SaveService</code>
      *
      * @throws \Twirp\Error

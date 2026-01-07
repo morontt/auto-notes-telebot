@@ -45,7 +45,7 @@ class FuelController extends BaseController
         $user = $this->getAppUser();
 
         return $this->render('record/fuel/list.html.twig', [
-            'fuels' => $this->rpcFuelRepository->getFuels($user, $filterObj),
+            'items' => $this->rpcFuelRepository->getFuels($user, $filterObj),
             'offset' => $this->offset($page, $limit),
         ]);
     }

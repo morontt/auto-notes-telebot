@@ -44,7 +44,7 @@ class OrderController extends BaseController
         $user = $this->getAppUser();
 
         return $this->render('record/order/list.html.twig', [
-            'orders' => $this->rpcOrderRepository->getOrders($user, $filterObj),
+            'items' => $this->rpcOrderRepository->getOrders($user, $filterObj),
             'offset' => $this->offset($page, $limit),
         ]);
     }

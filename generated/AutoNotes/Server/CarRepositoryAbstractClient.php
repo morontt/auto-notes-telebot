@@ -103,6 +103,29 @@ abstract class CarRepositoryAbstractClient
     /**
      * {@inheritdoc}
      */
+    public function FindService(array $ctx, \AutoNotes\Server\IdRequest $in): \AutoNotes\Server\Service
+    {
+        $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');
+        $ctx = Context::withServiceName($ctx, 'CarRepository');
+        $ctx = Context::withMethodName($ctx, 'FindService');
+
+        $out = new \AutoNotes\Server\Service();
+
+        $url = $this->addr;
+        if (empty($this->prefix)) {
+            $url = $url.'/xelbot.com.autonotes.server.CarRepository/FindService';
+        } else {
+            $url = $url.'/'.$this->prefix.'/xelbot.com.autonotes.server.CarRepository/FindService';
+        }
+
+        $this->doRequest($ctx, $url, $in, $out);
+
+        return $out;
+    }
+
+    /**
+     * {@inheritdoc}
+     */
     public function SaveService(array $ctx, \AutoNotes\Server\Service $in): \AutoNotes\Server\Service
     {
         $ctx = Context::withPackageName($ctx, 'xelbot.com.autonotes.server');

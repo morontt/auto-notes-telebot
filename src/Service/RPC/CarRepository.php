@@ -7,10 +7,14 @@
 namespace TeleBot\Service\RPC;
 
 use AutoNotes\Server\CarRepositoryClient;
+use AutoNotes\Server\IdRequest;
 use AutoNotes\Server\MileageFilter;
+use AutoNotes\Server\ServiceFilter;
 use Psr\Log\LoggerInterface;
 use TeleBot\DTO\List\MileageDTOList;
+use TeleBot\DTO\List\ServiceDTOList;
 use TeleBot\DTO\MileageDTO;
+use TeleBot\DTO\ServiceDTO;
 use TeleBot\LogTrait;
 use TeleBot\Security\AccessTokenAwareInterface;
 
@@ -55,5 +59,52 @@ class CarRepository extends AbstractRepository
         $this->debug('gRPC response', ['mileage_id' => $response->getId()]);
 
         return MileageDTO::fromData($response);
+    }
+
+        /**
+     * @throws \Twirp\Error
+     */
+    public function getServices(AccessTokenAwareInterface $user, ServiceFilter $filter): ServiceDTOList
+    {
+        $response = $this->client->GetServices($this->context($user), $filter);
+
+        $current = $response->getMeta()?->getCurrent() ?? 1;
+        $last = $response->getMeta()?->getLast() ?? 1;
+
+        $orders = new ServiceDTOList($current, $last);
+        foreach ($response->getServices() as $item) {
+            $orders->add(ServiceDTO::fromData($item));
+        }
+
+        $this->debug('gRPC response', ['services_cnt' => count($orders)]);
+
+        return $orders;
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function findService(AccessTokenAwareInterface $user, int $id): ServiceDTO
+    {
+        $req = new IdRequest();
+        $req->setId($id);
+
+        $response = $this->client->FindService($this->context($user), $req);
+        $this->debug('gRPC response', ['service_id' => $response->getId()]);
+
+        return ServiceDTO::fromData($response);
+    }
+
+    /**
+     * @throws \Twirp\Error
+     */
+    public function saveService(AccessTokenAwareInterface $user, ServiceDTO $service): ServiceDTO
+    {
+        $this->debug('Save service', ['data' => $service->toArray()]);
+
+        $response = $this->client->SaveService($this->context($user), $service->reverse());
+        $this->debug('gRPC response', ['service_id' => $response->getId()]);
+
+        return ServiceDTO::fromData($response);
     }
 }

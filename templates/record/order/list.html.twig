@@ -18,9 +18,9 @@
             </tr>
         </thead>
         <tbody>
-        {% if orders|length > 0 %}
+        {% if items|length > 0 %}
             {% set idx = offset %}
-            {% for item in orders %}
+            {% for item in items %}
                 {% set idx = idx + 1 %}
                 <tr>
                     <td class="idx">{{ idx }}</td>
@@ -49,7 +49,7 @@
         {% endif %}
         </tbody>
     </table>
-    {{ pagination(orders.paginationMeta, 'order_list') }}
+    {{ pagination(items.paginationMeta, 'order_list') }}
     <p>
         Добавить запись &rarr; <a href="{{ path('order_add') }}">&#x1F9FE;</a>
     </p>

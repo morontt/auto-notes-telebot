@@ -37,6 +37,10 @@ class Service extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>.google.protobuf.Timestamp created_at = 6;</code>
      */
     protected $created_at = null;
+    /**
+     * Generated from protobuf field <code>int32 distance = 7;</code>
+     */
+    protected $distance = 0;
 
     /**
      * Constructor.
@@ -50,6 +54,7 @@ class Service extends \Google\Protobuf\Internal\Message
      *     @type \Google\Protobuf\Timestamp $date
      *     @type \AutoNotes\Server\Car $car
      *     @type \Google\Protobuf\Timestamp $created_at
+     *     @type int $distance
      * }
      */
     public function __construct($data = NULL) {
@@ -225,6 +230,28 @@ class Service extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkMessage($var, \Google\Protobuf\Timestamp::class);
         $this->created_at = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 distance = 7;</code>
+     * @return int
+     */
+    public function getDistance()
+    {
+        return $this->distance;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 distance = 7;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setDistance($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->distance = $var;
 
         return $this;
     }

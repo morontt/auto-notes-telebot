@@ -1,14 +1,12 @@
 <?php declare(strict_types=1);
 /**
  * User: morontt
- * Date: 03.10.2025
- * Time: 22:07
+ * Date: 05.01.2026
  */
 
 namespace TeleBot\Controller\Record;
 
-use AutoNotes\Server\ExpenseFilter;
-use AutoNotes\Server\ExpenseType;
+use AutoNotes\Server\ServiceFilter;
 use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -16,27 +14,27 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use TeleBot\Controller\BaseController;
 use TeleBot\DTO\CostDTO;
-use TeleBot\DTO\ExpenseDTO;
-use TeleBot\Form\ExpenseForm;
-use TeleBot\Service\RPC\OrderRepository as RpcOrderRepository;
+use TeleBot\DTO\OrderDTO;
+use TeleBot\Form\OrderForm;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
+use TeleBot\Service\RPC\CarRepository as RpcCarRepository;
 
-#[Route('/records/expense')]
-class ExpenseController extends BaseController
+#[Route('/records/service')]
+class ServiceController extends BaseController
 {
     public function __construct(
-        private readonly RpcOrderRepository $rpcOrderRepository,
-        private readonly RpcUserRepository $rpcUserRepository,
+        private readonly RpcCarRepository $rpcCarRepository,
+        private readonly RpcUserRepository $rpcUserRepository
     ) {
     }
 
-    #[Route('', name: 'expense_list', defaults: ['page' => 1])]
+    #[Route('', name: 'service_list', defaults: ['page' => 1])]
     public function listAction(Request $request): Response
     {
         $limit = (int)$request->query->get('limit', 10);
         $page = (int)$request->query->get('page', 1);
 
-        $filterObj = new ExpenseFilter();
+        $filterObj = new ServiceFilter();
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
@@ -44,8 +42,8 @@ class ExpenseController extends BaseController
 
         $user = $this->getAppUser();
 
-        return $this->render('record/expense/list.html.twig', [
-            'items' => $this->rpcOrderRepository->getExpenses($user, $filterObj),
+        return $this->render('record/service/list.html.twig', [
+            'items' => $this->rpcCarRepository->getServices($user, $filterObj),
             'offset' => $this->offset($page, $limit),
         ]);
     }
@@ -53,13 +51,12 @@ class ExpenseController extends BaseController
     /**
      * @throws \Twirp\Error
      */
-    #[Route('/add', name: 'expense_add')]
+    #[Route('/add', name: 'service_add')]
     public function createAction(Request $request): Response
     {
-        $expenseDto = new ExpenseDTO();
-        $expenseDto
+        $orderDto = new OrderDTO();
+        $orderDto
             ->setDate(new DateTime())
-            ->setType(ExpenseType::OTHER)
         ;
 
         $user = $this->getAppUser();
@@ -71,18 +68,18 @@ class ExpenseController extends BaseController
                 $costDto->setCurrencyCode($currency->getCode());
             }
 
-            $expenseDto->setCost($costDto);
+            $orderDto->setCost($costDto);
         }
 
-        $form = $this->createForm(ExpenseForm::class, $expenseDto);
+        $form = $this->createForm(OrderForm::class, $orderDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->rpcOrderRepository->saveExpense($user, $form->getData());
+            $this->rpcCarRepository->saveService($user, $form->getData());
 
-            return $this->redirectToRoute('expense_list');
+            return $this->redirectToRoute('service_list');
         }
 
-        return $this->render('record/expense/add.html.twig', [
+        return $this->render('record/service/add.html.twig', [
             'form' => $form,
         ]);
     }
@@ -90,21 +87,21 @@ class ExpenseController extends BaseController
     /**
      * @throws \Twirp\Error
      */
-    #[Route('/{id}/edit', name: 'expense_edit', requirements: ['id' => Requirement::DIGITS])]
+    #[Route('/{id}/edit', name: 'service_edit', requirements: ['id' => Requirement::DIGITS])]
     public function editAction(Request $request, string $id): Response
     {
         $user = $this->getAppUser();
-        $expenseDto = $this->rpcOrderRepository->findExpense($user, (int)$id);
+        $orderDto = $this->rpcCarRepository->findService($user, (int)$id);
 
-        $form = $this->createForm(ExpenseForm::class, $expenseDto);
+        $form = $this->createForm(OrderForm::class, $orderDto);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $this->rpcOrderRepository->saveExpense($user, $form->getData());
+            $this->rpcCarRepository->saveService($user, $form->getData());
 
-            return $this->redirectToRoute('expense_list');
+            return $this->redirectToRoute('service_list');
         }
 
-        return $this->render('record/expense/add.html.twig', [
+        return $this->render('record/service/add.html.twig', [
             'form' => $form,
         ]);
     }
