@@ -11,3 +11,9 @@ generate:
 	--php_out=generated \
 	proto/auth.proto ; \
 	docker exec telebot chown -R www-data:www-data generated
+
+cert:
+	rm ./docker/nginx/fullchain.pem
+	rm ./docker/nginx/privkey.pem
+	scp witty:/etc/letsencrypt/live/xelbot.com/fullchain.pem ./docker/nginx
+	scp witty:/etc/letsencrypt/live/xelbot.com/privkey.pem ./docker/nginx
