@@ -14,6 +14,7 @@ use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Validator\Constraints;
 use TeleBot\DTO\OrderDTO;
 use TeleBot\Form\Type\CostType;
 use TeleBot\Form\Type\RpcEntityType;
@@ -29,6 +30,10 @@ class OrderForm extends AbstractType
         $builder
             ->add('description', TextType::class, [
                 'label' => 'form.label.description',
+                'constraints' => [
+                    new Constraints\NotBlank(),
+                    new Constraints\Length(max: 255)
+                ],
             ])
             ->add('type', RpcEntityType::class, [
                 'query_order_callback' => function (RpcOrderRepository $rpcOrderRepository, User $user) {
@@ -62,6 +67,9 @@ class OrderForm extends AbstractType
             ->add('capacity', TextType::class, [
                 'label' => 'form.label.capacity',
                 'required' => false,
+                'constraints' => [
+                    new Constraints\Length(max: 255)
+                ],
             ])
             ->add('submit', SubmitType::class, [
                 'label' => 'form.submit',

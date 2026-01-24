@@ -28,7 +28,10 @@ class FuelDTO extends BaseDTO
 
         $obj->id = $data->getId();
         $obj->value = $data->getValue();
-        $obj->distance = $data->getDistance();
+
+        if ($data->getDistance() > 0) {
+            $obj->distance = $data->getDistance();
+        }
 
         if ($data->hasCar()) {
             $obj->car = CarDTO::fromData($data->getCar());

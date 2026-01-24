@@ -61,7 +61,7 @@ class CarRepository extends AbstractRepository
         return MileageDTO::fromData($response);
     }
 
-        /**
+    /**
      * @throws \Twirp\Error
      */
     public function getServices(AccessTokenAwareInterface $user, ServiceFilter $filter): ServiceDTOList

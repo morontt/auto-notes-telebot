@@ -14,10 +14,10 @@ use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use TeleBot\Controller\BaseController;
 use TeleBot\DTO\CostDTO;
-use TeleBot\DTO\OrderDTO;
-use TeleBot\Form\OrderForm;
-use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
+use TeleBot\DTO\ServiceDTO;
+use TeleBot\Form\ServiceForm;
 use TeleBot\Service\RPC\CarRepository as RpcCarRepository;
+use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/records/service')]
 class ServiceController extends BaseController
@@ -54,8 +54,8 @@ class ServiceController extends BaseController
     #[Route('/add', name: 'service_add')]
     public function createAction(Request $request): Response
     {
-        $orderDto = new OrderDTO();
-        $orderDto
+        $serviceDTO = new ServiceDTO();
+        $serviceDTO
             ->setDate(new DateTime())
         ;
 
@@ -68,10 +68,10 @@ class ServiceController extends BaseController
                 $costDto->setCurrencyCode($currency->getCode());
             }
 
-            $orderDto->setCost($costDto);
+            $serviceDTO->setCost($costDto);
         }
 
-        $form = $this->createForm(OrderForm::class, $orderDto);
+        $form = $this->createForm(ServiceForm::class, $serviceDTO);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->rpcCarRepository->saveService($user, $form->getData());
@@ -91,9 +91,22 @@ class ServiceController extends BaseController
     public function editAction(Request $request, string $id): Response
     {
         $user = $this->getAppUser();
-        $orderDto = $this->rpcCarRepository->findService($user, (int)$id);
+        $serviceDTO = $this->rpcCarRepository->findService($user, (int)$id);
 
-        $form = $this->createForm(OrderForm::class, $orderDto);
+        if (!$serviceDTO->hasCost()) {
+            $userSettings = $this->rpcUserRepository->getUserSettings($user);
+            if ($userSettings && $userSettings->hasDefaultCurrency()) {
+                $costDto = new CostDTO();
+                $currency = $userSettings->getDefaultCurrency();
+                if ($currency) {
+                    $costDto->setCurrencyCode($currency->getCode());
+                }
+
+                $serviceDTO->setCost($costDto);
+            }
+        }
+
+        $form = $this->createForm(ServiceForm::class, $serviceDTO);
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
             $this->rpcCarRepository->saveService($user, $form->getData());

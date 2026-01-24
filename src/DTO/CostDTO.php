@@ -28,7 +28,9 @@ class CostDTO extends BaseDTO
     {
         $obj = new Cost();
 
-        $obj->setValue($this->value);
+        if (isset($this->value)) {
+            $obj->setValue($this->value);
+        }
         $obj->setCurrency($this->currencyCode);
 
         return $obj;
@@ -39,8 +41,9 @@ class CostDTO extends BaseDTO
         return 0.01 * $this->value;
     }
 
-    public function setValue(float $value): self
+    public function setValue(?float $value): self
     {
+        $value ??= 0;
         $this->value = (int)(0.5 + 100 * $value);
 
         return $this;

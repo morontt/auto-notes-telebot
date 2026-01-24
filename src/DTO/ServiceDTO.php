@@ -24,8 +24,11 @@ class ServiceDTO extends BaseDTO
         $obj = new self();
 
         $obj->id = $data->getId();
-        $obj->distance = $data->getDistance();
         $obj->description = $data->getDescription();
+
+        if ($data->getDistance() > 0) {
+            $obj->distance = $data->getDistance();
+        }
 
         if ($data->hasCar()) {
             $obj->car = CarDTO::fromData($data->getCar());
@@ -60,6 +63,9 @@ class ServiceDTO extends BaseDTO
         }
         if ($this->distance) {
             $obj->setDistance($this->distance);
+        }
+        if ($this->date) {
+            $obj->setDate(self::toPbTimestamp($this->date));
         }
 
         return $obj;
@@ -104,6 +110,11 @@ class ServiceDTO extends BaseDTO
         $this->car = $car;
 
         return $this;
+    }
+
+    public function hasCost(): bool
+    {
+        return $this->cost !== null;
     }
 
     public function getCost(): ?CostDTO

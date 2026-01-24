@@ -28,9 +28,12 @@ class OrderDTO extends BaseDTO
         $obj = new self();
 
         $obj->id = $data->getId();
-        $obj->distance = $data->getDistance();
         $obj->description = $data->getDescription();
         $obj->capacity = $data->getCapacity();
+
+        if ($data->getDistance() > 0) {
+            $obj->distance = $data->getDistance();
+        }
 
         if ($data->hasCar()) {
             $obj->car = CarDTO::fromData($data->getCar());
