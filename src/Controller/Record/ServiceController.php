@@ -61,14 +61,20 @@ class ServiceController extends BaseController
 
         $user = $this->getAppUser();
         $userSettings = $this->rpcUserRepository->getUserSettings($user);
-        if ($userSettings && $userSettings->hasDefaultCurrency()) {
-            $costDto = new CostDTO();
-            $currency = $userSettings->getDefaultCurrency();
-            if ($currency) {
-                $costDto->setCurrencyCode($currency->getCode());
+        if ($userSettings) {
+            if ($userSettings->hasDefaultCurrency()) {
+                $costDto = new CostDTO();
+                $currency = $userSettings->getDefaultCurrency();
+                if ($currency) {
+                    $costDto->setCurrencyCode($currency->getCode());
+                }
+
+                $serviceDTO->setCost($costDto);
             }
 
-            $serviceDTO->setCost($costDto);
+            if ($userSettings->hasDefaultCar()) {
+                $serviceDTO->setCar($userSettings->getDefaultCar());
+            }
         }
 
         $form = $this->createForm(ServiceForm::class, $serviceDTO);
