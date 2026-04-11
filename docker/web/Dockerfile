@@ -19,10 +19,12 @@ RUN apt-get update \
     mariadb-client \
     protobuf-compiler \
     libprotobuf-dev \
+    libicu-dev \
     ; \
     apt-get clean && rm -rf /tmp/* /var/tmp/*
 
 RUN docker-php-ext-install -j$(nproc) zip opcache pdo_mysql \
+    intl \
     && yes | pecl install xdebug \
     && docker-php-ext-enable xdebug \
     && cp ${PHP_INI_DIR}/php.ini-development ${PHP_INI_DIR}/php.ini \
