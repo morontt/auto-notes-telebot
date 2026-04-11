@@ -6784,12 +6784,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/xelbot/lib-telegram.git",
-                "reference": "eaa38b00a671314cbd8da2256b4786aac313153d"
+                "reference": "d090eca5e5d7debd60ceee0a0ab1b8ada4107165"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/xelbot/lib-telegram/zipball/eaa38b00a671314cbd8da2256b4786aac313153d",
-                "reference": "eaa38b00a671314cbd8da2256b4786aac313153d",
+                "url": "https://api.github.com/repos/xelbot/lib-telegram/zipball/d090eca5e5d7debd60ceee0a0ab1b8ada4107165",
+                "reference": "d090eca5e5d7debd60ceee0a0ab1b8ada4107165",
                 "shasum": ""
             },
             "require": {
@@ -6832,7 +6832,7 @@
                 "issues": "https://github.com/xelbot/lib-telegram/issues",
                 "source": "https://github.com/xelbot/lib-telegram/tree/master"
             },
-            "time": "2025-06-28T08:55:22+00:00"
+            "time": "2026-03-21T11:30:10+00:00"
         }
     ],
     "packages-dev": [

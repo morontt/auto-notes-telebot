@@ -44,6 +44,7 @@ services:
         arguments:
             - "%env(BOT_TOKEN)%"
             - "%env(int:BOT_ADMIN_ID)%"
+            - "%env(bool:BOT_DRY_RUN)%"
         calls:
             - [ setLogger, [ "@monolog.logger" ]]
 
