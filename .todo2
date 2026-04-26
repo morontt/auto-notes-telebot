@@ -4,7 +4,8 @@
     {
       "text": "Install intl extension",
       "priority": "medium",
-      "creation": 1739088759
+      "creation": 1739088759,
+      "completion": 1775888573
     },
     {
       "text": "Проверить, что такого кода нет в БД",
