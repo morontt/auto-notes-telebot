@@ -14,7 +14,7 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use TeleBot\Controller\BaseController;
+use TeleBot\Controller\RecordController;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
@@ -24,7 +24,7 @@ use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/records/fuel')]
-class FuelController extends BaseController
+class FuelController extends RecordController
 {
     public function __construct(
         private readonly RpcFuelRepository $rpcFuelRepository,
@@ -38,17 +38,14 @@ class FuelController extends BaseController
         $limit = (int)$request->query->get('limit', 10);
         $page = (int)$request->query->get('page', 1);
 
-        $filterObj = new FuelFilter();
+        $filterForm = $this->createForm(FuelFilterForm::class);
+        $filterData = $this->handleFilterForm($filterForm, $request);
+
+        $filterObj = new FuelFilter($filterData);
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
         ;
-
-        $filterForm = $this->createForm(FuelFilterForm::class);
-        $filterForm->handleRequest($request);
-        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
-            $this->setupFilter($filterObj, $filterForm->getData());
-        }
 
         $user = $this->getAppUser();
 
@@ -147,11 +144,17 @@ class FuelController extends BaseController
 
     /**
      * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
      */
-    private function setupFilter(FuelFilter $filter, array $data): void
+    protected function getFilterData(array $data): array
     {
+        $filterArray = [];
+
         if (isset($data['car']) && $data['car'] instanceof CarDTO) {
-            $filter->setCarId($data['car']->getId());
+            $filterArray['car_id'] = $data['car']->getId();
         }
+
+        return $filterArray;
     }
 }
