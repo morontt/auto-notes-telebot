@@ -15,8 +15,10 @@ use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
 use TeleBot\Controller\BaseController;
+use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\FuelDTO;
+use TeleBot\Form\Filters\FuelFilterForm;
 use TeleBot\Form\FuelForm;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
@@ -40,14 +42,20 @@ class FuelController extends BaseController
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
-            //->setCarId(2)
         ;
+
+        $filterForm = $this->createForm(FuelFilterForm::class);
+        $filterForm->handleRequest($request);
+        if ($filterForm->isSubmitted() && $filterForm->isValid()) {
+            $this->setupFilter($filterObj, $filterForm->getData());
+        }
 
         $user = $this->getAppUser();
 
         return $this->render('record/fuel/list.html.twig', [
             'items' => $this->rpcFuelRepository->getFuels($user, $filterObj),
             'offset' => $this->offset($page, $limit),
+            'filter' => $filterForm,
         ]);
     }
 
@@ -135,5 +143,15 @@ class FuelController extends BaseController
         return $this->render('record/fuel/add.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     */
+    private function setupFilter(FuelFilter $filter, array $data): void
+    {
+        if (isset($data['car']) && $data['car'] instanceof CarDTO) {
+            $filter->setCarId($data['car']->getId());
+        }
     }
 }

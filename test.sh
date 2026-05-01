@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+echo -e "\e[36mStart pre-push hook\e[0m\n"
+
+docker compose run --rm --remove-orphans -T telebot bash -c "bin/php-cs-fixer fix --dry-run --diff"
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo -e "\n\e[31mPHP-CS-Fixer error\e[0m\n"
+    exit 1
+else
+    echo -e "\n\e[32mPHP-CS-Fixer OK\e[0m\n"
+fi
+
+docker compose run --rm --remove-orphans -T telebot bash -c "bin/phpunit"
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo -e "\e[31mPHPUnit error\e[0m\n"
+    exit 1
+else
+    echo -e "\e[32mPHPUnit OK\e[0m\n"
+fi
+
+docker compose run --rm --remove-orphans -T telebot bash -c "bin/phpstan analyse"
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo -e "\e[31mPHPStan error\e[0m\n"
+    exit 1
+else
+    echo -e "\e[32mPHPStan OK\e[0m\n"
+fi
+
+docker compose run --rm --remove-orphans -T telebot bash -c "php bin/console doctrine:schema:validate"
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo -e "\e[31mdoctrine:schema:validate error\e[0m\n"
+    exit 1
+else
+    echo -e "\e[32mdoctrine:schema:validate OK\e[0m\n"
+fi
+
+exit 0

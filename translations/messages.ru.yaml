@@ -20,4 +20,5 @@ form:
     default_fuel: Топливо по умолчанию
   button:
     submit_code: Отправить
+    filter: Фильтр
   submit: Сохранить

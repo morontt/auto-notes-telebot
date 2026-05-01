@@ -3,7 +3,7 @@
         {% for page in pagesInRange %}
             {% if page != current %}
                 <li class="page">
-                    <a href="{{ path(routeName, {page: page}) }}">{{ page }}</a>
+                    <a href="{{ path(routeName, queryParams|merge({page: page})) }}">{{ page }}</a>
                 </li>
             {% else %}
                 <li class="current">{{ page }}</li>
