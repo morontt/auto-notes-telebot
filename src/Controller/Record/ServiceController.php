@@ -12,15 +12,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use TeleBot\Controller\BaseController;
+use TeleBot\Controller\RecordController;
+use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\ServiceDTO;
+use TeleBot\Form\Filters\ServiceFilterForm;
 use TeleBot\Form\ServiceForm;
 use TeleBot\Service\RPC\CarRepository as RpcCarRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/records/service')]
-class ServiceController extends BaseController
+class ServiceController extends RecordController
 {
     public function __construct(
         private readonly RpcCarRepository $rpcCarRepository,
@@ -34,11 +36,13 @@ class ServiceController extends BaseController
         $limit = (int)$request->query->get('limit', 10);
         $page = (int)$request->query->get('page', 1);
 
-        $filterObj = new ServiceFilter();
+        $filterForm = $this->createForm(ServiceFilterForm::class);
+        $filterData = $this->handleFilterForm($filterForm, $request);
+
+        $filterObj = new ServiceFilter($filterData);
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
-            //->setCarId(2)
         ;
 
         $user = $this->getAppUser();
@@ -46,6 +50,7 @@ class ServiceController extends BaseController
         return $this->render('record/service/list.html.twig', [
             'items' => $this->rpcCarRepository->getServices($user, $filterObj),
             'offset' => $this->offset($page, $limit),
+            'filter' => $filterForm,
         ]);
     }
 
@@ -124,5 +129,21 @@ class ServiceController extends BaseController
         return $this->render('record/service/add.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
+     */
+    protected function getFilterData(array $data): array
+    {
+        $filterArray = [];
+
+        if (isset($data['car']) && $data['car'] instanceof CarDTO) {
+            $filterArray['car_id'] = $data['car']->getId();
+        }
+
+        return $filterArray;
     }
 }

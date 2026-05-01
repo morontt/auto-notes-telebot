@@ -12,14 +12,16 @@ use DateTime;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
-use TeleBot\Controller\BaseController;
+use TeleBot\Controller\RecordController;
+use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\MileageDTO;
+use TeleBot\Form\Filters\MileageFilterForm;
 use TeleBot\Form\MileageForm;
 use TeleBot\Service\RPC\CarRepository as RpcCarRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/records/mileage')]
-class MileageController extends BaseController
+class MileageController extends RecordController
 {
     public function __construct(
         private readonly RpcCarRepository $rpcCarRepository,
@@ -33,11 +35,13 @@ class MileageController extends BaseController
         $limit = (int)$request->query->get('limit', 10);
         $page = (int)$request->query->get('page', 1);
 
-        $filterObj = new MileageFilter();
+        $filterForm = $this->createForm(MileageFilterForm::class);
+        $filterData = $this->handleFilterForm($filterForm, $request);
+
+        $filterObj = new MileageFilter($filterData);
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
-            //->setCarId(3)
         ;
 
         $user = $this->getAppUser();
@@ -45,6 +49,7 @@ class MileageController extends BaseController
         return $this->render('record/mileage/list.html.twig', [
             'items' => $this->rpcCarRepository->getMileages($user, $filterObj),
             'offset' => $this->offset($page, $limit),
+            'filter' => $filterForm,
         ]);
     }
 
@@ -87,5 +92,21 @@ class MileageController extends BaseController
         return $this->render('record/mileage/add.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
+     */
+    protected function getFilterData(array $data): array
+    {
+        $filterArray = [];
+
+        if (isset($data['car']) && $data['car'] instanceof CarDTO) {
+            $filterArray['car_id'] = $data['car']->getId();
+        }
+
+        return $filterArray;
     }
 }

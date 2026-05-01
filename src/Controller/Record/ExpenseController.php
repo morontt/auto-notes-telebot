@@ -14,15 +14,17 @@ use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Attribute\Route;
 use Symfony\Component\Routing\Requirement\Requirement;
-use TeleBot\Controller\BaseController;
+use TeleBot\Controller\RecordController;
+use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\ExpenseDTO;
 use TeleBot\Form\ExpenseForm;
+use TeleBot\Form\Filters\ExpenseFilterForm;
 use TeleBot\Service\RPC\OrderRepository as RpcOrderRepository;
 use TeleBot\Service\RPC\UserRepository as RpcUserRepository;
 
 #[Route('/records/expense')]
-class ExpenseController extends BaseController
+class ExpenseController extends RecordController
 {
     public function __construct(
         private readonly RpcOrderRepository $rpcOrderRepository,
@@ -36,11 +38,13 @@ class ExpenseController extends BaseController
         $limit = (int)$request->query->get('limit', 10);
         $page = (int)$request->query->get('page', 1);
 
-        $filterObj = new ExpenseFilter();
+        $filterForm = $this->createForm(ExpenseFilterForm::class);
+        $filterData = $this->handleFilterForm($filterForm, $request);
+
+        $filterObj = new ExpenseFilter($filterData);
         $filterObj
             ->setPage($page)
             ->setLimit($limit)
-            //->setCarId(2)
         ;
 
         $user = $this->getAppUser();
@@ -48,6 +52,7 @@ class ExpenseController extends BaseController
         return $this->render('record/expense/list.html.twig', [
             'items' => $this->rpcOrderRepository->getExpenses($user, $filterObj),
             'offset' => $this->offset($page, $limit),
+            'filter' => $filterForm,
         ]);
     }
 
@@ -108,5 +113,21 @@ class ExpenseController extends BaseController
         return $this->render('record/expense/add.html.twig', [
             'form' => $form,
         ]);
+    }
+
+    /**
+     * @param array<string, mixed> $data
+     *
+     * @return array<string, mixed>
+     */
+    protected function getFilterData(array $data): array
+    {
+        $filterArray = [];
+
+        if (isset($data['car']) && $data['car'] instanceof CarDTO) {
+            $filterArray['car_id'] = $data['car']->getId();
+        }
+
+        return $filterArray;
     }
 }
