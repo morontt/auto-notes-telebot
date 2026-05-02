@@ -2,6 +2,10 @@ framework:
     secret: '%env(APP_SECRET)%'
     profiler: { only_exceptions: false }
     csrf_protection: true
+    http_method_override: false
+    handle_all_throwables: true
+    php_errors:
+        log: true
 
     session:
         name: SESSID
@@ -10,3 +14,10 @@ framework:
     translator:
         fallbacks:
             - '%locale%'
+
+    validation:
+        email_validation_mode: html5
+
+    uid:
+        default_uuid_version: 6
+        time_based_uuid_version: 6
