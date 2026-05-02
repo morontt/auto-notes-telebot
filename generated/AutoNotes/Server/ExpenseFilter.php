@@ -25,6 +25,10 @@ class ExpenseFilter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 car_id = 3;</code>
      */
     protected $car_id = 0;
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.ExpenseType type = 4;</code>
+     */
+    protected $type = 0;
 
     /**
      * Constructor.
@@ -35,6 +39,7 @@ class ExpenseFilter extends \Google\Protobuf\Internal\Message
      *     @type int $limit
      *     @type int $page
      *     @type int $car_id
+     *     @type int $type
      * }
      */
     public function __construct($data = NULL) {
@@ -104,6 +109,28 @@ class ExpenseFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->car_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.ExpenseType type = 4;</code>
+     * @return int
+     */
+    public function getType()
+    {
+        return $this->type;
+    }
+
+    /**
+     * Generated from protobuf field <code>.xelbot.com.autonotes.server.ExpenseType type = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setType($var)
+    {
+        GPBUtil::checkEnum($var, \AutoNotes\Server\ExpenseType::class);
+        $this->type = $var;
 
         return $this;
     }

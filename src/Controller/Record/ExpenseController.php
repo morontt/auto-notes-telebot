@@ -128,6 +128,10 @@ class ExpenseController extends RecordController
             $filterArray['car_id'] = $data['car']->getId();
         }
 
+        if (!empty($data['type'])) {
+            $filterArray['type'] = (int)$data['type'];
+        }
+
         return $filterArray;
     }
 }
