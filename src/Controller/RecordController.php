@@ -27,7 +27,7 @@ abstract class RecordController extends BaseController
         $data = [];
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            array_merge($data, $this->getFilterData($form->getData()));
+            $data = array_merge($data, $this->getFilterData($form->getData()));
         }
 
         return $data;
