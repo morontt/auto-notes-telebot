@@ -17,7 +17,9 @@ use Symfony\Component\Routing\Requirement\Requirement;
 use TeleBot\Controller\RecordController;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
+use TeleBot\DTO\FillingStationDTO;
 use TeleBot\DTO\FuelDTO;
+use TeleBot\DTO\FuelTypeDTO;
 use TeleBot\Form\Filters\FuelFilterForm;
 use TeleBot\Form\FuelForm;
 use TeleBot\Service\RPC\FuelRepository as RpcFuelRepository;
@@ -153,6 +155,12 @@ class FuelController extends RecordController
 
         if (isset($data['car']) && $data['car'] instanceof CarDTO) {
             $filterArray['car_id'] = $data['car']->getId();
+        }
+        if (isset($data['station']) && $data['station'] instanceof FillingStationDTO) {
+            $filterArray['station_id'] = $data['station']->getId();
+        }
+        if (isset($data['type']) && $data['type'] instanceof FuelTypeDTO) {
+            $filterArray['type_id'] = $data['type']->getId();
         }
 
         return $filterArray;
