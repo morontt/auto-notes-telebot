@@ -25,6 +25,10 @@ class OrderFilter extends \Google\Protobuf\Internal\Message
      * Generated from protobuf field <code>int32 car_id = 3;</code>
      */
     protected $car_id = 0;
+    /**
+     * Generated from protobuf field <code>int32 type_id = 4;</code>
+     */
+    protected $type_id = 0;
 
     /**
      * Constructor.
@@ -35,6 +39,7 @@ class OrderFilter extends \Google\Protobuf\Internal\Message
      *     @type int $limit
      *     @type int $page
      *     @type int $car_id
+     *     @type int $type_id
      * }
      */
     public function __construct($data = NULL) {
@@ -104,6 +109,28 @@ class OrderFilter extends \Google\Protobuf\Internal\Message
     {
         GPBUtil::checkInt32($var);
         $this->car_id = $var;
+
+        return $this;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 type_id = 4;</code>
+     * @return int
+     */
+    public function getTypeId()
+    {
+        return $this->type_id;
+    }
+
+    /**
+     * Generated from protobuf field <code>int32 type_id = 4;</code>
+     * @param int $var
+     * @return $this
+     */
+    public function setTypeId($var)
+    {
+        GPBUtil::checkInt32($var);
+        $this->type_id = $var;
 
         return $this;
     }

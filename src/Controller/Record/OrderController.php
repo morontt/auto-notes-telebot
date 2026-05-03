@@ -17,6 +17,7 @@ use TeleBot\Controller\RecordController;
 use TeleBot\DTO\CarDTO;
 use TeleBot\DTO\CostDTO;
 use TeleBot\DTO\OrderDTO;
+use TeleBot\DTO\OrderTypeDTO;
 use TeleBot\Form\Filters\OrderFilterForm;
 use TeleBot\Form\OrderForm;
 use TeleBot\Service\RPC\OrderRepository as RpcOrderRepository;
@@ -124,6 +125,9 @@ class OrderController extends RecordController
 
         if (isset($data['car']) && $data['car'] instanceof CarDTO) {
             $filterArray['car_id'] = $data['car']->getId();
+        }
+        if (isset($data['type']) && $data['type'] instanceof OrderTypeDTO) {
+            $filterArray['type_id'] = $data['type']->getId();
         }
 
         return $filterArray;
