@@ -1,21 +1,28 @@
 doctrine:
     dbal:
-        url: '%env(DATABASE_URL)%'
-        driver: pdo_mysql
-        server_version: '8.0.41'
-        charset: utf8mb4
-        default_table_options:
-            charset: utf8mb4
-            collate: utf8mb4_unicode_ci
+        connections:
+            default:
+                url: '%env(DATABASE_URL)%'
+                driver: pdo_mysql
+                server_version: '8.0.41'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
+        default_connection: default
 
     orm:
         auto_generate_proxy_classes: true
-        naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
-        auto_mapping: true
-        mappings:
-            TeleBot:
-                type: attribute
-                is_bundle: false
-                dir: '%kernel.project_dir%/src/Entity'
-                prefix: 'TeleBot\Entity'
-                alias: TeleBot
+        default_entity_manager: default
+        entity_managers:
+            default:
+                connection: default
+                naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
+                auto_mapping: true
+                mappings:
+                    TeleBot:
+                        type: attribute
+                        is_bundle: false
+                        dir: '%kernel.project_dir%/src/Entity'
+                        prefix: 'TeleBot\Entity'
+                        alias: TeleBot
