@@ -1,7 +1,0 @@
-doctrine_migrations:
-    migrations_paths:
-        'Application\Migrations': '%kernel.project_dir%/migrations'
-
-    storage:
-        table_storage:
-            table_name: 'migrations'

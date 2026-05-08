@@ -22,3 +22,15 @@ cert:
 .PHONY: test
 test:
 	./test.sh
+
+.PHONY: diff
+diff:
+	docker exec telebot bash -c "php bin/console doctrine:migrations:diff --allow-empty-diff --configuration=config/migrations/autonotes.yaml"
+	docker exec telebot bash -c "php bin/console doctrine:migrations:diff --allow-empty-diff --configuration=config/migrations/telebot.yaml"
+	docker exec telebot chown -R www-data:www-data .
+
+.PHONY: migrate
+migrate:
+	docker exec telebot bash -c "php bin/console doctrine:migrations:migrate --no-interaction --configuration=config/migrations/autonotes.yaml"
+	docker exec telebot bash -c "php bin/console doctrine:migrations:migrate --no-interaction --configuration=config/migrations/telebot.yaml"
+	docker exec telebot chown -R www-data:www-data .

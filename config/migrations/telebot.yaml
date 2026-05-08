@@ -1,0 +1,7 @@
+migrations_paths:
+    'Application\Migrations': 'migrations/telebot'
+
+em: default
+
+table_storage:
+    table_name: 'migrations'

@@ -1,0 +1,123 @@
+<?php declare(strict_types=1);
+
+/**
+ * User: morontt
+ * Date: 15.05.2024
+ * Time: 15:35
+ */
+
+namespace TeleBot\AutoNotes\Entity;
+
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+use TeleBot\AutoNotes\Entity\Traits\CostTrait;
+use TeleBot\AutoNotes\Entity\Traits\TimeTrait;
+
+#[ORM\Entity]
+#[ORM\Table]
+class Expense
+{
+    use CostTrait;
+    use TimeTrait;
+
+    public const TYPE_GARAGE = 1;
+    public const TYPE_TOOLS = 2;
+    public const TYPE_TAX = 3;
+    public const TYPE_INSURANCE = 4;
+    public const TYPE_ROAD = 5;
+    public const TYPE_WASHING = 6;
+    public const TYPE_PARKING = 7;
+    public const TYPE_OTHER = 99;
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
+    private ?int $id = null; // @phpstan-ignore property.unusedType
+
+    #[ORM\Column(type: 'smallint', nullable: false)]
+    private int $type;
+
+    #[ORM\Column(type: 'string', nullable: false)]
+    private string $description;
+
+    #[ORM\Column(type: 'date', nullable: false)]
+    private DateTime $date;
+
+    #[ORM\ManyToOne(targetEntity: User::class)]
+    #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
+    private User $user;
+
+    #[ORM\ManyToOne(targetEntity: Car::class)]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
+    private ?Car $car;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
+    }
+
+    public function getType(): int
+    {
+        return $this->type;
+    }
+
+    public function setType(int $type): self
+    {
+        $this->type = $type;
+
+        return $this;
+    }
+
+    public function getDescription(): string
+    {
+        return $this->description;
+    }
+
+    public function setDescription(string $description): self
+    {
+        $this->description = $description;
+
+        return $this;
+    }
+
+    public function getDate(): DateTime
+    {
+        return $this->date;
+    }
+
+    public function setDate(DateTime $date): self
+    {
+        $this->date = $date;
+
+        return $this;
+    }
+
+    public function getUser(): User
+    {
+        return $this->user;
+    }
+
+    public function setUser(User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    public function getCar(): ?Car
+    {
+        return $this->car;
+    }
+
+    public function setCar(?Car $car): self
+    {
+        $this->car = $car;
+
+        return $this;
+    }
+}
