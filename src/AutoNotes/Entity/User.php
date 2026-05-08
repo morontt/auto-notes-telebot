@@ -21,17 +21,22 @@ class User
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
     #[ORM\Column(type: 'string', length: 32, unique: true)]
-    private $username;
+    private string $username;
 
     #[ORM\Column(type: 'string', length: 60)]
-    private $password;
+    private string $password;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
+    }
+
+    public function getId(): ?int
+    {
+        return $this->id;
     }
 
     public function setUsername(string $username): self
@@ -46,5 +51,15 @@ class User
         $this->password = $password;
 
         return $this;
+    }
+
+    public function getUsername(): string
+    {
+        return $this->username;
+    }
+
+    public function getPassword(): string
+    {
+        return $this->password;
     }
 }

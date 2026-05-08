@@ -1,0 +1,5 @@
+when@dev:
+    maker:
+        root_namespace: 'TeleBot'
+        generate_final_classes: false
+        generate_final_entities: false

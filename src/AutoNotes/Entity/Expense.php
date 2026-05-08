@@ -32,46 +32,31 @@ class Expense
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var int
-     */
     #[ORM\Column(type: 'smallint', nullable: false)]
-    private $type;
+    private int $type;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(type: 'string', nullable: false)]
-    private $description;
+    private string $description;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'date', nullable: false)]
-    private $date;
+    private DateTime $date;
 
-    /**
-     * @var User
-     */
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $user;
+    private User $user;
 
-    /**
-     * @var Car|null
-     */
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $car;
+    private ?Car $car;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

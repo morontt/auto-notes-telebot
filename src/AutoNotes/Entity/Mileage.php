@@ -19,39 +19,27 @@ class Mileage
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'date', nullable: false)]
-    private $date;
+    private DateTime $date;
 
-    /**
-     * @var int
-     */
     #[ORM\Column(type: 'integer', options:['unsigned' => true])]
-    private $distance;
+    private int $distance;
 
-    /**
-     * @var Car
-     */
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $car;
+    private Car $car;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private $createdAt;
+    private DateTime $createdAt;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -95,5 +83,12 @@ class Mileage
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

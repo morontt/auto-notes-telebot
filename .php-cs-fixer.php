@@ -5,6 +5,7 @@ $finder = (new PhpCsFixer\Finder())
         __DIR__ . '/src',
         __DIR__ . '/tests',
         __DIR__ . '/web',
+        __DIR__ . '/migrations',
     ])
 ;
 

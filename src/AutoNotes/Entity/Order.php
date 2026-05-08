@@ -23,66 +23,42 @@ class Order
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var string
-     */
     #[ORM\Column(type: 'string', nullable: false)]
-    private $description;
+    private string $description;
 
-    /**
-     * @var string|null
-     */
     #[ORM\Column(type: 'string', nullable: true)]
-    private $capacity;
+    private ?string $capacity;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'date', nullable: false)]
-    private $date;
+    private DateTime $date;
 
-    /**
-     * @var User
-     */
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $user;
+    private User $user;
 
-    /**
-     * @var DateTime|null
-     */
     #[ORM\Column(type: 'date', nullable: true)]
-    private $usedAt;
+    private ?DateTime $usedAt;
 
-    /**
-     * @var Mileage|null
-     */
     #[ORM\ManyToOne(targetEntity: Mileage::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
-    private $mileage;
+    private ?Mileage $mileage;
 
-    /**
-     * @var OrderType|null
-     */
     #[ORM\ManyToOne(targetEntity: OrderType::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $type;
+    private ?OrderType $type;
 
-    /**
-     * @var Car|null
-     */
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $car;
+    private ?Car $car;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

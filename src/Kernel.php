@@ -37,6 +37,7 @@ class Kernel extends BaseKernel
 
         if ('dev' === $this->getEnvironment()) {
             $bundles[] = new Bundle\WebProfilerBundle\WebProfilerBundle();
+            $bundles[] = new Bundle\MakerBundle\MakerBundle();
         }
 
         return $bundles;
@@ -77,7 +78,7 @@ class Kernel extends BaseKernel
         $routes->import(__DIR__ . '/../config/routes.yaml');
     }
 
-    protected function build(ContainerBuilder $container)
+    protected function build(ContainerBuilder $container): void
     {
         $container->addCompilerPass(new TelegramCompilerPass());
     }

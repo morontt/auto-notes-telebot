@@ -18,26 +18,20 @@ class OrderType
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var string
-     */
     #[ORM\Column(type: 'string', length: 128, unique: true)]
-    private $name;
+    private string $name;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private $createdAt;
+    private DateTime $createdAt;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -57,5 +51,12 @@ class OrderType
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
     }
 }

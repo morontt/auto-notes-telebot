@@ -18,20 +18,22 @@ class FuelType
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
     #[ORM\Column(type: 'string', length: 16, unique: true)]
-    private $name;
+    private string $name;
 
-    /**
-     * @var FuelType|null
-     */
     #[ORM\ManyToOne(targetEntity: FuelType::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $parent;
+    private ?FuelType $parent;
 
     #[ORM\Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
-    private $createdAt;
+    private DateTime $createdAt;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
 
     public function getId(): ?int
     {
@@ -51,5 +53,26 @@ class FuelType
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setName(string $name): static
+    {
+        $this->name = $name;
+
+        return $this;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    public function setParent(?self $parent): static
+    {
+        $this->parent = $parent;
+
+        return $this;
     }
 }

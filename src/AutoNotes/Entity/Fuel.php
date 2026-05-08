@@ -23,61 +23,40 @@ class Fuel
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var FillingStation
-     */
     #[ORM\ManyToOne(targetEntity: FillingStation::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $station;
+    private FillingStation $station;
 
-    /**
-     * @var float
-     */
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
-    private $value;
+    private float $value;
 
-    /**
-     * @var Car|null
-     */
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $car;
+    private ?Car $car;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'date', nullable: false)]
-    private $date;
+    private DateTime $date;
 
-    /**
-     * @var Mileage
-     */
     #[ORM\ManyToOne(targetEntity: Mileage::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
-    private $mileage;
+    private ?Mileage $mileage;
 
-    /**
-     * @var FuelType
-     */
     #[ORM\ManyToOne(targetEntity: FuelType::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $type;
+    private FuelType $type;
 
-    /**
-     * @var User
-     */
     #[ORM\ManyToOne(targetEntity: User::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $user;
+    private User $user;
 
     public function __construct()
     {
         $this->createdAt = new DateTime();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }

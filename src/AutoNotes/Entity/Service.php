@@ -9,6 +9,8 @@
 namespace TeleBot\AutoNotes\Entity;
 
 use DateTime;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 
 #[ORM\Entity]
@@ -18,47 +20,32 @@ class Service
     #[ORM\Id]
     #[ORM\Column(type: 'integer')]
     #[ORM\GeneratedValue]
-    private $id;
+    private ?int $id = null; // @phpstan-ignore property.unusedType
 
-    /**
-     * @var float
-     */
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2, nullable: true)]
-    private $cost;
+    private ?float $cost;
 
-    /**
-     * @var Currency
-     */
     #[ORM\ManyToOne(targetEntity: Currency::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
-    private $currency;
+    private ?Currency $currency;
 
-    /**
-     * @var string
-     */
     #[ORM\Column(type: 'string', nullable: false)]
-    private $description;
+    private string $description;
 
-    /**
-     * @var DateTime
-     */
     #[ORM\Column(type: 'date', nullable: false)]
-    private $date;
+    private DateTime $date;
 
-    /**
-     * @var Car
-     */
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $car;
+    private Car $car;
 
-    /**
-     * @var Mileage
-     */
     #[ORM\ManyToOne(targetEntity: Mileage::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
-    private $mileage;
+    private ?Mileage $mileage;
 
+    /**
+     * @var Collection<int, Order>
+     */
     #[ORM\ManyToMany(targetEntity: Order::class)]
     #[ORM\JoinTable(
         name: 'relation_services_orders',
@@ -76,9 +63,10 @@ class Service
     public function __construct()
     {
         $this->createdAt = new DateTime();
+        $this->orders = new ArrayCollection();
     }
 
-    public function getId()
+    public function getId(): ?int
     {
         return $this->id;
     }
@@ -158,5 +146,36 @@ class Service
     public function getCreatedAt(): DateTime
     {
         return $this->createdAt;
+    }
+
+    public function setCreatedAt(DateTime $createdAt): static
+    {
+        $this->createdAt = $createdAt;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Order>
+     */
+    public function getOrders(): Collection
+    {
+        return $this->orders;
+    }
+
+    public function addOrder(Order $order): static
+    {
+        if (!$this->orders->contains($order)) {
+            $this->orders->add($order);
+        }
+
+        return $this;
+    }
+
+    public function removeOrder(Order $order): static
+    {
+        $this->orders->removeElement($order);
+
+        return $this;
     }
 }
