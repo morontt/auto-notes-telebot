@@ -9,6 +9,14 @@ doctrine:
                 default_table_options:
                     charset: utf8mb4
                     collate: utf8mb4_unicode_ci
+            main:
+                url: '%env(MAIN_DATABASE_URL)%'
+                driver: pdo_mysql
+                server_version: '8.0.41'
+                charset: utf8mb4
+                default_table_options:
+                    charset: utf8mb4
+                    collate: utf8mb4_unicode_ci
         default_connection: default
 
     orm:
@@ -18,7 +26,7 @@ doctrine:
             default:
                 connection: default
                 naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
-                auto_mapping: true
+                #auto_mapping: true
                 mappings:
                     TeleBot:
                         type: attribute
@@ -26,3 +34,14 @@ doctrine:
                         dir: '%kernel.project_dir%/src/Entity'
                         prefix: 'TeleBot\Entity'
                         alias: TeleBot
+            main:
+                connection: main
+                naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
+                #auto_mapping: true
+                mappings:
+                    TeleBot:
+                        type: attribute
+                        is_bundle: false
+                        dir: '%kernel.project_dir%/src/AutoNotes/Entity'
+                        prefix: 'TeleBot\AutoNotes\Entity'
+                        alias: AutoNotes

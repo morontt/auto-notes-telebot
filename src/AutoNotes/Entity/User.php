@@ -1,0 +1,50 @@
+<?php declare(strict_types=1);
+
+/**
+ * User: morontt
+ * Date: 14.05.2024
+ * Time: 20:02
+ */
+
+namespace TeleBot\AutoNotes\Entity;
+
+use DateTime;
+use Doctrine\ORM\Mapping as ORM;
+use TeleBot\AutoNotes\Entity\Traits\TimeTrait;
+
+#[ORM\Entity]
+#[ORM\Table]
+class User
+{
+    use TimeTrait;
+
+    #[ORM\Id]
+    #[ORM\Column(type: 'integer')]
+    #[ORM\GeneratedValue]
+    private $id;
+
+    #[ORM\Column(type: 'string', length: 32, unique: true)]
+    private $username;
+
+    #[ORM\Column(type: 'string', length: 60)]
+    private $password;
+
+    public function __construct()
+    {
+        $this->createdAt = new DateTime();
+    }
+
+    public function setUsername(string $username): self
+    {
+        $this->username = $username;
+
+        return $this;
+    }
+
+    public function setPassword(string $password): self
+    {
+        $this->password = $password;
+
+        return $this;
+    }
+}

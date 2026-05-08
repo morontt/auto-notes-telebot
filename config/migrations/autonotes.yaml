@@ -1,0 +1,7 @@
+migrations_paths:
+    'AutoNotes\Migrations': 'migrations/autonotes'
+
+em: main
+
+table_storage:
+    table_name: 'migrations'
