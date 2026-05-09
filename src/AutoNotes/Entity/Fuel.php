@@ -30,7 +30,7 @@ class Fuel
     private FillingStation $station;
 
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
-    private float $value;
+    private string $value;
 
     #[ORM\ManyToOne(targetEntity: Car::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
@@ -75,12 +75,12 @@ class Fuel
 
     public function getValue(): float
     {
-        return $this->value;
+        return (float)$this->value;
     }
 
     public function setValue(float $value): self
     {
-        $this->value = $value;
+        $this->value = (string)$value;
 
         return $this;
     }

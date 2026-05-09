@@ -23,7 +23,7 @@ class Service
     private ?int $id = null; // @phpstan-ignore property.unusedType
 
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2, nullable: true)]
-    private ?float $cost;
+    private ?string $cost;
 
     #[ORM\ManyToOne(targetEntity: Currency::class)]
     #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
@@ -73,12 +73,12 @@ class Service
 
     public function getCost(): ?float
     {
-        return $this->cost;
+        return !is_null($this->cost) ? (float)$this->cost : null;
     }
 
     public function setCost(?float $cost): Service
     {
-        $this->cost = $cost;
+        $this->cost = !is_null($cost) ? (string)$cost : null;
 
         return $this;
     }

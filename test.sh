@@ -29,13 +29,22 @@ else
     echo -e "\e[32mPHPStan OK\e[0m\n"
 fi
 
-docker compose run --rm --remove-orphans -T telebot bash -c "php bin/console doctrine:schema:validate"
+docker compose run --rm --remove-orphans -T telebot bash -c "php bin/console doctrine:schema:validate --em=default"
 retVal=$?
 if [ $retVal -ne 0 ]; then
-    echo -e "\e[31mdoctrine:schema:validate error\e[0m\n"
+    echo -e "\e[31mdoctrine:schema:validate --em=default error\e[0m\n"
     exit 1
 else
-    echo -e "\e[32mdoctrine:schema:validate OK\e[0m\n"
+    echo -e "\e[32mdoctrine:schema:validate --em=default OK\e[0m\n"
+fi
+
+docker compose run --rm --remove-orphans -T telebot bash -c "php bin/console doctrine:schema:validate --em=main"
+retVal=$?
+if [ $retVal -ne 0 ]; then
+    echo -e "\e[31mdoctrine:schema:validate --em=main error\e[0m\n"
+    exit 1
+else
+    echo -e "\e[32mdoctrine:schema:validate --em=main OK\e[0m\n"
 fi
 
 exit 0

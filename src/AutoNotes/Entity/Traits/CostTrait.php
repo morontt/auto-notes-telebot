@@ -7,27 +7,24 @@ use TeleBot\AutoNotes\Entity\Currency;
 
 trait CostTrait
 {
-    /**
-     * @var float
-     */
     #[ORM\Column(type: 'decimal', precision: 8, scale: 2)]
-    private $cost;
+    private string $cost;
 
     /**
      * @var Currency
      */
     #[ORM\ManyToOne(targetEntity: Currency::class)]
     #[ORM\JoinColumn(nullable: false, onDelete: 'RESTRICT')]
-    private $currency;
+    private Currency $currency;
 
     public function getCost(): float
     {
-        return $this->cost;
+        return (float)$this->cost;
     }
 
     public function setCost(float $cost): self
     {
-        $this->cost = $cost;
+        $this->cost = (string)$cost;
 
         return $this;
     }
