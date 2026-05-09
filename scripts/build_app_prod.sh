@@ -1,11 +1,5 @@
 #!/usr/bin/env bash
 
-cd /var/www/migrations || exit
-
-composer install --optimize-autoloader --prefer-dist
-bin/doctrine-migrations migrations:migrate -vvv --no-interaction
-chown -R www-data:www-data .
-
 cd /var/www/html || exit
 
 composer install --optimize-autoloader --prefer-dist
