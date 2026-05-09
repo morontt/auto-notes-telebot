@@ -18,7 +18,7 @@ services:
         resource: '../src/'
         exclude:
             - '../src/Kernel.php'
-            - '../src/{DependencyInjection,Entity,Form,Utils,DTO}'
+            - '../src/{DependencyInjection,Entity,Form,Utils,DTO,AutoNotes}'
             - '../src/Security/User.php'
 
     TeleBot\Controller\WebHookController:

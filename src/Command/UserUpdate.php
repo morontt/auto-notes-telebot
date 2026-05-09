@@ -49,7 +49,10 @@ class UserUpdate extends Command
 
         $output->writeln('');
 
-        $user = $this->em->getRepository(User::class)->findOneBy(['username' => $username]);
+        /** @var \TeleBot\AutoNotes\Repository\UserRepository */
+        $userRepo = $this->em->getRepository(User::class);
+
+        $user = $userRepo->findOneBy(['username' => $username]);
         if (!$user) {
             $output->writeln(sprintf('<error>Error: user "%s" not found</error>', $username));
         } else {

@@ -11,8 +11,9 @@ namespace TeleBot\AutoNotes\Entity;
 use DateTime;
 use Doctrine\ORM\Mapping as ORM;
 use TeleBot\AutoNotes\Entity\Traits\TimeTrait;
+use TeleBot\AutoNotes\Repository\UserRepository;
 
-#[ORM\Entity]
+#[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table]
 class User
 {
