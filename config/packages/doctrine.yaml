@@ -19,6 +19,7 @@ doctrine:
                     collate: utf8mb4_unicode_ci
         default_connection: default
 
+    # https://symfony.com/doc/current/doctrine/multiple_entity_managers.html
     orm:
         auto_generate_proxy_classes: true
         default_entity_manager: default
@@ -26,7 +27,6 @@ doctrine:
             default:
                 connection: default
                 naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
-                #auto_mapping: true
                 mappings:
                     TeleBot:
                         type: attribute
@@ -37,7 +37,6 @@ doctrine:
             main:
                 connection: main
                 naming_strategy: TeleBot\Doctrine\PluralUnderscoreNamingStrategy
-                #auto_mapping: true
                 mappings:
                     TeleBot:
                         type: attribute

@@ -8,7 +8,8 @@
 
 namespace TeleBot\Command;
 
-use Doctrine\ORM\EntityManagerInterface;
+use Doctrine\Persistence\ManagerRegistry;
+use Doctrine\Persistence\ObjectManager;
 use Symfony\Component\Console\Attribute\AsCommand;
 use Symfony\Component\Console\Command\Command;
 use Symfony\Component\Console\Input\InputArgument;
@@ -22,9 +23,13 @@ class UserUpdate extends Command
 {
     use PasswordTrait;
 
-    public function __construct(private EntityManagerInterface $em)
+    private ObjectManager $em;
+
+    public function __construct(ManagerRegistry $doctrine)
     {
         parent::__construct();
+
+        $this->em = $doctrine->getManager('main');
     }
 
     protected function configure(): void
