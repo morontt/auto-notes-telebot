@@ -76,6 +76,21 @@
       "text": "Backup databases",
       "priority": "medium",
       "creation": 1765704621
+    },
+    {
+      "text": "Admin dashboard",
+      "priority": "medium",
+      "creation": 1778398176
+    },
+    {
+      "text": "Fixtures",
+      "priority": "medium",
+      "creation": 1778398192
+    },
+    {
+      "text": "Autotests",
+      "priority": "medium",
+      "creation": 1778398221
     }
   ]
 }
