@@ -8,6 +8,7 @@
 namespace TeleBot;
 
 use Doctrine\Bundle\DoctrineBundle\DoctrineBundle;
+use Doctrine\Bundle\FixturesBundle\DoctrineFixturesBundle;
 use Doctrine\Bundle\MigrationsBundle\DoctrineMigrationsBundle;
 use Symfony\Bundle;
 use Symfony\Bundle\FrameworkBundle\Kernel\MicroKernelTrait;
@@ -38,6 +39,7 @@ class Kernel extends BaseKernel
         if ('dev' === $this->getEnvironment()) {
             $bundles[] = new Bundle\WebProfilerBundle\WebProfilerBundle();
             $bundles[] = new Bundle\MakerBundle\MakerBundle();
+            $bundles[] = new DoctrineFixturesBundle();
         }
 
         return $bundles;

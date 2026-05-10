@@ -6,7 +6,7 @@
  * Time: 20:44
  */
 
-namespace TeleBot\Command\Traits;
+namespace TeleBot\Security\Traits;
 
 use Symfony\Component\PasswordHasher\Hasher\PasswordHasherFactory;
 use Symfony\Component\PasswordHasher\PasswordHasherInterface;
