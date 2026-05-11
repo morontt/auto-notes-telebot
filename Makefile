@@ -34,3 +34,8 @@ migrate:
 	docker exec telebot bash -c "php bin/console doctrine:migrations:migrate --no-interaction --configuration=config/migrations/autonotes.yaml"
 	docker exec telebot bash -c "php bin/console doctrine:migrations:migrate --no-interaction --configuration=config/migrations/telebot.yaml"
 	docker exec telebot chown -R www-data:www-data .
+
+.PHONY: fixtures
+fixtures:
+	docker exec telebot bash -c "php bin/console doctrine:fixtures:load --em=main --no-interaction"
+	docker exec telebot chown -R www-data:www-data .

@@ -24,9 +24,6 @@ final class Version20250826194035 extends AbstractMigration
         $this->addSql('ALTER TABLE fuels ADD type_id INT DEFAULT NULL');
         $this->addSql('ALTER TABLE fuels ADD CONSTRAINT FK_C2E928B8C54C8C93 FOREIGN KEY (type_id) REFERENCES fuel_types (id)');
         $this->addSql('CREATE INDEX IDX_C2E928B8C54C8C93 ON fuels (type_id)');
-
-        $this->addSql('INSERT INTO fuel_types (`name`) VALUES (\'ДТ\'), (\'АИ-92\'), (\'АИ-95\'), (\'АИ-98\')');
-        $this->addSql("UPDATE fuels AS f, fuel_types AS ft SET f.type_id = ft.id WHERE ft.name = 'ДТ'");
     }
 
     public function down(Schema $schema): void

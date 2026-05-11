@@ -16,7 +16,7 @@ use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use TeleBot\AutoNotes\Entity\User;
-use TeleBot\Command\Traits\PasswordTrait;
+use TeleBot\Security\Traits\PasswordTrait;
 
 #[AsCommand(name: 'telebot:user-update')]
 class UserUpdate extends Command
