@@ -24,7 +24,7 @@ class FuelType
     private string $name;
 
     #[ORM\ManyToOne(targetEntity: FuelType::class)]
-    #[ORM\JoinColumn(nullable: true, onDelete: 'RESTRICT')]
+    #[ORM\JoinColumn(nullable: true, onDelete: 'SET NULL')]
     private ?FuelType $parent;
 
     #[ORM\Column(type: 'datetime', nullable: false, options: ['default' => 'CURRENT_TIMESTAMP'])]
