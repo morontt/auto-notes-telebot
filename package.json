@@ -6,6 +6,9 @@
     "yarn": "1.22.22"
   },
   "dependencies": {
+    "grunt": "1.6.1",
+    "grunt-contrib-concat": "^2.1.0",
+    "grunt-contrib-cssmin": "^5.0.0",
     "purecss": "^3.0.0"
   }
 }

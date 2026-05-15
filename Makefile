@@ -39,3 +39,7 @@ migrate:
 fixtures:
 	docker exec telebot bash -c "php bin/console doctrine:fixtures:load --em=main --no-interaction"
 	docker exec telebot chown -R www-data:www-data .
+
+.PHONY: css
+css:
+	./node_modules/.bin/grunt build

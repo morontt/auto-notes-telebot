@@ -12,3 +12,4 @@ bin/protoc-gen-twirp_php
 /bin/*
 !/bin/console
 /node_modules
+/web/assets/css/telebot.css

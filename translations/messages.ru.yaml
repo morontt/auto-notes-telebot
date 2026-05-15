@@ -16,7 +16,7 @@ form:
     capacity: Количество
     user_code: Код
     default_car: Машина по умолчанию
-    default_currency: Валюьа по умолчанию
+    default_currency: Валюта по умолчанию
     default_fuel: Топливо по умолчанию
   button:
     submit_code: Отправить
