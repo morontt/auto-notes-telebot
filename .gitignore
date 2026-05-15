@@ -11,3 +11,4 @@ bin/protoc-gen-twirp_php
 .phpunit.cache
 /bin/*
 !/bin/console
+/node_modules
