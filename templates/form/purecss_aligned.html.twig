@@ -1,0 +1,21 @@
+{% use "form_div_layout.html.twig" %}
+
+{%- block form_start -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' pure-form pure-form-aligned')|trim}) -%}
+    {{- parent() -}}
+{%- endblock form_start -%}
+
+{%- block button_attributes -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' pure-button')|trim}) -%}
+    {{- parent() -}}
+{%- endblock button_attributes -%}
+
+{%- block form_row -%}
+    {% set row_attr = row_attr|merge({class: (row_attr.class|default('') ~ ' pure-control-group')|trim}) -%}
+    {{- parent() -}}
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+    {% set row_attr = row_attr|merge({class: (row_attr.class|default('') ~ ' pure-controls')|trim}) -%}
+    {{- parent() -}}
+{%- endblock button_row -%}
