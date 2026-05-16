@@ -4,6 +4,8 @@
 /var/log/*
 !var/cache/.gitkeep
 !var/log/.gitkeep
+/var/temp/*
+!var/temp/.gitkeep
 .php-cs-fixer.cache
 bin/protoc-gen-twirp_php
 /docker/nginx/fullchain.pem
