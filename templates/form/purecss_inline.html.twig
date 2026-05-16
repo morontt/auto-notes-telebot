@@ -1,0 +1,22 @@
+{% use "form_div_layout.html.twig" %}
+
+{%- block form_start -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' pure-form')|trim}) -%}
+    {{- parent() -}}
+{%- endblock form_start -%}
+
+{%- block button_attributes -%}
+    {% set attr = attr|merge({class: (attr.class|default('') ~ ' pure-button')|trim}) -%}
+    {{- parent() -}}
+{%- endblock button_attributes -%}
+
+{%- block form_row -%}
+    {{- form_label(form) -}}
+    {{- form_errors(form) -}}
+    {{- form_widget(form) -}}
+    {{- form_help(form) -}}
+{%- endblock form_row -%}
+
+{%- block button_row -%}
+    {{- form_widget(form) -}}
+{%- endblock button_row -%}
