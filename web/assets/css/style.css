@@ -204,6 +204,10 @@ a:hover {
     text-decoration: underline
 }
 
+.filter_form {
+    margin-bottom: 0.5em;
+}
+
 .filter_form .pure-form label,
 .filter_form .pure-form select {
     margin-right: 0.5em;

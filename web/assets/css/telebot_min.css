@@ -151,6 +151,7 @@ figure img{margin:0 auto}
 a{text-decoration:none}
 main a{font-weight:bolder}
 a:hover{text-decoration:underline}
+.filter_form{margin-bottom:.5em}
 .filter_form .pure-form label,.filter_form .pure-form select{margin-right:.5em}
 .flash-success{color:#3c763d;background-color:#dff0d8;margin:.5em 0;padding:.5em 1em}
 .flash-error{color:#a94442;background-color:#ebccd1;margin:.5em 0;padding:.5em 1em}
