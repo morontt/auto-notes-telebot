@@ -40,6 +40,14 @@ services:
         arguments:
             $secret: '%env(APP_SECRET)%'
 
+    TeleBot\Service\BackUp\FlysystemFactory:
+        arguments:
+            $region: '%env(S3_REGION)%'
+            $endpoint: '%env(S3_ENDPOINT)%'
+            $backetName: '%env(S3_BACKET)%'
+            $accessKey: '%env(S3_ACCESS_KEY)%'
+            $secret: '%env(S3_SECRET)%'
+
     telebot.telegram_bot:
         class: Xelbot\Telegram\Robot
         arguments:

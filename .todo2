@@ -76,7 +76,8 @@
     {
       "text": "Backup databases",
       "priority": "medium",
-      "creation": 1765704621
+      "creation": 1765704621,
+      "completion": 1779002218
     },
     {
       "text": "Admin dashboard",
